@@ -159,9 +159,9 @@ function TopBar() {
 function NTMark({ invert = false }: { invert?: boolean }) {
   return (
     <img
-      src={ntLogo}
+      src={ntLogoMark}
       alt="Northern Trust"
-      className="h-11 w-auto shrink-0 select-none"
+      className="h-14 w-auto shrink-0 select-none"
       style={invert ? { filter: "brightness(0) invert(1)" } : undefined}
       draggable={false}
     />
