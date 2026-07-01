@@ -14,6 +14,11 @@ import {
   Building2,
   TrendingUp,
   Play,
+  Coins,
+  Vault,
+  CalendarClock,
+  MapPin,
+  Award,
 } from "lucide-react";
 
 import heroSkyline from "@/assets/hero-skyline.jpg";
@@ -22,7 +27,7 @@ import audienceFamily from "@/assets/audience-family.jpg";
 import audienceInstitutions from "@/assets/audience-institutions.jpg";
 import audienceAdvisors from "@/assets/audience-advisors.jpg";
 import insightFeatured from "@/assets/insight-featured.jpg";
-import ntLogo from "@/assets/nt-logo.svg";
+import ntLogoMark from "@/assets/nt-logo.png";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -54,8 +59,8 @@ function Index() {
       <Hero />
       <Legacy />
       <TrustStats />
-      <Insights />
       <WealthTool />
+      <Insights />
       <GlobalReach />
       <Awards />
       <Footer />
@@ -94,14 +99,6 @@ function TopBar() {
 
   return (
     <>
-      {/* Announcement strip */}
-      <div
-        className="w-full text-center text-[11px] tracking-[0.2em] uppercase py-2"
-        style={{ background: "var(--color-navy-deep)", color: "var(--color-gold-soft)" }}
-      >
-        Serving Families, Institutions & Advisors — Since 1889
-      </div>
-
       <header
         className={`sticky top-0 z-40 transition-all duration-300 border-b`}
         style={{
@@ -166,9 +163,9 @@ function TopBar() {
 function NTMark({ invert = false }: { invert?: boolean }) {
   return (
     <img
-      src={ntLogo}
+      src={ntLogoMark}
       alt="Northern Trust"
-      className="h-11 w-auto shrink-0 select-none"
+      className="h-14 w-auto shrink-0 select-none"
       style={invert ? { filter: "brightness(0) invert(1)" } : undefined}
       draggable={false}
     />
@@ -274,14 +271,7 @@ function SmartSearchField({ open, setOpen }: { open: boolean; setOpen: (v: boole
           >
             <X className="h-3.5 w-3.5" />
           </button>
-        ) : (
-          <kbd
-            className="ml-auto text-[10px] px-1.5 py-0.5 rounded border"
-            style={{ borderColor: "rgba(0,98,63,0.2)", color: "var(--color-navy)" }}
-          >
-            ⌘K
-          </kbd>
-        )}
+        ) : null}
       </div>
 
       {/* Dropdown panel — inline, no popup */}
@@ -388,53 +378,68 @@ function SmartSearchField({ open, setOpen }: { open: boolean; setOpen: (v: boole
 
 function Hero() {
   return (
-    <section className="relative overflow-hidden" style={{ background: "var(--color-ivory)" }}>
-      <div className="mx-auto max-w-[1400px] px-6 lg:px-10 pt-8 lg:pt-10 pb-14 lg:pb-20">
-        <div className="grid lg:grid-cols-12 gap-6 lg:gap-10 items-start">
-          <div className="lg:col-span-7">
+    <>
+    {/* Full-bleed banner hero */}
+    <section className="relative overflow-hidden" style={{ background: "var(--color-navy-deep)" }}>
+      <div className="relative w-full" style={{ height: "clamp(520px, 78vh, 780px)" }}>
+        <img
+          src={heroSkyline}
+          alt="Chicago skyline at golden hour — Northern Trust's home since 1889"
+          className="absolute inset-0 w-full h-full object-cover"
+          style={{ filter: "saturate(0.85) contrast(1.05) brightness(0.85)" }}
+        />
+        {/* Left-side dark gradient for legibility */}
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              "linear-gradient(90deg, rgba(6,22,52,0.85) 0%, rgba(6,22,52,0.62) 38%, rgba(6,22,52,0.15) 68%, rgba(6,22,52,0) 100%)",
+          }}
+        />
+        {/* Content overlay */}
+        <div className="relative mx-auto max-w-[1440px] h-full px-6 lg:px-10 flex items-center">
+          <div className="max-w-2xl" style={{ color: "var(--color-ivory)" }}>
             <div
-              className="flex items-center gap-3 text-[11px] tracking-[0.3em] uppercase mb-8"
-              style={{ color: "var(--color-gold)" }}
+              className="flex items-center gap-3 text-[11px] tracking-[0.3em] uppercase mb-6"
+              style={{ color: "var(--color-gold-soft)" }}
             >
-              <span className="h-px w-8" style={{ background: "var(--color-gold)" }} />
+              <span className="h-px w-8" style={{ background: "var(--color-gold-soft)" }} />
               Volume CXXXV · 1889 — 2026
             </div>
             <h1
               className="tracking-tight"
               style={{
                 fontFamily: "var(--font-display)",
-                color: "var(--color-navy)",
-                fontSize: "clamp(3.2rem, 6.5vw, 6.5rem)",
-                lineHeight: 0.95,
-                fontWeight: 400,
+                fontSize: "clamp(2.4rem, 4.4vw, 4.4rem)",
+                lineHeight: 1.02,
+                fontWeight: 300,
               }}
             >
-              A century&nbsp;of quiet{"\n"}
-              conviction.
+              A century and a third{"\u00a0"}of quiet<br />conviction.
             </h1>
             <p
-              className="mt-8 max-w-xl text-[17px] leading-relaxed"
-              style={{ color: "var(--color-stone)" }}
+              className="mt-6 max-w-lg text-[16px] leading-relaxed"
+              style={{ color: "rgba(245,241,232,0.82)" }}
             >
-              For 135 years, the world's most discerning families, institutions, and advisors have turned to Northern Trust — for wealth that endures beyond generations, and for counsel that endures beyond cycles.
+              For 135 years, the world's most discerning families, institutions, and advisors have turned to Northern Trust — for wealth that endures beyond generations, and counsel that endures beyond cycles.
             </p>
 
-            <div className="mt-10 flex flex-wrap items-center gap-4">
+            <div className="mt-8 flex flex-wrap items-center gap-4">
               <a
                 href="#audiences"
-                className="inline-flex items-center gap-3 px-7 py-4 rounded-full text-[14px] transition-all hover:gap-4"
-                style={{ background: "var(--color-navy)", color: "var(--color-ivory)" }}
+                className="inline-flex items-center gap-3 px-7 py-3.5 rounded-full text-[13px] transition-all hover:gap-4"
+                style={{ background: "var(--color-gold)", color: "var(--color-navy-deep)" }}
               >
                 Explore your path
                 <ArrowRight className="h-4 w-4" />
               </a>
               <button
-                className="inline-flex items-center gap-3 text-[14px] group"
-                style={{ color: "var(--color-navy)" }}
+                className="inline-flex items-center gap-3 text-[13px] group"
+                style={{ color: "var(--color-ivory)" }}
               >
                 <span
                   className="h-10 w-10 grid place-items-center rounded-full border transition-transform group-hover:scale-105"
-                  style={{ borderColor: "var(--color-navy)" }}
+                  style={{ borderColor: "rgba(245,241,232,0.6)" }}
                 >
                   <Play className="h-3.5 w-3.5 fill-current" />
                 </span>
@@ -442,44 +447,30 @@ function Hero() {
               </button>
             </div>
           </div>
-
-          <div className="lg:col-span-5">
-            <div className="relative">
-              <div
-                className="absolute -top-6 -left-6 w-24 h-24 hidden lg:block"
-                style={{ borderTop: "1px solid var(--color-gold)", borderLeft: "1px solid var(--color-gold)" }}
-              />
-              <img
-                src={heroSkyline}
-                alt="Chicago skyline at golden hour — Northern Trust's home since 1889"
-                width={1600}
-                height={1024}
-                className="w-full aspect-[16/10] object-cover rounded-sm"
-                style={{ filter: "saturate(0.85) contrast(1.05)" }}
-              />
-              <div
-                className="absolute bottom-6 left-6 right-6 p-5 rounded-sm"
-                style={{ background: "rgba(6,22,52,0.85)", backdropFilter: "blur(8px)" }}
-              >
-                <div
-                  className="text-[10px] tracking-[0.3em] uppercase mb-2"
-                  style={{ color: "var(--color-gold-soft)" }}
-                >
-                  Chicago · Global HQ
-                </div>
-                <div
-                  className="text-[15px] leading-snug"
-                  style={{ color: "var(--color-ivory)", fontFamily: "var(--font-display)" }}
-                >
-                  "Built to safeguard what matters most — for those who matter most."
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
 
-        {/* Audience routing */}
-        <div id="audiences" className="mt-24 lg:mt-32">
+        {/* Corner caption */}
+        <div className="absolute bottom-6 right-6 lg:bottom-8 lg:right-10 hidden md:block max-w-xs">
+          <div
+            className="text-[10px] tracking-[0.3em] uppercase mb-1"
+            style={{ color: "var(--color-gold-soft)" }}
+          >
+            Chicago · Global HQ
+          </div>
+          <div
+            className="text-[13px] leading-snug"
+            style={{ color: "rgba(245,241,232,0.85)", fontFamily: "var(--font-display)" }}
+          >
+            "Built to safeguard what matters most — for those who matter most."
+          </div>
+        </div>
+      </div>
+    </section>
+
+    {/* Audience routing — separate section */}
+    <section style={{ background: "var(--color-ivory)" }}>
+      <div className="mx-auto max-w-[1400px] px-6 lg:px-10 py-20 lg:py-28">
+        <div id="audiences">
           <div className="flex items-end justify-between mb-8 flex-wrap gap-4">
             <div>
               <div
@@ -538,6 +529,7 @@ function Hero() {
         </div>
       </div>
     </section>
+    </>
   );
 }
 
@@ -739,45 +731,78 @@ function Legacy() {
 
 function TrustStats() {
   const stats = [
-    { value: "$1.6T", label: "Assets Under Management", sub: "As of Q4 2025" },
-    { value: "$16.6T", label: "Assets Under Custody / Administration", sub: "Top 5 globally" },
-    { value: "22", label: "Average Client Tenure", sub: "Years, top wealth clients" },
-    { value: "30+", label: "Countries Served", sub: "Global footprint" },
-    { value: "AA-", label: "S&P Long-Term Credit Rating", sub: "Among the highest in banking" },
+    { value: "$1.6T", label: "Assets Under Management", sub: "As of Q4 2025", Icon: Coins },
+    { value: "$16.6T", label: "Assets Under Custody / Administration", sub: "Top 5 globally", Icon: Vault },
+    { value: "22", label: "Average Client Tenure", sub: "Years, top wealth clients", Icon: CalendarClock },
+    { value: "30+", label: "Countries Served", sub: "Global footprint", Icon: MapPin },
+    { value: "AA-", label: "S&P Long-Term Credit Rating", sub: "Among the highest in banking", Icon: Award },
   ];
 
   return (
     <section style={{ background: "var(--color-ivory)" }}>
       <div className="mx-auto max-w-[1400px] px-6 lg:px-10 py-20 lg:py-24">
+        <div
+          className="text-center mb-14"
+        >
+          <div
+            className="text-[11px] tracking-[0.3em] uppercase mb-3"
+            style={{ color: "var(--color-gold)" }}
+          >
+            The Ledger
+          </div>
+          <h2
+            style={{
+              fontFamily: "var(--font-display)",
+              fontSize: "clamp(1.7rem, 2.8vw, 2.4rem)",
+              color: "var(--color-navy)",
+              fontWeight: 400,
+              lineHeight: 1.1,
+            }}
+          >
+            Numbers earned, not claimed.
+          </h2>
+        </div>
         <div className="grid md:grid-cols-5 gap-y-10 gap-x-6">
-          {stats.map((s) => (
-            <div
-              key={s.label}
-              className="border-l pl-5"
-              style={{ borderColor: "rgba(180,138,60,0.4)" }}
-            >
+          {stats.map((s) => {
+            const Icon = s.Icon;
+            return (
               <div
-                style={{
-                  fontFamily: "var(--font-display)",
-                  fontSize: "clamp(2.2rem, 3.5vw, 3rem)",
-                  color: "var(--color-navy)",
-                  fontWeight: 400,
-                  lineHeight: 1,
-                }}
+                key={s.label}
+                className="group border-l pl-5 transition-colors"
+                style={{ borderColor: "rgba(180,138,60,0.4)" }}
               >
-                {s.value}
+                <div
+                  className="h-10 w-10 grid place-items-center rounded-full mb-5 transition-transform group-hover:scale-105"
+                  style={{
+                    background: "rgba(180,138,60,0.12)",
+                    color: "var(--color-gold)",
+                  }}
+                >
+                  <Icon className="h-4 w-4" strokeWidth={1.5} />
+                </div>
+                <div
+                  style={{
+                    fontFamily: "var(--font-display)",
+                    fontSize: "clamp(2.2rem, 3.5vw, 3rem)",
+                    color: "var(--color-navy)",
+                    fontWeight: 400,
+                    lineHeight: 1,
+                  }}
+                >
+                  {s.value}
+                </div>
+                <div
+                  className="mt-3 text-[12px] tracking-wide"
+                  style={{ color: "var(--color-navy)" }}
+                >
+                  {s.label}
+                </div>
+                <div className="mt-1 text-[11px]" style={{ color: "var(--color-stone)" }}>
+                  {s.sub}
+                </div>
               </div>
-              <div
-                className="mt-3 text-[12px] tracking-wide"
-                style={{ color: "var(--color-navy)" }}
-              >
-                {s.label}
-              </div>
-              <div className="mt-1 text-[11px]" style={{ color: "var(--color-stone)" }}>
-                {s.sub}
-              </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </section>
