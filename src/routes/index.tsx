@@ -22,6 +22,7 @@ import audienceFamily from "@/assets/audience-family.jpg";
 import audienceInstitutions from "@/assets/audience-institutions.jpg";
 import audienceAdvisors from "@/assets/audience-advisors.jpg";
 import insightFeatured from "@/assets/insight-featured.jpg";
+import ntLogo from "@/assets/nt-logo.svg";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -170,19 +171,15 @@ function TopBar() {
   );
 }
 
-function NTMark() {
+function NTMark({ invert = false }: { invert?: boolean }) {
   return (
-    <div
-      className="h-11 w-11 rounded-sm grid place-items-center shrink-0"
-      style={{ background: "var(--color-navy)" }}
-    >
-      <span
-        className="text-[18px] font-medium tracking-tight"
-        style={{ fontFamily: "var(--font-display)", color: "var(--color-gold-soft)" }}
-      >
-        NT
-      </span>
-    </div>
+    <img
+      src={ntLogo}
+      alt="Northern Trust"
+      className="h-11 w-auto shrink-0 select-none"
+      style={invert ? { filter: "brightness(0) invert(1)" } : undefined}
+      draggable={false}
+    />
   );
 }
 
