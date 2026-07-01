@@ -95,14 +95,6 @@ function TopBar() {
 
   return (
     <>
-      {/* Announcement strip */}
-      <div
-        className="w-full text-center text-[11px] tracking-[0.2em] uppercase py-2"
-        style={{ background: "var(--color-navy-deep)", color: "var(--color-gold-soft)" }}
-      >
-        Serving Families, Institutions & Advisors — Since 1889
-      </div>
-
       <header
         className={`sticky top-0 z-40 transition-all duration-300 border-b`}
         style={{
