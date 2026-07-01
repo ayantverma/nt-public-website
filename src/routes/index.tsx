@@ -486,65 +486,6 @@ function Hero() {
         </div>
       </div>
 
-      {/* Audience routing */}
-        <div id="audiences" className="mt-24 lg:mt-32">
-          <div className="flex items-end justify-between mb-8 flex-wrap gap-4">
-            <div>
-              <div
-                className="text-[11px] tracking-[0.3em] uppercase mb-3"
-                style={{ color: "var(--color-gold)" }}
-              >
-                Begin here
-              </div>
-              <h2
-                className="tracking-tight"
-                style={{
-                  fontFamily: "var(--font-display)",
-                  color: "var(--color-navy)",
-                  fontSize: "clamp(1.8rem, 3vw, 2.6rem)",
-                  fontWeight: 400,
-                  lineHeight: 1.05,
-                }}
-              >
-                Three journeys.<span style={{ color: "var(--color-gold)" }}> One standard of care.</span>
-              </h2>
-            </div>
-            <a
-              href="#"
-              className="text-[13px] flex items-center gap-2 group"
-              style={{ color: "var(--color-navy)" }}
-            >
-              Not sure where to start? Speak with us
-              <ArrowUpRight className="h-4 w-4 group-hover:translate-x-0.5 transition-transform" />
-            </a>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-6">
-            <AudienceCard
-              image={audienceFamily}
-              eyebrow="For Individuals & Families"
-              title="Wealth that outlives you."
-              desc="Private wealth management, trust & estate, and family office services for families with $10M+ in investable assets."
-              points={["Private Wealth Management", "Trust & Estate Planning", "Family Office Services"]}
-            />
-            <AudienceCard
-              image={audienceInstitutions}
-              eyebrow="For Institutions"
-              title="Custody with conviction."
-              desc="Asset servicing, custody, fund administration, and treasury solutions for the world's largest institutions."
-              points={["Global Custody · $16.6T AUC/A", "Fund Administration", "Institutional Investing"]}
-              featured
-            />
-            <AudienceCard
-              image={audienceAdvisors}
-              eyebrow="For Advisors & Family Offices"
-              title="A partner for your practice."
-              desc="Institutional-grade custody, technology, and investment solutions purpose-built for RIAs and multi-family offices."
-              points={["RIA Custody Services", "Wealth Passport® Platform", "Institutional Investment Access"]}
-            />
-          </div>
-        </div>
-      </div>
     </section>
   );
 }
