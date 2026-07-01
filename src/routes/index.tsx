@@ -113,19 +113,11 @@ function TopBar() {
         <div className="mx-auto max-w-[1400px] px-6 lg:px-10 flex items-center justify-between h-20">
           <a href="#" className="flex items-center gap-3 shrink-0">
             <NTMark />
-            <div className="hidden sm:block leading-tight">
-              <div
-                className="text-[15px] font-medium tracking-[0.18em] uppercase"
-                style={{ color: "var(--color-navy)" }}
-              >
-                Northern Trust
-              </div>
-              <div
-                className="text-[10px] tracking-[0.25em] uppercase"
-                style={{ color: "var(--color-stone)" }}
-              >
-                Est. 1889 · Chicago
-              </div>
+            <div
+              className="hidden md:block pl-3 ml-1 border-l text-[10px] tracking-[0.28em] uppercase leading-tight"
+              style={{ color: "var(--color-stone)", borderColor: "rgba(10,31,68,0.15)" }}
+            >
+              Est. 1889<br />Chicago
             </div>
           </a>
 
@@ -1201,12 +1193,12 @@ function Footer() {
         <div className="grid lg:grid-cols-12 gap-10 pb-14 border-b" style={{ borderColor: "rgba(245,241,232,0.1)" }}>
           <div className="lg:col-span-4">
             <div className="flex items-center gap-3 mb-6">
-              <NTMark />
-              <div>
-                <div className="text-[15px] tracking-[0.18em] uppercase">Northern Trust</div>
-                <div className="text-[10px] tracking-[0.25em] uppercase" style={{ color: "var(--color-gold-soft)" }}>
-                  Est. 1889 · Chicago
-                </div>
+              <NTMark invert />
+              <div
+                className="pl-3 border-l text-[10px] tracking-[0.28em] uppercase leading-tight"
+                style={{ color: "var(--color-gold-soft)", borderColor: "rgba(245,241,232,0.2)" }}
+              >
+                Est. 1889<br />Chicago
               </div>
             </div>
             <p className="text-[13px] leading-relaxed max-w-sm" style={{ color: "rgba(245,241,232,0.6)" }}>
