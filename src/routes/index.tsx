@@ -409,9 +409,8 @@ function Hero() {
                 fontWeight: 400,
               }}
             >
-              A century <em style={{ fontStyle: "italic", color: "var(--color-gold)" }}>and a third</em>
-              <br />
-              of quiet <br />conviction.
+              A century&nbsp;of quiet{"\n"}
+              conviction.
             </h1>
             <p
               className="mt-8 max-w-xl text-[17px] leading-relaxed"
