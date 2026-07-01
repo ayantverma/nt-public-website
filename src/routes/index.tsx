@@ -393,13 +393,6 @@ function Hero() {
         {/* Content overlay */}
         <div className="relative mx-auto max-w-[1440px] h-full px-6 lg:px-10 flex items-center">
           <div className="max-w-2xl" style={{ color: "var(--color-ivory)" }}>
-            <div
-              className="flex items-center gap-3 text-[11px] tracking-[0.3em] uppercase mb-6"
-              style={{ color: "var(--color-gold-soft)" }}
-            >
-              <span className="h-px w-8" style={{ background: "var(--color-gold-soft)" }} />
-              Volume CXXXV · 1889 — 2026
-            </div>
             <h1
               className="tracking-tight"
               style={{
