@@ -732,45 +732,78 @@ function Legacy() {
 
 function TrustStats() {
   const stats = [
-    { value: "$1.6T", label: "Assets Under Management", sub: "As of Q4 2025" },
-    { value: "$16.6T", label: "Assets Under Custody / Administration", sub: "Top 5 globally" },
-    { value: "22", label: "Average Client Tenure", sub: "Years, top wealth clients" },
-    { value: "30+", label: "Countries Served", sub: "Global footprint" },
-    { value: "AA-", label: "S&P Long-Term Credit Rating", sub: "Among the highest in banking" },
+    { value: "$1.6T", label: "Assets Under Management", sub: "As of Q4 2025", Icon: Coins },
+    { value: "$16.6T", label: "Assets Under Custody / Administration", sub: "Top 5 globally", Icon: Vault },
+    { value: "22", label: "Average Client Tenure", sub: "Years, top wealth clients", Icon: CalendarClock },
+    { value: "30+", label: "Countries Served", sub: "Global footprint", Icon: MapPin },
+    { value: "AA-", label: "S&P Long-Term Credit Rating", sub: "Among the highest in banking", Icon: Award },
   ];
 
   return (
     <section style={{ background: "var(--color-ivory)" }}>
       <div className="mx-auto max-w-[1400px] px-6 lg:px-10 py-20 lg:py-24">
+        <div
+          className="text-center mb-14"
+        >
+          <div
+            className="text-[11px] tracking-[0.3em] uppercase mb-3"
+            style={{ color: "var(--color-gold)" }}
+          >
+            The Ledger
+          </div>
+          <h2
+            style={{
+              fontFamily: "var(--font-display)",
+              fontSize: "clamp(1.7rem, 2.8vw, 2.4rem)",
+              color: "var(--color-navy)",
+              fontWeight: 400,
+              lineHeight: 1.1,
+            }}
+          >
+            Numbers earned, not claimed.
+          </h2>
+        </div>
         <div className="grid md:grid-cols-5 gap-y-10 gap-x-6">
-          {stats.map((s) => (
-            <div
-              key={s.label}
-              className="border-l pl-5"
-              style={{ borderColor: "rgba(180,138,60,0.4)" }}
-            >
+          {stats.map((s) => {
+            const Icon = s.Icon;
+            return (
               <div
-                style={{
-                  fontFamily: "var(--font-display)",
-                  fontSize: "clamp(2.2rem, 3.5vw, 3rem)",
-                  color: "var(--color-navy)",
-                  fontWeight: 400,
-                  lineHeight: 1,
-                }}
+                key={s.label}
+                className="group border-l pl-5 transition-colors"
+                style={{ borderColor: "rgba(180,138,60,0.4)" }}
               >
-                {s.value}
+                <div
+                  className="h-10 w-10 grid place-items-center rounded-full mb-5 transition-transform group-hover:scale-105"
+                  style={{
+                    background: "rgba(180,138,60,0.12)",
+                    color: "var(--color-gold)",
+                  }}
+                >
+                  <Icon className="h-4 w-4" strokeWidth={1.5} />
+                </div>
+                <div
+                  style={{
+                    fontFamily: "var(--font-display)",
+                    fontSize: "clamp(2.2rem, 3.5vw, 3rem)",
+                    color: "var(--color-navy)",
+                    fontWeight: 400,
+                    lineHeight: 1,
+                  }}
+                >
+                  {s.value}
+                </div>
+                <div
+                  className="mt-3 text-[12px] tracking-wide"
+                  style={{ color: "var(--color-navy)" }}
+                >
+                  {s.label}
+                </div>
+                <div className="mt-1 text-[11px]" style={{ color: "var(--color-stone)" }}>
+                  {s.sub}
+                </div>
               </div>
-              <div
-                className="mt-3 text-[12px] tracking-wide"
-                style={{ color: "var(--color-navy)" }}
-              >
-                {s.label}
-              </div>
-              <div className="mt-1 text-[11px]" style={{ color: "var(--color-stone)" }}>
-                {s.sub}
-              </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </section>
