@@ -381,7 +381,7 @@ function Hero() {
     <>
     {/* Full-bleed banner hero */}
     <section className="relative overflow-hidden" style={{ background: "var(--color-navy-deep)" }}>
-      <div className="relative w-full" style={{ height: "clamp(520px, 78vh, 780px)" }}>
+      <div className="relative w-full" style={{ height: "clamp(420px, 55vh, 560px)" }}>
         <img
           src={heroSkyline}
           alt="Chicago skyline at golden hour — Northern Trust's home since 1889"
