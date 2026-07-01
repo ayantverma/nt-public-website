@@ -1212,12 +1212,6 @@ function Footer() {
           <div className="lg:col-span-4">
             <div className="flex items-center gap-3 mb-6">
               <NTMark invert />
-              <div
-                className="pl-3 border-l text-[10px] tracking-[0.28em] uppercase leading-tight"
-                style={{ color: "var(--color-gold-soft)", borderColor: "rgba(245,241,232,0.2)" }}
-              >
-                Est. 1889<br />Chicago
-              </div>
             </div>
             <p className="text-[13px] leading-relaxed max-w-sm" style={{ color: "rgba(245,241,232,0.6)" }}>
               50 South LaSalle Street, Chicago, Illinois 60603. Serving generations of families, institutions, and advisors.
