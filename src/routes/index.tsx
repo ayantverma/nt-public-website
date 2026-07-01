@@ -267,14 +267,7 @@ function SmartSearchField({ open, setOpen }: { open: boolean; setOpen: (v: boole
           >
             <X className="h-3.5 w-3.5" />
           </button>
-        ) : (
-          <kbd
-            className="ml-auto text-[10px] px-1.5 py-0.5 rounded border"
-            style={{ borderColor: "rgba(0,98,63,0.2)", color: "var(--color-navy)" }}
-          >
-            ⌘K
-          </kbd>
-        )}
+        ) : null}
       </div>
 
       {/* Dropdown panel — inline, no popup */}
