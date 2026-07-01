@@ -67,6 +67,7 @@ function Index() {
 function TopBar() {
   const [searchOpen, setSearchOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const searchRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -77,8 +78,17 @@ function TopBar() {
   useEffect(() => {
     if (!searchOpen) return;
     const onKey = (e: KeyboardEvent) => e.key === "Escape" && setSearchOpen(false);
+    const onClick = (e: MouseEvent) => {
+      if (searchRef.current && !searchRef.current.contains(e.target as Node)) {
+        setSearchOpen(false);
+      }
+    };
     window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
+    window.addEventListener("mousedown", onClick);
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      window.removeEventListener("mousedown", onClick);
+    };
   }, [searchOpen]);
 
   return (
@@ -131,24 +141,9 @@ function TopBar() {
           </nav>
 
           <div className="flex items-center gap-2">
-            <button
-              onClick={() => setSearchOpen(true)}
-              className="hidden md:flex items-center gap-3 px-4 py-2.5 rounded-full border transition-all hover:shadow-sm"
-              style={{
-                borderColor: "rgba(10,31,68,0.15)",
-                color: "var(--color-stone)",
-                minWidth: 260,
-              }}
-            >
-              <Search className="h-4 w-4" />
-              <span className="text-[13px]">Search insights, services, advisors…</span>
-              <kbd
-                className="ml-auto text-[10px] px-1.5 py-0.5 rounded border"
-                style={{ borderColor: "rgba(10,31,68,0.15)", color: "var(--color-navy)" }}
-              >
-                ⌘K
-              </kbd>
-            </button>
+            <div ref={searchRef} className="relative hidden md:block">
+              <SmartSearchField open={searchOpen} setOpen={setSearchOpen} />
+            </div>
             <button
               onClick={() => setSearchOpen(true)}
               className="md:hidden p-2.5 rounded-full border"
@@ -171,8 +166,6 @@ function TopBar() {
           </div>
         </div>
       </header>
-
-      {searchOpen && <SearchOverlay onClose={() => setSearchOpen(false)} />}
     </>
   );
 }
