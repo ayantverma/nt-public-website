@@ -389,8 +389,8 @@ function SmartSearchField({ open, setOpen }: { open: boolean; setOpen: (v: boole
 function Hero() {
   return (
     <section className="relative overflow-hidden" style={{ background: "var(--color-ivory)" }}>
-      <div className="mx-auto max-w-[1400px] px-6 lg:px-10 pt-14 lg:pt-20 pb-24 lg:pb-32">
-        <div className="grid lg:grid-cols-12 gap-10 lg:gap-14 items-end">
+      <div className="mx-auto max-w-[1400px] px-6 lg:px-10 pt-8 lg:pt-10 pb-14 lg:pb-20">
+        <div className="grid lg:grid-cols-12 gap-6 lg:gap-10 items-start">
           <div className="lg:col-span-7">
             <div
               className="flex items-center gap-3 text-[11px] tracking-[0.3em] uppercase mb-8"
@@ -454,7 +454,7 @@ function Hero() {
                 alt="Chicago skyline at golden hour — Northern Trust's home since 1889"
                 width={1600}
                 height={1024}
-                className="w-full aspect-[4/5] object-cover rounded-sm"
+                className="w-full aspect-[16/10] object-cover rounded-sm"
                 style={{ filter: "saturate(0.85) contrast(1.05)" }}
               />
               <div
