@@ -411,7 +411,7 @@ function Hero() {
                 fontWeight: 300,
               }}
             >
-              A century and a third{"\u00a0"}of quiet{"\n"}conviction.
+              A century and a third{"\u00a0"}of quiet<br />conviction.
             </h1>
             <p
               className="mt-6 max-w-lg text-[16px] leading-relaxed"
