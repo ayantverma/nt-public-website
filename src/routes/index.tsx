@@ -374,53 +374,68 @@ function SmartSearchField({ open, setOpen }: { open: boolean; setOpen: (v: boole
 
 function Hero() {
   return (
-    <section className="relative overflow-hidden" style={{ background: "var(--color-ivory)" }}>
-      <div className="mx-auto max-w-[1400px] px-6 lg:px-10 pt-8 lg:pt-10 pb-14 lg:pb-20">
-        <div className="grid lg:grid-cols-12 gap-6 lg:gap-10 items-start">
-          <div className="lg:col-span-7">
+    <>
+    {/* Full-bleed banner hero */}
+    <section className="relative overflow-hidden" style={{ background: "var(--color-navy-deep)" }}>
+      <div className="relative w-full" style={{ height: "clamp(520px, 78vh, 780px)" }}>
+        <img
+          src={heroSkyline}
+          alt="Chicago skyline at golden hour — Northern Trust's home since 1889"
+          className="absolute inset-0 w-full h-full object-cover"
+          style={{ filter: "saturate(0.85) contrast(1.05) brightness(0.85)" }}
+        />
+        {/* Left-side dark gradient for legibility */}
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              "linear-gradient(90deg, rgba(6,22,52,0.85) 0%, rgba(6,22,52,0.62) 38%, rgba(6,22,52,0.15) 68%, rgba(6,22,52,0) 100%)",
+          }}
+        />
+        {/* Content overlay */}
+        <div className="relative mx-auto max-w-[1440px] h-full px-6 lg:px-10 flex items-center">
+          <div className="max-w-2xl" style={{ color: "var(--color-ivory)" }}>
             <div
-              className="flex items-center gap-3 text-[11px] tracking-[0.3em] uppercase mb-8"
-              style={{ color: "var(--color-gold)" }}
+              className="flex items-center gap-3 text-[11px] tracking-[0.3em] uppercase mb-6"
+              style={{ color: "var(--color-gold-soft)" }}
             >
-              <span className="h-px w-8" style={{ background: "var(--color-gold)" }} />
+              <span className="h-px w-8" style={{ background: "var(--color-gold-soft)" }} />
               Volume CXXXV · 1889 — 2026
             </div>
             <h1
               className="tracking-tight"
               style={{
                 fontFamily: "var(--font-display)",
-                color: "var(--color-navy)",
-                fontSize: "clamp(3.2rem, 6.5vw, 6.5rem)",
-                lineHeight: 0.95,
-                fontWeight: 400,
+                fontSize: "clamp(2.4rem, 4.4vw, 4.4rem)",
+                lineHeight: 1.02,
+                fontWeight: 300,
               }}
             >
-              A century&nbsp;of quiet{"\n"}
-              conviction.
+              A century and a third{"\u00a0"}of quiet{"\n"}conviction.
             </h1>
             <p
-              className="mt-8 max-w-xl text-[17px] leading-relaxed"
-              style={{ color: "var(--color-stone)" }}
+              className="mt-6 max-w-lg text-[16px] leading-relaxed"
+              style={{ color: "rgba(245,241,232,0.82)" }}
             >
-              For 135 years, the world's most discerning families, institutions, and advisors have turned to Northern Trust — for wealth that endures beyond generations, and for counsel that endures beyond cycles.
+              For 135 years, the world's most discerning families, institutions, and advisors have turned to Northern Trust — for wealth that endures beyond generations, and counsel that endures beyond cycles.
             </p>
 
-            <div className="mt-10 flex flex-wrap items-center gap-4">
+            <div className="mt-8 flex flex-wrap items-center gap-4">
               <a
                 href="#audiences"
-                className="inline-flex items-center gap-3 px-7 py-4 rounded-full text-[14px] transition-all hover:gap-4"
-                style={{ background: "var(--color-navy)", color: "var(--color-ivory)" }}
+                className="inline-flex items-center gap-3 px-7 py-3.5 rounded-full text-[13px] transition-all hover:gap-4"
+                style={{ background: "var(--color-gold)", color: "var(--color-navy-deep)" }}
               >
                 Explore your path
                 <ArrowRight className="h-4 w-4" />
               </a>
               <button
-                className="inline-flex items-center gap-3 text-[14px] group"
-                style={{ color: "var(--color-navy)" }}
+                className="inline-flex items-center gap-3 text-[13px] group"
+                style={{ color: "var(--color-ivory)" }}
               >
                 <span
                   className="h-10 w-10 grid place-items-center rounded-full border transition-transform group-hover:scale-105"
-                  style={{ borderColor: "var(--color-navy)" }}
+                  style={{ borderColor: "rgba(245,241,232,0.6)" }}
                 >
                   <Play className="h-3.5 w-3.5 fill-current" />
                 </span>
@@ -428,44 +443,30 @@ function Hero() {
               </button>
             </div>
           </div>
-
-          <div className="lg:col-span-5">
-            <div className="relative">
-              <div
-                className="absolute -top-6 -left-6 w-24 h-24 hidden lg:block"
-                style={{ borderTop: "1px solid var(--color-gold)", borderLeft: "1px solid var(--color-gold)" }}
-              />
-              <img
-                src={heroSkyline}
-                alt="Chicago skyline at golden hour — Northern Trust's home since 1889"
-                width={1600}
-                height={1024}
-                className="w-full aspect-[16/10] object-cover rounded-sm"
-                style={{ filter: "saturate(0.85) contrast(1.05)" }}
-              />
-              <div
-                className="absolute bottom-6 left-6 right-6 p-5 rounded-sm"
-                style={{ background: "rgba(6,22,52,0.85)", backdropFilter: "blur(8px)" }}
-              >
-                <div
-                  className="text-[10px] tracking-[0.3em] uppercase mb-2"
-                  style={{ color: "var(--color-gold-soft)" }}
-                >
-                  Chicago · Global HQ
-                </div>
-                <div
-                  className="text-[15px] leading-snug"
-                  style={{ color: "var(--color-ivory)", fontFamily: "var(--font-display)" }}
-                >
-                  "Built to safeguard what matters most — for those who matter most."
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
 
-        {/* Audience routing */}
-        <div id="audiences" className="mt-24 lg:mt-32">
+        {/* Corner caption */}
+        <div className="absolute bottom-6 right-6 lg:bottom-8 lg:right-10 hidden md:block max-w-xs">
+          <div
+            className="text-[10px] tracking-[0.3em] uppercase mb-1"
+            style={{ color: "var(--color-gold-soft)" }}
+          >
+            Chicago · Global HQ
+          </div>
+          <div
+            className="text-[13px] leading-snug"
+            style={{ color: "rgba(245,241,232,0.85)", fontFamily: "var(--font-display)" }}
+          >
+            "Built to safeguard what matters most — for those who matter most."
+          </div>
+        </div>
+      </div>
+    </section>
+
+    {/* Audience routing — separate section */}
+    <section style={{ background: "var(--color-ivory)" }}>
+      <div className="mx-auto max-w-[1400px] px-6 lg:px-10 py-20 lg:py-28">
+        <div id="audiences">
           <div className="flex items-end justify-between mb-8 flex-wrap gap-4">
             <div>
               <div
@@ -524,6 +525,7 @@ function Hero() {
         </div>
       </div>
     </section>
+    </>
   );
 }
 
