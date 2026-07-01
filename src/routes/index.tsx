@@ -14,6 +14,11 @@ import {
   Building2,
   TrendingUp,
   Play,
+  Coins,
+  Vault,
+  CalendarClock,
+  MapPin,
+  Award,
 } from "lucide-react";
 
 import heroSkyline from "@/assets/hero-skyline.jpg";
