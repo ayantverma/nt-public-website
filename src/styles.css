@@ -8,14 +8,15 @@
 @theme {
   --font-display: "Fraunces", "Cormorant Garamond", ui-serif, Georgia, serif;
   --font-sans: "Inter Tight", "Inter", ui-sans-serif, system-ui, sans-serif;
-  --color-navy: #0a1f44;
-  --color-navy-deep: #061634;
-  --color-ivory: #f5f1e8;
-  --color-ivory-soft: #efe9db;
-  --color-gold: #b48a3c;
-  --color-gold-soft: #d4b06a;
-  --color-stone: #7a7367;
-  --color-charcoal: #1a1c22;
+  /* Northern Trust corporate palette — deep green with warm neutrals */
+  --color-navy: #00623F;        /* NT Green (primary) */
+  --color-navy-deep: #003D26;   /* Deep forest */
+  --color-ivory: #F4EFE6;       /* Warm cream */
+  --color-ivory-soft: #EAE2D2;
+  --color-gold: #B08A3E;        /* Muted brass accent */
+  --color-gold-soft: #D4B570;
+  --color-stone: #6B6558;
+  --color-charcoal: #1A1C1A;
 }
 
 /*

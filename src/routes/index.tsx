@@ -67,6 +67,7 @@ function Index() {
 function TopBar() {
   const [searchOpen, setSearchOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const searchRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -77,8 +78,17 @@ function TopBar() {
   useEffect(() => {
     if (!searchOpen) return;
     const onKey = (e: KeyboardEvent) => e.key === "Escape" && setSearchOpen(false);
+    const onClick = (e: MouseEvent) => {
+      if (searchRef.current && !searchRef.current.contains(e.target as Node)) {
+        setSearchOpen(false);
+      }
+    };
     window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
+    window.addEventListener("mousedown", onClick);
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      window.removeEventListener("mousedown", onClick);
+    };
   }, [searchOpen]);
 
   return (
@@ -131,24 +141,9 @@ function TopBar() {
           </nav>
 
           <div className="flex items-center gap-2">
-            <button
-              onClick={() => setSearchOpen(true)}
-              className="hidden md:flex items-center gap-3 px-4 py-2.5 rounded-full border transition-all hover:shadow-sm"
-              style={{
-                borderColor: "rgba(10,31,68,0.15)",
-                color: "var(--color-stone)",
-                minWidth: 260,
-              }}
-            >
-              <Search className="h-4 w-4" />
-              <span className="text-[13px]">Search insights, services, advisors…</span>
-              <kbd
-                className="ml-auto text-[10px] px-1.5 py-0.5 rounded border"
-                style={{ borderColor: "rgba(10,31,68,0.15)", color: "var(--color-navy)" }}
-              >
-                ⌘K
-              </kbd>
-            </button>
+            <div ref={searchRef} className="relative hidden md:block">
+              <SmartSearchField open={searchOpen} setOpen={setSearchOpen} />
+            </div>
             <button
               onClick={() => setSearchOpen(true)}
               className="md:hidden p-2.5 rounded-full border"
@@ -171,8 +166,6 @@ function TopBar() {
           </div>
         </div>
       </header>
-
-      {searchOpen && <SearchOverlay onClose={() => setSearchOpen(false)} />}
     </>
   );
 }
@@ -193,12 +186,12 @@ function NTMark() {
   );
 }
 
-function SearchOverlay({ onClose }: { onClose: () => void }) {
+function SmartSearchField({ open, setOpen }: { open: boolean; setOpen: (v: boolean) => void }) {
   const [q, setQ] = useState("");
   const inputRef = useRef<HTMLInputElement>(null);
   useEffect(() => {
-    inputRef.current?.focus();
-  }, []);
+    if (open) inputRef.current?.focus();
+  }, [open]);
 
   const trending = [
     "2026 Wealth Outlook",
@@ -237,118 +230,168 @@ function SearchOverlay({ onClose }: { onClose: () => void }) {
     },
   ];
 
+  // Filter items when there is a query
+  const query = q.trim().toLowerCase();
+  const filteredGroups = query
+    ? groups
+        .map((g) => ({
+          ...g,
+          items: g.items.filter(
+            (it) =>
+              it.title.toLowerCase().includes(query) ||
+              it.meta.toLowerCase().includes(query),
+          ),
+        }))
+        .filter((g) => g.items.length > 0)
+    : groups;
+
   return (
-    <div
-      className="fixed inset-0 z-50 flex items-start justify-center px-4 pt-24 pb-10 overflow-y-auto animate-fade-in"
-      style={{ background: "rgba(6,22,52,0.55)", backdropFilter: "blur(14px)" }}
-      onClick={onClose}
-    >
+    <>
+      {/* The search field itself */}
       <div
-        className="w-full max-w-3xl rounded-2xl overflow-hidden shadow-2xl animate-scale-in"
-        style={{ background: "var(--color-ivory)" }}
-        onClick={(e) => e.stopPropagation()}
+        className={`flex items-center gap-3 px-4 py-2.5 border transition-all ${
+          open ? "rounded-t-2xl rounded-b-none shadow-sm" : "rounded-full hover:shadow-sm"
+        }`}
+        style={{
+          borderColor: open ? "rgba(0,98,63,0.35)" : "rgba(0,98,63,0.18)",
+          background: open ? "#fff" : "transparent",
+          minWidth: 320,
+          borderBottomColor: open ? "transparent" : undefined,
+        }}
+        onClick={() => setOpen(true)}
       >
-        <div
-          className="flex items-center gap-3 px-6 py-5 border-b"
-          style={{ borderColor: "rgba(10,31,68,0.08)" }}
-        >
-          <Search className="h-5 w-5" style={{ color: "var(--color-navy)" }} />
-          <input
-            ref={inputRef}
-            value={q}
-            onChange={(e) => setQ(e.target.value)}
-            placeholder="Ask, search, or explore Northern Trust…"
-            className="flex-1 bg-transparent outline-none text-lg placeholder:opacity-50"
-            style={{ color: "var(--color-navy)", fontFamily: "var(--font-display)" }}
-          />
+        <Search className="h-4 w-4" style={{ color: "var(--color-navy)" }} />
+        <input
+          ref={inputRef}
+          value={q}
+          onChange={(e) => {
+            setQ(e.target.value);
+            if (!open) setOpen(true);
+          }}
+          onFocus={() => setOpen(true)}
+          placeholder="Search insights, services, advisors…"
+          className="flex-1 bg-transparent outline-none text-[13px] placeholder:opacity-60"
+          style={{ color: "var(--color-navy)" }}
+        />
+        {open ? (
           <button
-            onClick={onClose}
-            className="p-1.5 rounded-full hover:bg-black/5"
+            onClick={(e) => {
+              e.stopPropagation();
+              setOpen(false);
+              setQ("");
+            }}
+            className="p-1 rounded-full hover:bg-black/5"
             aria-label="Close search"
           >
-            <X className="h-4 w-4" />
+            <X className="h-3.5 w-3.5" />
           </button>
-        </div>
-
-        <div className="px-6 py-5 max-h-[65vh] overflow-y-auto">
-          <div className="mb-6">
-            <div
-              className="text-[10px] tracking-[0.25em] uppercase mb-3"
-              style={{ color: "var(--color-stone)" }}
-            >
-              Trending
-            </div>
-            <div className="flex flex-wrap gap-2">
-              {trending.map((t) => (
-                <button
-                  key={t}
-                  onClick={() => setQ(t)}
-                  className="text-[12px] px-3 py-1.5 rounded-full border transition-colors hover:bg-white"
-                  style={{ borderColor: "rgba(10,31,68,0.15)", color: "var(--color-navy)" }}
-                >
-                  {t}
-                </button>
-              ))}
-            </div>
-          </div>
-
-          {groups.map((g) => (
-            <div key={g.title} className="mb-6 last:mb-0">
-              <div
-                className="flex items-center gap-2 text-[10px] tracking-[0.25em] uppercase mb-3"
-                style={{ color: "var(--color-stone)" }}
-              >
-                {g.icon}
-                {g.title}
-              </div>
-              <div className="space-y-1">
-                {g.items.map((it) => (
-                  <a
-                    key={it.title}
-                    href="#"
-                    className="flex items-center justify-between gap-4 px-3 py-3 rounded-lg transition-colors hover:bg-white group"
-                  >
-                    <div className="min-w-0">
-                      <div
-                        className="text-[15px] truncate"
-                        style={{ color: "var(--color-navy)", fontFamily: "var(--font-display)" }}
-                      >
-                        {it.title}
-                      </div>
-                      <div className="text-[11px] mt-0.5" style={{ color: "var(--color-stone)" }}>
-                        {it.meta}
-                      </div>
-                    </div>
-                    <ArrowUpRight
-                      className="h-4 w-4 shrink-0 opacity-40 group-hover:opacity-100 transition-opacity"
-                      style={{ color: "var(--color-gold)" }}
-                    />
-                  </a>
-                ))}
-              </div>
-            </div>
-          ))}
-        </div>
-
-        <div
-          className="px-6 py-3 border-t flex items-center justify-between text-[11px]"
-          style={{ borderColor: "rgba(10,31,68,0.08)", color: "var(--color-stone)" }}
-        >
-          <div className="flex gap-4">
-            <span>
-              <kbd className="font-mono">↑↓</kbd> Navigate
-            </span>
-            <span>
-              <kbd className="font-mono">↵</kbd> Open
-            </span>
-            <span>
-              <kbd className="font-mono">Esc</kbd> Close
-            </span>
-          </div>
-          <span style={{ color: "var(--color-gold)" }}>Powered by Northern Trust Intelligence</span>
-        </div>
+        ) : (
+          <kbd
+            className="ml-auto text-[10px] px-1.5 py-0.5 rounded border"
+            style={{ borderColor: "rgba(0,98,63,0.2)", color: "var(--color-navy)" }}
+          >
+            ⌘K
+          </kbd>
+        )}
       </div>
-    </div>
+
+      {/* Dropdown panel — inline, no popup */}
+      {open && (
+        <div
+          className="absolute right-0 top-full w-[520px] max-w-[calc(100vw-3rem)] rounded-b-2xl border shadow-xl overflow-hidden animate-fade-in"
+          style={{
+            background: "#fff",
+            borderColor: "rgba(0,98,63,0.2)",
+            borderTop: "1px solid rgba(0,98,63,0.08)",
+            zIndex: 50,
+          }}
+        >
+          <div className="px-5 py-4 max-h-[70vh] overflow-y-auto">
+            {!query && (
+              <div className="mb-5">
+                <div
+                  className="text-[10px] tracking-[0.25em] uppercase mb-3"
+                  style={{ color: "var(--color-stone)" }}
+                >
+                  Trending
+                </div>
+                <div className="flex flex-wrap gap-2">
+                  {trending.map((t) => (
+                    <button
+                      key={t}
+                      onClick={() => setQ(t)}
+                      className="text-[12px] px-3 py-1.5 rounded-full border transition-colors hover:bg-[var(--color-ivory)]"
+                      style={{ borderColor: "rgba(0,98,63,0.18)", color: "var(--color-navy)" }}
+                    >
+                      {t}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {filteredGroups.length === 0 ? (
+              <div className="py-8 text-center text-[13px]" style={{ color: "var(--color-stone)" }}>
+                No matches for <em>"{q}"</em> — try "wealth", "custody" or "advisor".
+              </div>
+            ) : (
+              filteredGroups.map((g) => (
+                <div key={g.title} className="mb-5 last:mb-0">
+                  <div
+                    className="flex items-center gap-2 text-[10px] tracking-[0.25em] uppercase mb-2"
+                    style={{ color: "var(--color-stone)" }}
+                  >
+                    {g.icon}
+                    {g.title}
+                  </div>
+                  <div className="space-y-0.5">
+                    {g.items.map((it) => (
+                      <a
+                        key={it.title}
+                        href="#"
+                        className="flex items-center justify-between gap-4 px-3 py-2.5 rounded-lg transition-colors hover:bg-[var(--color-ivory)] group"
+                      >
+                        <div className="min-w-0">
+                          <div
+                            className="text-[14px] truncate"
+                            style={{ color: "var(--color-navy)", fontFamily: "var(--font-display)" }}
+                          >
+                            {it.title}
+                          </div>
+                          <div className="text-[11px] mt-0.5" style={{ color: "var(--color-stone)" }}>
+                            {it.meta}
+                          </div>
+                        </div>
+                        <ArrowUpRight
+                          className="h-4 w-4 shrink-0 opacity-40 group-hover:opacity-100 transition-opacity"
+                          style={{ color: "var(--color-gold)" }}
+                        />
+                      </a>
+                    ))}
+                  </div>
+                </div>
+              ))
+            )}
+          </div>
+
+          <div
+            className="px-5 py-2.5 border-t flex items-center justify-between text-[10px]"
+            style={{
+              borderColor: "rgba(0,98,63,0.08)",
+              color: "var(--color-stone)",
+              background: "var(--color-ivory)",
+            }}
+          >
+            <div className="flex gap-3">
+              <span><kbd className="font-mono">↑↓</kbd> Navigate</span>
+              <span><kbd className="font-mono">↵</kbd> Open</span>
+              <span><kbd className="font-mono">Esc</kbd> Close</span>
+            </div>
+            <span style={{ color: "var(--color-gold)" }}>Northern Trust Intelligence</span>
+          </div>
+        </div>
+      )}
+    </>
   );
 }
 
