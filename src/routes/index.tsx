@@ -110,12 +110,6 @@ function TopBar() {
         <div className="mx-auto max-w-[1440px] px-6 lg:px-10 flex items-center justify-between gap-8 h-[88px]">
           <a href="#" className="flex items-center gap-4 shrink-0">
             <NTMark />
-            <div
-              className="hidden xl:block pl-4 border-l text-[10px] tracking-[0.28em] uppercase leading-[1.5]"
-              style={{ color: "var(--color-stone)", borderColor: "rgba(10,31,68,0.15)" }}
-            >
-              Est. 1889<br />Chicago
-            </div>
           </a>
 
           <nav className="hidden lg:flex items-center gap-7 xl:gap-8 text-[13px] tracking-wide" style={{ color: "var(--color-navy)" }}>
@@ -1218,12 +1212,6 @@ function Footer() {
           <div className="lg:col-span-4">
             <div className="flex items-center gap-3 mb-6">
               <NTMark invert />
-              <div
-                className="pl-3 border-l text-[10px] tracking-[0.28em] uppercase leading-tight"
-                style={{ color: "var(--color-gold-soft)", borderColor: "rgba(245,241,232,0.2)" }}
-              >
-                Est. 1889<br />Chicago
-              </div>
             </div>
             <p className="text-[13px] leading-relaxed max-w-sm" style={{ color: "rgba(245,241,232,0.6)" }}>
               50 South LaSalle Street, Chicago, Illinois 60603. Serving generations of families, institutions, and advisors.
