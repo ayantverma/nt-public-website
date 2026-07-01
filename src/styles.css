@@ -6,11 +6,15 @@
 
 /* Northern Trust — refined editorial identity */
 @theme {
-  --font-display: "Fraunces", "Cormorant Garamond", ui-serif, Georgia, serif;
+  /* Display face: light, wide geometric sans that reads close to NT's
+     "Sackers"/GT-Sectra-style corporate wordmark when set uppercase +
+     tracked. Jost (300) is the closest Google-hosted match. */
+  --font-display: "Jost", "Inter Tight", ui-sans-serif, system-ui, sans-serif;
   --font-sans: "Inter Tight", "Inter", ui-sans-serif, system-ui, sans-serif;
-  /* Northern Trust corporate palette — deep green with warm neutrals */
-  --color-navy: #00623F;        /* NT Green (primary) */
-  --color-navy-deep: #003D26;   /* Deep forest */
+  /* Northern Trust corporate palette — sampled from northerntrust.com hero.
+     Deeper, more saturated forest green than the previous pass. */
+  --color-navy: #14523A;        /* NT green (primary) */
+  --color-navy-deep: #0A2E20;   /* Deep forest */
   --color-ivory: #F4EFE6;       /* Warm cream */
   --color-ivory-soft: #EAE2D2;
   --color-gold: #B08A3E;        /* Muted brass accent */
