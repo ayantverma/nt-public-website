@@ -110,20 +110,20 @@ function TopBar() {
           borderColor: "rgba(10,31,68,0.08)",
         }}
       >
-        <div className="mx-auto max-w-[1400px] px-6 lg:px-10 flex items-center justify-between h-20">
-          <a href="#" className="flex items-center gap-3 shrink-0">
+        <div className="mx-auto max-w-[1440px] px-6 lg:px-10 flex items-center justify-between gap-8 h-[88px]">
+          <a href="#" className="flex items-center gap-4 shrink-0">
             <NTMark />
             <div
-              className="hidden md:block pl-3 ml-1 border-l text-[10px] tracking-[0.28em] uppercase leading-tight"
+              className="hidden xl:block pl-4 border-l text-[10px] tracking-[0.28em] uppercase leading-[1.5]"
               style={{ color: "var(--color-stone)", borderColor: "rgba(10,31,68,0.15)" }}
             >
               Est. 1889<br />Chicago
             </div>
           </a>
 
-          <nav className="hidden lg:flex items-center gap-9 text-[13px] tracking-wide" style={{ color: "var(--color-navy)" }}>
+          <nav className="hidden lg:flex items-center gap-7 xl:gap-8 text-[13px] tracking-wide" style={{ color: "var(--color-navy)" }}>
             {["Wealth Management", "Asset Servicing", "Asset Management", "Insights", "About", "Careers"].map((item) => (
-              <a key={item} href="#" className="relative py-2 group">
+              <a key={item} href="#" className="relative py-2 group whitespace-nowrap">
                 {item}
                 <span
                   className="absolute left-0 -bottom-0.5 h-px w-0 group-hover:w-full transition-all duration-300"
@@ -133,7 +133,7 @@ function TopBar() {
             ))}
           </nav>
 
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-3 shrink-0">
             <div ref={searchRef} className="relative hidden md:block">
               <SmartSearchField open={searchOpen} setOpen={setSearchOpen} />
             </div>
@@ -147,7 +147,7 @@ function TopBar() {
             </button>
             <a
               href="#"
-              className="hidden md:inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-[13px] transition-all hover:opacity-90"
+              className="hidden md:inline-flex items-center gap-2.5 px-7 py-3 rounded-full text-[12px] tracking-[0.16em] uppercase font-medium transition-all hover:opacity-90 whitespace-nowrap"
               style={{ background: "var(--color-navy)", color: "var(--color-ivory)" }}
             >
               Client Login
