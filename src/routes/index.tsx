@@ -1215,5 +1215,3 @@ function Footer() {
     </footer>
   );
 }
-  );
-}
