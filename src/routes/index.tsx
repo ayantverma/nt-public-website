@@ -23,6 +23,7 @@ import audienceInstitutions from "@/assets/audience-institutions.jpg";
 import audienceAdvisors from "@/assets/audience-advisors.jpg";
 import insightFeatured from "@/assets/insight-featured.jpg";
 import ntLogo from "@/assets/nt-logo.svg";
+import ntLogoMark from "@/assets/nt-logo.png";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -54,8 +55,8 @@ function Index() {
       <Hero />
       <Legacy />
       <TrustStats />
-      <Insights />
       <WealthTool />
+      <Insights />
       <GlobalReach />
       <Awards />
       <Footer />
