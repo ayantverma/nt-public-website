@@ -104,7 +104,7 @@ function TopBar() {
         style={{
           background: scrolled ? "rgba(245,241,232,0.92)" : "var(--color-ivory)",
           backdropFilter: scrolled ? "blur(12px)" : undefined,
-          borderColor: "rgba(10,31,68,0.08)",
+          borderColor: "rgba(20,82,58,0.12)",
         }}
       >
         <div className="mx-auto max-w-[1440px] px-6 lg:px-10 flex items-center justify-between gap-8 h-[88px]">
@@ -131,7 +131,7 @@ function TopBar() {
             <button
               onClick={() => setSearchOpen(true)}
               className="md:hidden min-h-11 min-w-11 p-2.5 rounded-full border"
-              style={{ borderColor: "rgba(10,31,68,0.15)" }}
+              style={{ borderColor: "rgba(20,82,58,0.2)" }}
               aria-label="Search"
             >
               <Search className="h-4 w-4" />
@@ -593,7 +593,7 @@ function AudienceCard({
         </ul>
         <div
           className="mt-auto flex items-center justify-between pt-4 border-t"
-          style={{ borderColor: featured ? "rgba(245,241,232,0.15)" : "rgba(10,31,68,0.12)" }}
+          style={{ borderColor: featured ? "rgba(245,241,232,0.15)" : "rgba(20,82,58,0.18)" }}
         >
           <span className="text-[13px]">Explore</span>
           <ArrowUpRight
@@ -900,13 +900,13 @@ function Insights() {
           </a>
 
           {/* Supporting */}
-          <div className="lg:col-span-5 flex flex-col divide-y" style={{ borderColor: "rgba(10,31,68,0.1)" }}>
+          <div className="lg:col-span-5 flex flex-col divide-y" style={{ borderColor: "rgba(20,82,58,0.16)" }}>
             {supporting.map((s) => (
               <a
                 key={s.title}
                 href="#"
                 className="group py-6 first:pt-0 flex gap-6 items-start"
-                style={{ borderColor: "rgba(10,31,68,0.1)" }}
+                style={{ borderColor: "rgba(20,82,58,0.16)" }}
               >
                 <div className="flex-1 min-w-0">
                   <div
@@ -989,7 +989,7 @@ function WealthTool() {
             style={{
               background: "var(--color-navy)",
               color: "var(--color-ivory)",
-              boxShadow: "0 30px 80px -30px rgba(6,22,52,0.5)",
+              boxShadow: "0 30px 80px -30px rgba(10,46,32,0.55)",
             }}
           >
             <div
