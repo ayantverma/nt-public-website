@@ -399,14 +399,14 @@ function Hero() {
                 fontFamily: "var(--font-display)",
                 fontSize: "clamp(2.4rem, 4.4vw, 4.4rem)",
                 lineHeight: 1.02,
-                fontWeight: 300,
+                fontWeight: 400,
               }}
             >
               A century and a third{"\u00a0"}of quiet conviction.
             </h1>
             <p
               className="mt-6 max-w-lg text-[16px] leading-relaxed"
-              style={{ color: "rgba(245,241,232,0.82)" }}
+              style={{ color: "var(--color-ivory)" }}
             >
               For 135 years, the world's most discerning families, institutions, and advisors have turned to Northern Trust — for wealth that endures beyond generations, and counsel that endures beyond cycles.
             </p>
@@ -414,14 +414,15 @@ function Hero() {
             <div className="mt-8 flex flex-wrap items-center gap-4">
               <a
                 href="#audiences"
-                className="inline-flex items-center gap-3 px-7 py-3.5 rounded-full text-[13px] transition-all hover:gap-4"
-                style={{ background: "var(--color-gold)", color: "#0a0a0a" }}
+                className="inline-flex min-h-11 items-center gap-3 px-7 py-3.5 rounded-full text-[14px] font-semibold transition-all hover:gap-4"
+                style={{ background: "var(--color-ivory)", color: "var(--color-cta)" }}
               >
-                Explore your path
+                Find your Northern Trust path
                 <ArrowRight className="h-4 w-4" />
               </a>
               <button
-                className="inline-flex items-center gap-3 text-[13px] group"
+                type="button"
+                className="inline-flex min-h-11 items-center gap-3 text-[14px] group"
                 style={{ color: "var(--color-ivory)" }}
               >
                 <span
@@ -440,13 +441,13 @@ function Hero() {
         <div className="absolute bottom-6 right-6 lg:bottom-8 lg:right-10 hidden md:block max-w-xs">
           <div
             className="text-[10px] tracking-[0.3em] uppercase mb-1"
-            style={{ color: "var(--color-gold-soft)" }}
+            style={{ color: "var(--color-mist)" }}
           >
             Chicago · Global HQ
           </div>
           <div
             className="text-[13px] leading-snug"
-            style={{ color: "rgba(245,241,232,0.85)", fontFamily: "var(--font-display)" }}
+            style={{ color: "var(--color-ivory)", fontFamily: "var(--font-display)" }}
           >
             "Built to safeguard what matters most — for those who matter most."
           </div>
@@ -462,7 +463,7 @@ function Hero() {
             <div>
               <div
                 className="text-[11px] tracking-[0.3em] uppercase mb-3"
-                style={{ color: "var(--color-gold)" }}
+                style={{ color: "var(--color-navy)" }}
               >
                 Begin here
               </div>
@@ -476,7 +477,7 @@ function Hero() {
                   lineHeight: 1.05,
                 }}
               >
-                Three journeys.<span style={{ color: "var(--color-gold)" }}> One standard of care.</span>
+                Three journeys.<span style={{ color: "var(--color-cta)" }}> One standard of care.</span>
               </h2>
             </div>
             <a
