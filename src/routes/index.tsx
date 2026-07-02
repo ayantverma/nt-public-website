@@ -104,7 +104,7 @@ function TopBar() {
         style={{
           background: scrolled ? "rgba(245,241,232,0.92)" : "var(--color-ivory)",
           backdropFilter: scrolled ? "blur(12px)" : undefined,
-          borderColor: "rgba(10,31,68,0.08)",
+          borderColor: "rgba(20,82,58,0.12)",
         }}
       >
         <div className="mx-auto max-w-[1440px] px-6 lg:px-10 flex items-center justify-between gap-8 h-[88px]">
@@ -118,7 +118,7 @@ function TopBar() {
                 {item}
                 <span
                   className="absolute left-0 -bottom-0.5 h-px w-0 group-hover:w-full transition-all duration-300"
-                  style={{ background: "var(--color-gold)" }}
+                  style={{ background: "var(--color-cta)" }}
                 />
               </a>
             ))}
@@ -130,21 +130,21 @@ function TopBar() {
             </div>
             <button
               onClick={() => setSearchOpen(true)}
-              className="md:hidden p-2.5 rounded-full border"
-              style={{ borderColor: "rgba(10,31,68,0.15)" }}
+              className="md:hidden min-h-11 min-w-11 p-2.5 rounded-full border"
+              style={{ borderColor: "rgba(20,82,58,0.2)" }}
               aria-label="Search"
             >
               <Search className="h-4 w-4" />
             </button>
             <a
               href="#"
-              className="hidden md:inline-flex items-center gap-2.5 px-7 py-3 rounded-full text-[12px] tracking-[0.16em] uppercase font-medium transition-all hover:opacity-90 whitespace-nowrap"
+              className="hidden md:inline-flex min-h-11 items-center gap-2.5 px-7 py-3 rounded-full text-[12px] tracking-[0.16em] uppercase font-semibold transition-all hover:opacity-90 whitespace-nowrap"
               style={{ background: "var(--color-navy)", color: "var(--color-ivory)" }}
             >
               Client Login
               <ArrowUpRight className="h-3.5 w-3.5" />
             </a>
-            <button className="lg:hidden p-2.5" aria-label="Menu">
+            <button className="lg:hidden min-h-11 min-w-11 p-2.5" aria-label="Menu">
               <Menu className="h-5 w-5" />
             </button>
           </div>
@@ -238,11 +238,11 @@ function SmartSearchField({ open, setOpen }: { open: boolean; setOpen: (v: boole
           minWidth: 320,
           borderBottomColor: open ? "transparent" : undefined,
         }}
-        onClick={() => setOpen(true)}
       >
-        <Search className="h-4 w-4" style={{ color: "var(--color-navy)" }} />
+        <Search className="h-4 w-4" style={{ color: "var(--color-navy)" }} aria-hidden="true" />
         <input
           ref={inputRef}
+          aria-label="Search Northern Trust insights, services, and advisors"
           value={q}
           onChange={(e) => {
             setQ(e.target.value);
@@ -250,7 +250,7 @@ function SmartSearchField({ open, setOpen }: { open: boolean; setOpen: (v: boole
           }}
           onFocus={() => setOpen(true)}
           placeholder="Search insights, services, advisors…"
-          className="flex-1 bg-transparent outline-none text-[13px] placeholder:opacity-60"
+          className="flex-1 bg-transparent outline-none text-[13px] placeholder:opacity-100"
           style={{ color: "var(--color-navy)" }}
         />
         {open ? (
@@ -260,7 +260,8 @@ function SmartSearchField({ open, setOpen }: { open: boolean; setOpen: (v: boole
               setOpen(false);
               setQ("");
             }}
-            className="p-1 rounded-full hover:bg-black/5"
+            type="button"
+            className="min-h-11 min-w-11 p-2 rounded-full hover:bg-black/5"
             aria-label="Close search"
           >
             <X className="h-3.5 w-3.5" />
@@ -293,7 +294,7 @@ function SmartSearchField({ open, setOpen }: { open: boolean; setOpen: (v: boole
                     <button
                       key={t}
                       onClick={() => setQ(t)}
-                      className="text-[12px] px-3 py-1.5 rounded-full border transition-colors hover:bg-[var(--color-ivory)]"
+                      className="min-h-11 text-[12px] px-4 py-2.5 rounded-full border transition-colors hover:bg-[var(--color-ivory)]"
                       style={{ borderColor: "rgba(0,98,63,0.18)", color: "var(--color-navy)" }}
                     >
                       {t}
@@ -336,8 +337,8 @@ function SmartSearchField({ open, setOpen }: { open: boolean; setOpen: (v: boole
                           </div>
                         </div>
                         <ArrowUpRight
-                          className="h-4 w-4 shrink-0 opacity-40 group-hover:opacity-100 transition-opacity"
-                          style={{ color: "var(--color-gold)" }}
+                          className="h-4 w-4 shrink-0 opacity-70 group-hover:opacity-100 transition-opacity"
+                          style={{ color: "var(--color-navy)" }}
                         />
                       </a>
                     ))}
@@ -360,7 +361,7 @@ function SmartSearchField({ open, setOpen }: { open: boolean; setOpen: (v: boole
               <span><kbd className="font-mono">↵</kbd> Open</span>
               <span><kbd className="font-mono">Esc</kbd> Close</span>
             </div>
-            <span style={{ color: "var(--color-gold)" }}>Northern Trust Intelligence</span>
+            <span style={{ color: "var(--color-navy)" }}>Northern Trust Intelligence</span>
           </div>
         </div>
       )}
@@ -378,7 +379,7 @@ function Hero() {
       <div className="relative w-full" style={{ height: "clamp(420px, 55vh, 560px)" }}>
         <img
           src={heroSkyline}
-          alt="Chicago skyline at golden hour — Northern Trust's home since 1889"
+          alt="Chicago skyline at dusk — Northern Trust's home since 1889"
           className="absolute inset-0 w-full h-full object-cover"
           style={{ filter: "saturate(0.85) contrast(1.05) brightness(0.85)" }}
         />
@@ -399,14 +400,14 @@ function Hero() {
                 fontFamily: "var(--font-display)",
                 fontSize: "clamp(2.4rem, 4.4vw, 4.4rem)",
                 lineHeight: 1.02,
-                fontWeight: 300,
+                fontWeight: 400,
               }}
             >
               A century and a third{"\u00a0"}of quiet conviction.
             </h1>
             <p
               className="mt-6 max-w-lg text-[16px] leading-relaxed"
-              style={{ color: "rgba(245,241,232,0.82)" }}
+              style={{ color: "var(--color-ivory)" }}
             >
               For 135 years, the world's most discerning families, institutions, and advisors have turned to Northern Trust — for wealth that endures beyond generations, and counsel that endures beyond cycles.
             </p>
@@ -414,14 +415,15 @@ function Hero() {
             <div className="mt-8 flex flex-wrap items-center gap-4">
               <a
                 href="#audiences"
-                className="inline-flex items-center gap-3 px-7 py-3.5 rounded-full text-[13px] transition-all hover:gap-4"
-                style={{ background: "var(--color-gold)", color: "#0a0a0a" }}
+                className="inline-flex min-h-11 items-center gap-3 px-7 py-3.5 rounded-full text-[14px] font-semibold transition-all hover:gap-4"
+                style={{ background: "var(--color-ivory)", color: "var(--color-cta)" }}
               >
-                Explore your path
+                Find your Northern Trust path
                 <ArrowRight className="h-4 w-4" />
               </a>
               <button
-                className="inline-flex items-center gap-3 text-[13px] group"
+                type="button"
+                className="inline-flex min-h-11 items-center gap-3 text-[14px] group"
                 style={{ color: "var(--color-ivory)" }}
               >
                 <span
@@ -440,13 +442,13 @@ function Hero() {
         <div className="absolute bottom-6 right-6 lg:bottom-8 lg:right-10 hidden md:block max-w-xs">
           <div
             className="text-[10px] tracking-[0.3em] uppercase mb-1"
-            style={{ color: "var(--color-gold-soft)" }}
+            style={{ color: "var(--color-mist)" }}
           >
             Chicago · Global HQ
           </div>
           <div
             className="text-[13px] leading-snug"
-            style={{ color: "rgba(245,241,232,0.85)", fontFamily: "var(--font-display)" }}
+            style={{ color: "var(--color-ivory)", fontFamily: "var(--font-display)" }}
           >
             "Built to safeguard what matters most — for those who matter most."
           </div>
@@ -462,7 +464,7 @@ function Hero() {
             <div>
               <div
                 className="text-[11px] tracking-[0.3em] uppercase mb-3"
-                style={{ color: "var(--color-gold)" }}
+                style={{ color: "var(--color-navy)" }}
               >
                 Begin here
               </div>
@@ -476,7 +478,7 @@ function Hero() {
                   lineHeight: 1.05,
                 }}
               >
-                Three journeys.<span style={{ color: "var(--color-gold)" }}> One standard of care.</span>
+                Three journeys.<span style={{ color: "var(--color-cta)" }}> One standard of care.</span>
               </h2>
             </div>
             <a
@@ -557,7 +559,7 @@ function AudienceCard({
       <div className="p-7 flex-1 flex flex-col">
         <div
           className="text-[10px] tracking-[0.3em] uppercase mb-4"
-          style={{ color: featured ? "var(--color-gold-soft)" : "var(--color-gold)" }}
+          style={{ color: featured ? "var(--color-mist)" : "var(--color-navy)" }}
         >
           {eyebrow}
         </div>
@@ -574,7 +576,7 @@ function AudienceCard({
         </h3>
         <p
           className="text-[14px] leading-relaxed mb-5"
-          style={{ color: featured ? "rgba(245,241,232,0.75)" : "var(--color-stone)" }}
+          style={{ color: featured ? "var(--color-mist)" : "var(--color-stone)" }}
         >
           {desc}
         </p>
@@ -583,7 +585,7 @@ function AudienceCard({
             <li key={p} className="flex items-start gap-2">
               <span
                 className="mt-1.5 h-1 w-1 rounded-full shrink-0"
-                style={{ background: featured ? "var(--color-gold-soft)" : "var(--color-gold)" }}
+                style={{ background: featured ? "var(--color-mist)" : "var(--color-cta)" }}
               />
               {p}
             </li>
@@ -591,12 +593,12 @@ function AudienceCard({
         </ul>
         <div
           className="mt-auto flex items-center justify-between pt-4 border-t"
-          style={{ borderColor: featured ? "rgba(245,241,232,0.15)" : "rgba(10,31,68,0.12)" }}
+          style={{ borderColor: featured ? "rgba(245,241,232,0.15)" : "rgba(20,82,58,0.18)" }}
         >
           <span className="text-[13px]">Explore</span>
           <ArrowUpRight
             className="h-4 w-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1"
-            style={{ color: featured ? "var(--color-gold-soft)" : "var(--color-gold)" }}
+            style={{ color: featured ? "var(--color-mist)" : "var(--color-cta)" }}
           />
         </div>
       </div>
@@ -634,9 +636,9 @@ function Legacy() {
           <div className="lg:col-span-5">
             <div
               className="flex items-center gap-3 text-[11px] tracking-[0.3em] uppercase mb-6"
-              style={{ color: "var(--color-gold-soft)" }}
+              style={{ color: "var(--color-mist)" }}
             >
-              <span className="h-px w-8" style={{ background: "var(--color-gold-soft)" }} />
+              <span className="h-px w-8" style={{ background: "var(--color-mist)" }} />
               The Northern Trust Legacy
             </div>
             <h2
@@ -648,14 +650,14 @@ function Legacy() {
               }}
             >
               We were built <br />
-              <em style={{ color: "var(--color-gold-soft)", fontStyle: "italic" }}>to endure.</em>
+              <em style={{ color: "var(--color-ivory)", fontStyle: "italic" }}>to endure.</em>
             </h2>
           </div>
           <div className="lg:col-span-6 lg:col-start-7">
-            <p className="text-[16px] leading-relaxed" style={{ color: "rgba(245,241,232,0.75)" }}>
+            <p className="text-[16px] leading-relaxed" style={{ color: "var(--color-mist)" }}>
               Founded in the last months of the 19th century, Northern Trust has quietly weathered every financial storm since — six wars, twelve recessions, one Great Depression, one global pandemic — and never once failed the families and institutions who trusted us with their capital.
             </p>
-            <p className="text-[16px] leading-relaxed mt-5" style={{ color: "rgba(245,241,232,0.75)" }}>
+            <p className="text-[16px] leading-relaxed mt-5" style={{ color: "var(--color-mist)" }}>
               This is not a marketing claim. It is our ledger.
             </p>
           </div>
@@ -665,7 +667,7 @@ function Legacy() {
         <div className="relative">
           <div
             className="absolute top-16 left-0 right-0 h-px hidden md:block"
-            style={{ background: "rgba(212,176,106,0.3)" }}
+            style={{ background: "rgba(234,244,239,0.35)" }}
           />
           <div className="grid md:grid-cols-6 gap-8 md:gap-4">
             {milestones.map((m, i) => (
@@ -674,7 +676,7 @@ function Legacy() {
                   <div
                     className="h-3 w-3 rounded-full"
                     style={{
-                      background: i === milestones.length - 1 ? "var(--color-gold)" : "var(--color-gold-soft)",
+                      background: i === milestones.length - 1 ? "var(--color-ivory)" : "var(--color-mist)",
                       boxShadow: `0 0 0 6px var(--color-navy)`,
                     }}
                   />
@@ -684,14 +686,14 @@ function Legacy() {
                   style={{
                     fontFamily: "var(--font-display)",
                     fontSize: "1.75rem",
-                    color: "var(--color-gold-soft)",
+                    color: "var(--color-ivory)",
                     fontWeight: 400,
                   }}
                 >
                   {m.year}
                 </div>
                 <div className="text-[13px] font-medium mb-2 tracking-wide">{m.title}</div>
-                <div className="text-[12px] leading-relaxed" style={{ color: "rgba(245,241,232,0.6)" }}>
+                <div className="text-[12px] leading-relaxed" style={{ color: "var(--color-mist)" }}>
                   {m.body}
                 </div>
               </div>
@@ -703,7 +705,7 @@ function Legacy() {
           <a
             href="#"
             className="inline-flex items-center gap-3 px-7 py-4 rounded-full text-[14px] border transition-all hover:bg-white/5"
-            style={{ borderColor: "rgba(212,176,106,0.4)", color: "var(--color-gold-soft)" }}
+            style={{ borderColor: "rgba(234,244,239,0.5)", color: "var(--color-ivory)" }}
           >
             Walk the full 135-year archive
             <ArrowUpRight className="h-4 w-4" />
@@ -733,7 +735,7 @@ function TrustStats() {
         >
           <div
             className="text-[11px] tracking-[0.3em] uppercase mb-3"
-            style={{ color: "var(--color-gold)" }}
+            style={{ color: "var(--color-navy)" }}
           >
             The Ledger
           </div>
@@ -756,13 +758,13 @@ function TrustStats() {
               <div
                 key={s.label}
                 className="group border-l pl-5 transition-colors"
-                style={{ borderColor: "rgba(180,138,60,0.4)" }}
+                style={{ borderColor: "rgba(20,82,58,0.35)" }}
               >
                 <div
                   className="h-10 w-10 grid place-items-center rounded-full mb-5 transition-transform group-hover:scale-105"
                   style={{
-                    background: "rgba(180,138,60,0.12)",
-                    color: "var(--color-gold)",
+                    background: "rgba(20,82,58,0.12)",
+                    color: "var(--color-cta)",
                   }}
                 >
                   <Icon className="h-4 w-4" strokeWidth={1.5} />
@@ -827,7 +829,7 @@ function Insights() {
           <div>
             <div
               className="text-[11px] tracking-[0.3em] uppercase mb-3"
-              style={{ color: "var(--color-gold)" }}
+              style={{ color: "var(--color-navy)" }}
             >
               Insights & Intelligence
             </div>
@@ -840,7 +842,7 @@ function Insights() {
                 lineHeight: 1,
               }}
             >
-              Research worth <em style={{ color: "var(--color-gold)", fontStyle: "italic" }}>reading twice.</em>
+              Research worth <em style={{ color: "var(--color-cta)", fontStyle: "italic" }}>reading twice.</em>
             </h2>
           </div>
           <a
@@ -870,7 +872,7 @@ function Insights() {
             <div className="mt-6">
               <div
                 className="text-[10px] tracking-[0.3em] uppercase mb-3"
-                style={{ color: "var(--color-gold)" }}
+                style={{ color: "var(--color-navy)" }}
               >
                 Feature · Multigenerational Wealth
               </div>
@@ -898,18 +900,18 @@ function Insights() {
           </a>
 
           {/* Supporting */}
-          <div className="lg:col-span-5 flex flex-col divide-y" style={{ borderColor: "rgba(10,31,68,0.1)" }}>
+          <div className="lg:col-span-5 flex flex-col divide-y" style={{ borderColor: "rgba(20,82,58,0.16)" }}>
             {supporting.map((s) => (
               <a
                 key={s.title}
                 href="#"
                 className="group py-6 first:pt-0 flex gap-6 items-start"
-                style={{ borderColor: "rgba(10,31,68,0.1)" }}
+                style={{ borderColor: "rgba(20,82,58,0.16)" }}
               >
                 <div className="flex-1 min-w-0">
                   <div
                     className="text-[10px] tracking-[0.3em] uppercase mb-2"
-                    style={{ color: "var(--color-gold)" }}
+                    style={{ color: "var(--color-navy)" }}
                   >
                     {s.cat}
                   </div>
@@ -931,7 +933,7 @@ function Insights() {
                 </div>
                 <ArrowUpRight
                   className="h-4 w-4 shrink-0 mt-2 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1"
-                  style={{ color: "var(--color-gold)" }}
+                  style={{ color: "var(--color-cta)" }}
                 />
               </a>
             ))}
@@ -961,7 +963,7 @@ function WealthTool() {
           <div className="lg:col-span-5">
             <div
               className="text-[11px] tracking-[0.3em] uppercase mb-4"
-              style={{ color: "var(--color-gold)" }}
+              style={{ color: "var(--color-navy)" }}
             >
               Begin a conversation
             </div>
@@ -975,7 +977,7 @@ function WealthTool() {
               }}
             >
               Tell us who you serve. <br />
-              <em style={{ color: "var(--color-gold)", fontStyle: "italic" }}>We'll match you</em> with the right specialist.
+              <em style={{ color: "var(--color-cta)", fontStyle: "italic" }}>We'll match you</em> with the right specialist.
             </h2>
             <p className="mt-6 max-w-md text-[15px] leading-relaxed" style={{ color: "var(--color-stone)" }}>
               Every Northern Trust relationship begins with a private consultation. There is no cost, no obligation — only judgment, and the time to give it properly.
@@ -987,15 +989,15 @@ function WealthTool() {
             style={{
               background: "var(--color-navy)",
               color: "var(--color-ivory)",
-              boxShadow: "0 30px 80px -30px rgba(6,22,52,0.5)",
+              boxShadow: "0 30px 80px -30px rgba(10,46,32,0.55)",
             }}
           >
             <div
               className="absolute -top-3 -right-3 w-24 h-24 pointer-events-none"
-              style={{ borderTop: "1px solid var(--color-gold-soft)", borderRight: "1px solid var(--color-gold-soft)" }}
+              style={{ borderTop: "1px solid var(--color-mist)", borderRight: "1px solid var(--color-mist)" }}
             />
 
-            <div className="text-[10px] tracking-[0.3em] uppercase mb-6" style={{ color: "var(--color-gold-soft)" }}>
+            <div className="text-[10px] tracking-[0.3em] uppercase mb-6" style={{ color: "var(--color-mist)" }}>
               Step 1 of 3 · Who are you?
             </div>
 
@@ -1003,12 +1005,13 @@ function WealthTool() {
               {roles.map((r) => (
                 <button
                   key={r.key}
+                  type="button"
                   onClick={() => setRole(r.key)}
-                  className="flex items-center gap-2 px-5 py-3 rounded-full text-[13px] transition-all border"
+                  className="flex min-h-11 items-center gap-2 px-5 py-3 rounded-full text-[13px] transition-all border"
                   style={{
-                    borderColor: role === r.key ? "var(--color-gold-soft)" : "rgba(245,241,232,0.2)",
-                    background: role === r.key ? "rgba(212,176,106,0.15)" : "transparent",
-                    color: role === r.key ? "var(--color-gold-soft)" : "var(--color-ivory)",
+                    borderColor: role === r.key ? "var(--color-ivory)" : "rgba(245,241,232,0.35)",
+                    background: role === r.key ? "var(--color-ivory)" : "transparent",
+                    color: role === r.key ? "var(--color-cta)" : "var(--color-ivory)",
                   }}
                 >
                   {r.icon}
@@ -1019,14 +1022,14 @@ function WealthTool() {
 
             <div className="mb-8">
               <div className="flex items-baseline justify-between mb-4">
-                <label className="text-[12px] tracking-wide" style={{ color: "rgba(245,241,232,0.7)" }}>
+                <label htmlFor="investable-assets" className="text-[12px] tracking-wide" style={{ color: "var(--color-mist)" }}>
                   Investable assets
                 </label>
                 <div
                   style={{
                     fontFamily: "var(--font-display)",
                     fontSize: "2rem",
-                    color: "var(--color-gold-soft)",
+                    color: "var(--color-ivory)",
                     fontWeight: 400,
                   }}
                 >
@@ -1034,16 +1037,18 @@ function WealthTool() {
                 </div>
               </div>
               <input
+                id="investable-assets"
+                aria-label="Investable assets in millions"
                 type="range"
                 min={5}
                 max={100}
                 step={5}
                 value={assets}
                 onChange={(e) => setAssets(Number(e.target.value))}
-                className="w-full accent-[color:var(--color-gold-soft)]"
-                style={{ accentColor: "var(--color-gold-soft)" }}
+                className="w-full accent-[color:var(--color-ivory)]"
+                style={{ accentColor: "var(--color-ivory)" }}
               />
-              <div className="flex justify-between text-[10px] mt-2" style={{ color: "rgba(245,241,232,0.5)" }}>
+              <div className="flex justify-between text-[10px] mt-2" style={{ color: "var(--color-mist)" }}>
                 <span>$5M</span>
                 <span>$25M</span>
                 <span>$50M</span>
@@ -1055,7 +1060,7 @@ function WealthTool() {
               className="p-5 rounded-sm mb-6"
               style={{ background: "rgba(245,241,232,0.05)", border: "1px solid rgba(245,241,232,0.1)" }}
             >
-              <div className="text-[10px] tracking-[0.3em] uppercase mb-2" style={{ color: "var(--color-gold-soft)" }}>
+              <div className="text-[10px] tracking-[0.3em] uppercase mb-2" style={{ color: "var(--color-mist)" }}>
                 Your matched specialist
               </div>
               <div
@@ -1070,14 +1075,15 @@ function WealthTool() {
                 {role === "institution" && "Institutional Relationship Manager · Asset Servicing"}
                 {role === "advisor" && "RIA Solutions Partner · Wealth Passport®"}
               </div>
-              <div className="text-[12px] mt-2" style={{ color: "rgba(245,241,232,0.6)" }}>
+              <div className="text-[12px] mt-2" style={{ color: "var(--color-mist)" }}>
                 Typical response · Within 1 business day
               </div>
             </div>
 
             <button
-              className="w-full inline-flex items-center justify-center gap-3 py-4 rounded-full text-[14px] transition-all hover:opacity-90"
-              style={{ background: "var(--color-gold)", color: "var(--color-navy)" }}
+              type="button"
+              className="w-full inline-flex min-h-11 items-center justify-center gap-3 py-4 rounded-full text-[14px] font-semibold transition-all hover:opacity-90"
+              style={{ background: "var(--color-ivory)", color: "var(--color-cta)" }}
             >
               Continue
               <ArrowRight className="h-4 w-4" />
@@ -1115,7 +1121,7 @@ function GlobalReach() {
           <div className="lg:col-span-4">
             <div
               className="flex items-center gap-3 text-[11px] tracking-[0.3em] uppercase mb-6"
-              style={{ color: "var(--color-gold-soft)" }}
+              style={{ color: "var(--color-mist)" }}
             >
               <Globe className="h-3.5 w-3.5" />
               Global Reach
@@ -1129,9 +1135,9 @@ function GlobalReach() {
               }}
             >
               Local counsel. <br />
-              <em style={{ color: "var(--color-gold-soft)", fontStyle: "italic" }}>Global stewardship.</em>
+              <em style={{ color: "var(--color-ivory)", fontStyle: "italic" }}>Global stewardship.</em>
             </h2>
-            <p className="mt-6 text-[15px] leading-relaxed" style={{ color: "rgba(245,241,232,0.7)" }}>
+            <p className="mt-6 text-[15px] leading-relaxed" style={{ color: "var(--color-mist)" }}>
               22 offices across four continents. One standard of care — measured, patient, and delivered by people who know your name.
             </p>
           </div>
@@ -1142,7 +1148,7 @@ function GlobalReach() {
                 className="flex items-center gap-3 py-3 border-b"
                 style={{ borderColor: "rgba(245,241,232,0.1)" }}
               >
-                <span className="h-1.5 w-1.5 rounded-full" style={{ background: "var(--color-gold-soft)" }} />
+                <span className="h-1.5 w-1.5 rounded-full" style={{ background: "var(--color-mist)" }} />
                 <span className="text-[14px]" style={{ color: "var(--color-ivory)" }}>{o}</span>
               </div>
             ))}
@@ -1168,7 +1174,7 @@ function Awards() {
       <div className="mx-auto max-w-[1400px] px-6 lg:px-10 py-16">
         <div
           className="flex items-center gap-3 text-[11px] tracking-[0.3em] uppercase mb-8 justify-center"
-          style={{ color: "var(--color-gold)" }}
+          style={{ color: "var(--color-navy)" }}
         >
           <ShieldCheck className="h-3.5 w-3.5" />
           Recognition
@@ -1206,20 +1212,20 @@ function Footer() {
             <div className="flex items-center gap-3 mb-6">
               <NTMark invert />
             </div>
-            <p className="text-[13px] leading-relaxed max-w-sm" style={{ color: "rgba(245,241,232,0.6)" }}>
+            <p className="text-[13px] leading-relaxed max-w-sm" style={{ color: "var(--color-mist)" }}>
               50 South LaSalle Street, Chicago, Illinois 60603. Serving generations of families, institutions, and advisors.
             </p>
             <a
               href="#"
               className="mt-6 inline-flex items-center gap-2 text-[13px]"
-              style={{ color: "var(--color-gold-soft)" }}
+              style={{ color: "var(--color-ivory)" }}
             >
               Contact us <ArrowUpRight className="h-3.5 w-3.5" />
             </a>
           </div>
           {cols.map((c) => (
             <div key={c.title} className="lg:col-span-2">
-              <div className="text-[10px] tracking-[0.3em] uppercase mb-4" style={{ color: "var(--color-gold-soft)" }}>
+              <div className="text-[10px] tracking-[0.3em] uppercase mb-4" style={{ color: "var(--color-mist)" }}>
                 {c.title}
               </div>
               <ul className="space-y-2.5">
@@ -1228,7 +1234,7 @@ function Footer() {
                     <a
                       href="#"
                       className="text-[13px] hover:opacity-100 transition-opacity"
-                      style={{ color: "rgba(245,241,232,0.7)" }}
+                      style={{ color: "var(--color-mist)" }}
                     >
                       {i}
                     </a>
@@ -1238,7 +1244,7 @@ function Footer() {
             </div>
           ))}
         </div>
-        <div className="pt-8 flex flex-wrap items-center justify-between gap-4 text-[11px]" style={{ color: "rgba(245,241,232,0.5)" }}>
+        <div className="pt-8 flex flex-wrap items-center justify-between gap-4 text-[11px]" style={{ color: "var(--color-mist)" }}>
           <div>© 1889—2026 Northern Trust Corporation. All rights reserved.</div>
           <div className="flex flex-wrap gap-6">
             <a href="#">Privacy</a>
