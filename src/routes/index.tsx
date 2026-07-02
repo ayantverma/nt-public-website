@@ -403,7 +403,7 @@ function Hero() {
                 fontWeight: 400,
               }}
             >
-              A century and a third{"\u00a0"}of quiet conviction.
+              A century and a third of quiet conviction.
             </h1>
             <p
               className="mt-6 max-w-lg text-[16px] leading-relaxed"
