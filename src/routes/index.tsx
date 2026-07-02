@@ -238,11 +238,11 @@ function SmartSearchField({ open, setOpen }: { open: boolean; setOpen: (v: boole
           minWidth: 320,
           borderBottomColor: open ? "transparent" : undefined,
         }}
-        onClick={() => setOpen(true)}
       >
-        <Search className="h-4 w-4" style={{ color: "var(--color-navy)" }} />
+        <Search className="h-4 w-4" style={{ color: "var(--color-navy)" }} aria-hidden="true" />
         <input
           ref={inputRef}
+          aria-label="Search Northern Trust insights, services, and advisors"
           value={q}
           onChange={(e) => {
             setQ(e.target.value);
@@ -260,7 +260,8 @@ function SmartSearchField({ open, setOpen }: { open: boolean; setOpen: (v: boole
               setOpen(false);
               setQ("");
             }}
-            className="min-h-8 min-w-8 p-2 rounded-full hover:bg-black/5"
+            type="button"
+            className="min-h-11 min-w-11 p-2 rounded-full hover:bg-black/5"
             aria-label="Close search"
           >
             <X className="h-3.5 w-3.5" />
@@ -575,7 +576,7 @@ function AudienceCard({
         </h3>
         <p
           className="text-[14px] leading-relaxed mb-5"
-          style={{ color: featured ? "rgba(245,241,232,0.75)" : "var(--color-stone)" }}
+          style={{ color: featured ? "var(--color-mist)" : "var(--color-stone)" }}
         >
           {desc}
         </p>
@@ -1004,8 +1005,9 @@ function WealthTool() {
               {roles.map((r) => (
                 <button
                   key={r.key}
+                  type="button"
                   onClick={() => setRole(r.key)}
-                  className="flex items-center gap-2 px-5 py-3 rounded-full text-[13px] transition-all border"
+                  className="flex min-h-11 items-center gap-2 px-5 py-3 rounded-full text-[13px] transition-all border"
                   style={{
                     borderColor: role === r.key ? "var(--color-ivory)" : "rgba(245,241,232,0.35)",
                     background: role === r.key ? "var(--color-ivory)" : "transparent",
@@ -1020,7 +1022,7 @@ function WealthTool() {
 
             <div className="mb-8">
               <div className="flex items-baseline justify-between mb-4">
-                <label className="text-[12px] tracking-wide" style={{ color: "rgba(245,241,232,0.7)" }}>
+                <label htmlFor="investable-assets" className="text-[12px] tracking-wide" style={{ color: "var(--color-mist)" }}>
                   Investable assets
                 </label>
                 <div
@@ -1035,6 +1037,8 @@ function WealthTool() {
                 </div>
               </div>
               <input
+                id="investable-assets"
+                aria-label="Investable assets in millions"
                 type="range"
                 min={5}
                 max={100}
@@ -1044,7 +1048,7 @@ function WealthTool() {
                 className="w-full accent-[color:var(--color-ivory)]"
                 style={{ accentColor: "var(--color-ivory)" }}
               />
-              <div className="flex justify-between text-[10px] mt-2" style={{ color: "rgba(245,241,232,0.5)" }}>
+              <div className="flex justify-between text-[10px] mt-2" style={{ color: "var(--color-mist)" }}>
                 <span>$5M</span>
                 <span>$25M</span>
                 <span>$50M</span>
@@ -1071,13 +1075,14 @@ function WealthTool() {
                 {role === "institution" && "Institutional Relationship Manager · Asset Servicing"}
                 {role === "advisor" && "RIA Solutions Partner · Wealth Passport®"}
               </div>
-              <div className="text-[12px] mt-2" style={{ color: "rgba(245,241,232,0.6)" }}>
+              <div className="text-[12px] mt-2" style={{ color: "var(--color-mist)" }}>
                 Typical response · Within 1 business day
               </div>
             </div>
 
             <button
-              className="w-full inline-flex items-center justify-center gap-3 py-4 rounded-full text-[14px] transition-all hover:opacity-90"
+              type="button"
+              className="w-full inline-flex min-h-11 items-center justify-center gap-3 py-4 rounded-full text-[14px] font-semibold transition-all hover:opacity-90"
               style={{ background: "var(--color-ivory)", color: "var(--color-cta)" }}
             >
               Continue
@@ -1132,7 +1137,7 @@ function GlobalReach() {
               Local counsel. <br />
               <em style={{ color: "var(--color-ivory)", fontStyle: "italic" }}>Global stewardship.</em>
             </h2>
-            <p className="mt-6 text-[15px] leading-relaxed" style={{ color: "rgba(245,241,232,0.7)" }}>
+            <p className="mt-6 text-[15px] leading-relaxed" style={{ color: "var(--color-mist)" }}>
               22 offices across four continents. One standard of care — measured, patient, and delivered by people who know your name.
             </p>
           </div>
@@ -1207,7 +1212,7 @@ function Footer() {
             <div className="flex items-center gap-3 mb-6">
               <NTMark invert />
             </div>
-            <p className="text-[13px] leading-relaxed max-w-sm" style={{ color: "rgba(245,241,232,0.6)" }}>
+            <p className="text-[13px] leading-relaxed max-w-sm" style={{ color: "var(--color-mist)" }}>
               50 South LaSalle Street, Chicago, Illinois 60603. Serving generations of families, institutions, and advisors.
             </p>
             <a
@@ -1229,7 +1234,7 @@ function Footer() {
                     <a
                       href="#"
                       className="text-[13px] hover:opacity-100 transition-opacity"
-                      style={{ color: "rgba(245,241,232,0.7)" }}
+                      style={{ color: "var(--color-mist)" }}
                     >
                       {i}
                     </a>
@@ -1239,7 +1244,7 @@ function Footer() {
             </div>
           ))}
         </div>
-        <div className="pt-8 flex flex-wrap items-center justify-between gap-4 text-[11px]" style={{ color: "rgba(245,241,232,0.5)" }}>
+        <div className="pt-8 flex flex-wrap items-center justify-between gap-4 text-[11px]" style={{ color: "var(--color-mist)" }}>
           <div>© 1889—2026 Northern Trust Corporation. All rights reserved.</div>
           <div className="flex flex-wrap gap-6">
             <a href="#">Privacy</a>
