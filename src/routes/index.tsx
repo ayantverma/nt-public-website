@@ -378,7 +378,7 @@ function Hero() {
       <div className="relative w-full" style={{ height: "clamp(420px, 55vh, 560px)" }}>
         <img
           src={heroSkyline}
-          alt="Chicago skyline at golden hour — Northern Trust's home since 1889"
+          alt="Chicago skyline at dusk — Northern Trust's home since 1889"
           className="absolute inset-0 w-full h-full object-cover"
           style={{ filter: "saturate(0.85) contrast(1.05) brightness(0.85)" }}
         />
@@ -558,7 +558,7 @@ function AudienceCard({
       <div className="p-7 flex-1 flex flex-col">
         <div
           className="text-[10px] tracking-[0.3em] uppercase mb-4"
-          style={{ color: featured ? "var(--color-gold-soft)" : "var(--color-gold)" }}
+          style={{ color: featured ? "var(--color-mist)" : "var(--color-navy)" }}
         >
           {eyebrow}
         </div>
@@ -584,7 +584,7 @@ function AudienceCard({
             <li key={p} className="flex items-start gap-2">
               <span
                 className="mt-1.5 h-1 w-1 rounded-full shrink-0"
-                style={{ background: featured ? "var(--color-gold-soft)" : "var(--color-gold)" }}
+                style={{ background: featured ? "var(--color-mist)" : "var(--color-cta)" }}
               />
               {p}
             </li>
@@ -597,7 +597,7 @@ function AudienceCard({
           <span className="text-[13px]">Explore</span>
           <ArrowUpRight
             className="h-4 w-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1"
-            style={{ color: featured ? "var(--color-gold-soft)" : "var(--color-gold)" }}
+            style={{ color: featured ? "var(--color-mist)" : "var(--color-cta)" }}
           />
         </div>
       </div>
@@ -635,9 +635,9 @@ function Legacy() {
           <div className="lg:col-span-5">
             <div
               className="flex items-center gap-3 text-[11px] tracking-[0.3em] uppercase mb-6"
-              style={{ color: "var(--color-gold-soft)" }}
+              style={{ color: "var(--color-mist)" }}
             >
-              <span className="h-px w-8" style={{ background: "var(--color-gold-soft)" }} />
+              <span className="h-px w-8" style={{ background: "var(--color-mist)" }} />
               The Northern Trust Legacy
             </div>
             <h2
@@ -649,14 +649,14 @@ function Legacy() {
               }}
             >
               We were built <br />
-              <em style={{ color: "var(--color-gold-soft)", fontStyle: "italic" }}>to endure.</em>
+              <em style={{ color: "var(--color-ivory)", fontStyle: "italic" }}>to endure.</em>
             </h2>
           </div>
           <div className="lg:col-span-6 lg:col-start-7">
-            <p className="text-[16px] leading-relaxed" style={{ color: "rgba(245,241,232,0.75)" }}>
+            <p className="text-[16px] leading-relaxed" style={{ color: "var(--color-mist)" }}>
               Founded in the last months of the 19th century, Northern Trust has quietly weathered every financial storm since — six wars, twelve recessions, one Great Depression, one global pandemic — and never once failed the families and institutions who trusted us with their capital.
             </p>
-            <p className="text-[16px] leading-relaxed mt-5" style={{ color: "rgba(245,241,232,0.75)" }}>
+            <p className="text-[16px] leading-relaxed mt-5" style={{ color: "var(--color-mist)" }}>
               This is not a marketing claim. It is our ledger.
             </p>
           </div>
@@ -666,7 +666,7 @@ function Legacy() {
         <div className="relative">
           <div
             className="absolute top-16 left-0 right-0 h-px hidden md:block"
-            style={{ background: "rgba(212,176,106,0.3)" }}
+            style={{ background: "rgba(234,244,239,0.35)" }}
           />
           <div className="grid md:grid-cols-6 gap-8 md:gap-4">
             {milestones.map((m, i) => (
@@ -675,7 +675,7 @@ function Legacy() {
                   <div
                     className="h-3 w-3 rounded-full"
                     style={{
-                      background: i === milestones.length - 1 ? "var(--color-gold)" : "var(--color-gold-soft)",
+                      background: i === milestones.length - 1 ? "var(--color-ivory)" : "var(--color-mist)",
                       boxShadow: `0 0 0 6px var(--color-navy)`,
                     }}
                   />
@@ -685,14 +685,14 @@ function Legacy() {
                   style={{
                     fontFamily: "var(--font-display)",
                     fontSize: "1.75rem",
-                    color: "var(--color-gold-soft)",
+                    color: "var(--color-ivory)",
                     fontWeight: 400,
                   }}
                 >
                   {m.year}
                 </div>
                 <div className="text-[13px] font-medium mb-2 tracking-wide">{m.title}</div>
-                <div className="text-[12px] leading-relaxed" style={{ color: "rgba(245,241,232,0.6)" }}>
+                <div className="text-[12px] leading-relaxed" style={{ color: "var(--color-mist)" }}>
                   {m.body}
                 </div>
               </div>
@@ -704,7 +704,7 @@ function Legacy() {
           <a
             href="#"
             className="inline-flex items-center gap-3 px-7 py-4 rounded-full text-[14px] border transition-all hover:bg-white/5"
-            style={{ borderColor: "rgba(212,176,106,0.4)", color: "var(--color-gold-soft)" }}
+            style={{ borderColor: "rgba(234,244,239,0.5)", color: "var(--color-ivory)" }}
           >
             Walk the full 135-year archive
             <ArrowUpRight className="h-4 w-4" />
