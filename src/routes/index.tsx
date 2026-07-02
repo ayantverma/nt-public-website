@@ -993,10 +993,10 @@ function WealthTool() {
           >
             <div
               className="absolute -top-3 -right-3 w-24 h-24 pointer-events-none"
-              style={{ borderTop: "1px solid var(--color-gold-soft)", borderRight: "1px solid var(--color-gold-soft)" }}
+              style={{ borderTop: "1px solid var(--color-mist)", borderRight: "1px solid var(--color-mist)" }}
             />
 
-            <div className="text-[10px] tracking-[0.3em] uppercase mb-6" style={{ color: "var(--color-gold-soft)" }}>
+            <div className="text-[10px] tracking-[0.3em] uppercase mb-6" style={{ color: "var(--color-mist)" }}>
               Step 1 of 3 · Who are you?
             </div>
 
@@ -1007,9 +1007,9 @@ function WealthTool() {
                   onClick={() => setRole(r.key)}
                   className="flex items-center gap-2 px-5 py-3 rounded-full text-[13px] transition-all border"
                   style={{
-                    borderColor: role === r.key ? "var(--color-gold-soft)" : "rgba(245,241,232,0.2)",
-                    background: role === r.key ? "rgba(212,176,106,0.15)" : "transparent",
-                    color: role === r.key ? "var(--color-gold-soft)" : "var(--color-ivory)",
+                    borderColor: role === r.key ? "var(--color-ivory)" : "rgba(245,241,232,0.35)",
+                    background: role === r.key ? "var(--color-ivory)" : "transparent",
+                    color: role === r.key ? "var(--color-cta)" : "var(--color-ivory)",
                   }}
                 >
                   {r.icon}
@@ -1027,7 +1027,7 @@ function WealthTool() {
                   style={{
                     fontFamily: "var(--font-display)",
                     fontSize: "2rem",
-                    color: "var(--color-gold-soft)",
+                    color: "var(--color-ivory)",
                     fontWeight: 400,
                   }}
                 >
@@ -1041,8 +1041,8 @@ function WealthTool() {
                 step={5}
                 value={assets}
                 onChange={(e) => setAssets(Number(e.target.value))}
-                className="w-full accent-[color:var(--color-gold-soft)]"
-                style={{ accentColor: "var(--color-gold-soft)" }}
+                className="w-full accent-[color:var(--color-ivory)]"
+                style={{ accentColor: "var(--color-ivory)" }}
               />
               <div className="flex justify-between text-[10px] mt-2" style={{ color: "rgba(245,241,232,0.5)" }}>
                 <span>$5M</span>
@@ -1056,7 +1056,7 @@ function WealthTool() {
               className="p-5 rounded-sm mb-6"
               style={{ background: "rgba(245,241,232,0.05)", border: "1px solid rgba(245,241,232,0.1)" }}
             >
-              <div className="text-[10px] tracking-[0.3em] uppercase mb-2" style={{ color: "var(--color-gold-soft)" }}>
+              <div className="text-[10px] tracking-[0.3em] uppercase mb-2" style={{ color: "var(--color-mist)" }}>
                 Your matched specialist
               </div>
               <div
@@ -1078,7 +1078,7 @@ function WealthTool() {
 
             <button
               className="w-full inline-flex items-center justify-center gap-3 py-4 rounded-full text-[14px] transition-all hover:opacity-90"
-              style={{ background: "var(--color-gold)", color: "var(--color-navy)" }}
+              style={{ background: "var(--color-ivory)", color: "var(--color-cta)" }}
             >
               Continue
               <ArrowRight className="h-4 w-4" />
@@ -1116,7 +1116,7 @@ function GlobalReach() {
           <div className="lg:col-span-4">
             <div
               className="flex items-center gap-3 text-[11px] tracking-[0.3em] uppercase mb-6"
-              style={{ color: "var(--color-gold-soft)" }}
+              style={{ color: "var(--color-mist)" }}
             >
               <Globe className="h-3.5 w-3.5" />
               Global Reach
@@ -1130,7 +1130,7 @@ function GlobalReach() {
               }}
             >
               Local counsel. <br />
-              <em style={{ color: "var(--color-gold-soft)", fontStyle: "italic" }}>Global stewardship.</em>
+              <em style={{ color: "var(--color-ivory)", fontStyle: "italic" }}>Global stewardship.</em>
             </h2>
             <p className="mt-6 text-[15px] leading-relaxed" style={{ color: "rgba(245,241,232,0.7)" }}>
               22 offices across four continents. One standard of care — measured, patient, and delivered by people who know your name.
@@ -1143,7 +1143,7 @@ function GlobalReach() {
                 className="flex items-center gap-3 py-3 border-b"
                 style={{ borderColor: "rgba(245,241,232,0.1)" }}
               >
-                <span className="h-1.5 w-1.5 rounded-full" style={{ background: "var(--color-gold-soft)" }} />
+                <span className="h-1.5 w-1.5 rounded-full" style={{ background: "var(--color-mist)" }} />
                 <span className="text-[14px]" style={{ color: "var(--color-ivory)" }}>{o}</span>
               </div>
             ))}
@@ -1169,7 +1169,7 @@ function Awards() {
       <div className="mx-auto max-w-[1400px] px-6 lg:px-10 py-16">
         <div
           className="flex items-center gap-3 text-[11px] tracking-[0.3em] uppercase mb-8 justify-center"
-          style={{ color: "var(--color-gold)" }}
+          style={{ color: "var(--color-navy)" }}
         >
           <ShieldCheck className="h-3.5 w-3.5" />
           Recognition
@@ -1213,14 +1213,14 @@ function Footer() {
             <a
               href="#"
               className="mt-6 inline-flex items-center gap-2 text-[13px]"
-              style={{ color: "var(--color-gold-soft)" }}
+              style={{ color: "var(--color-ivory)" }}
             >
               Contact us <ArrowUpRight className="h-3.5 w-3.5" />
             </a>
           </div>
           {cols.map((c) => (
             <div key={c.title} className="lg:col-span-2">
-              <div className="text-[10px] tracking-[0.3em] uppercase mb-4" style={{ color: "var(--color-gold-soft)" }}>
+              <div className="text-[10px] tracking-[0.3em] uppercase mb-4" style={{ color: "var(--color-mist)" }}>
                 {c.title}
               </div>
               <ul className="space-y-2.5">
