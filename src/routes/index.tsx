@@ -734,7 +734,7 @@ function TrustStats() {
         >
           <div
             className="text-[11px] tracking-[0.3em] uppercase mb-3"
-            style={{ color: "var(--color-gold)" }}
+            style={{ color: "var(--color-navy)" }}
           >
             The Ledger
           </div>
@@ -757,13 +757,13 @@ function TrustStats() {
               <div
                 key={s.label}
                 className="group border-l pl-5 transition-colors"
-                style={{ borderColor: "rgba(180,138,60,0.4)" }}
+                style={{ borderColor: "rgba(20,82,58,0.35)" }}
               >
                 <div
                   className="h-10 w-10 grid place-items-center rounded-full mb-5 transition-transform group-hover:scale-105"
                   style={{
-                    background: "rgba(180,138,60,0.12)",
-                    color: "var(--color-gold)",
+                    background: "rgba(20,82,58,0.12)",
+                    color: "var(--color-cta)",
                   }}
                 >
                   <Icon className="h-4 w-4" strokeWidth={1.5} />
@@ -828,7 +828,7 @@ function Insights() {
           <div>
             <div
               className="text-[11px] tracking-[0.3em] uppercase mb-3"
-              style={{ color: "var(--color-gold)" }}
+              style={{ color: "var(--color-navy)" }}
             >
               Insights & Intelligence
             </div>
@@ -841,7 +841,7 @@ function Insights() {
                 lineHeight: 1,
               }}
             >
-              Research worth <em style={{ color: "var(--color-gold)", fontStyle: "italic" }}>reading twice.</em>
+              Research worth <em style={{ color: "var(--color-cta)", fontStyle: "italic" }}>reading twice.</em>
             </h2>
           </div>
           <a
@@ -871,7 +871,7 @@ function Insights() {
             <div className="mt-6">
               <div
                 className="text-[10px] tracking-[0.3em] uppercase mb-3"
-                style={{ color: "var(--color-gold)" }}
+                style={{ color: "var(--color-navy)" }}
               >
                 Feature · Multigenerational Wealth
               </div>
@@ -910,7 +910,7 @@ function Insights() {
                 <div className="flex-1 min-w-0">
                   <div
                     className="text-[10px] tracking-[0.3em] uppercase mb-2"
-                    style={{ color: "var(--color-gold)" }}
+                    style={{ color: "var(--color-navy)" }}
                   >
                     {s.cat}
                   </div>
@@ -932,7 +932,7 @@ function Insights() {
                 </div>
                 <ArrowUpRight
                   className="h-4 w-4 shrink-0 mt-2 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1"
-                  style={{ color: "var(--color-gold)" }}
+                  style={{ color: "var(--color-cta)" }}
                 />
               </a>
             ))}
@@ -962,7 +962,7 @@ function WealthTool() {
           <div className="lg:col-span-5">
             <div
               className="text-[11px] tracking-[0.3em] uppercase mb-4"
-              style={{ color: "var(--color-gold)" }}
+              style={{ color: "var(--color-navy)" }}
             >
               Begin a conversation
             </div>
@@ -976,7 +976,7 @@ function WealthTool() {
               }}
             >
               Tell us who you serve. <br />
-              <em style={{ color: "var(--color-gold)", fontStyle: "italic" }}>We'll match you</em> with the right specialist.
+              <em style={{ color: "var(--color-cta)", fontStyle: "italic" }}>We'll match you</em> with the right specialist.
             </h2>
             <p className="mt-6 max-w-md text-[15px] leading-relaxed" style={{ color: "var(--color-stone)" }}>
               Every Northern Trust relationship begins with a private consultation. There is no cost, no obligation — only judgment, and the time to give it properly.
