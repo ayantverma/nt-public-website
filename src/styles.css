@@ -4,23 +4,21 @@
 
 @custom-variant dark (&:is(.dark *));
 
-/* Northern Trust — refined editorial identity */
+/* Northern Trust — accessible corporate identity */
 @theme {
-  /* Display face: light, wide geometric sans that reads close to NT's
-     "Sackers"/GT-Sectra-style corporate wordmark when set uppercase +
-     tracked. Jost (300) is the closest Google-hosted match. */
-  --font-display: "Jost", "Inter Tight", ui-sans-serif, system-ui, sans-serif;
-  --font-sans: "Inter Tight", "Inter", ui-sans-serif, system-ui, sans-serif;
-  /* Northern Trust corporate palette — sampled from northerntrust.com hero.
-     Deeper, more saturated forest green than the previous pass. */
+  /* Arial-first system stack per client direction. */
+  --font-display: Arial, "Helvetica Neue", Helvetica, ui-sans-serif, system-ui, sans-serif;
+  --font-sans: Arial, "Helvetica Neue", Helvetica, ui-sans-serif, system-ui, sans-serif;
+  /* Northern Trust green palette with WCAG 2.2 AA/AAA-safe pairings. */
   --color-navy: #14523A;        /* NT green (primary) */
   --color-navy-deep: #0A2E20;   /* Deep forest */
-  --color-ivory: #F4EFE6;       /* Warm cream */
-  --color-ivory-soft: #EAE2D2;
-  --color-gold: #B08A3E;        /* Muted brass accent */
-  --color-gold-soft: #D4B570;
-  --color-stone: #6B6558;
-  --color-charcoal: #1A1C1A;
+  --color-cta: #0A3B28;         /* Strong CTA green */
+  --color-cta-hover: #062C1D;
+  --color-ivory: #F7F3EA;       /* Accessible warm surface */
+  --color-ivory-soft: #EAF4EF;  /* Pale green-tinted surface */
+  --color-mist: #D8E8DF;        /* Muted text on dark green */
+  --color-stone: #4C554D;
+  --color-charcoal: #101712;
 }
 
 /*
@@ -159,5 +157,18 @@
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
+  }
+
+  a:focus-visible,
+  button:focus-visible,
+  input:focus-visible {
+    outline: 3px solid var(--color-ivory);
+    outline-offset: 3px;
+  }
+
+  main a:focus-visible,
+  main button:focus-visible,
+  main input:focus-visible {
+    box-shadow: 0 0 0 3px var(--color-navy-deep);
   }
 }
