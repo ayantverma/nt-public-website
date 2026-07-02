@@ -400,7 +400,7 @@ function Hero() {
                 fontFamily: "var(--font-display)",
                 fontSize: "clamp(2.4rem, 4.4vw, 4.4rem)",
                 lineHeight: 1.02,
-                fontWeight: 400,
+                fontWeight: 300,
               }}
             >
               A century and a third
