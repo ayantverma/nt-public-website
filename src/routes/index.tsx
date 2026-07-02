@@ -415,7 +415,7 @@ function Hero() {
               <a
                 href="#audiences"
                 className="inline-flex items-center gap-3 px-7 py-3.5 rounded-full text-[13px] transition-all hover:gap-4"
-                style={{ background: "var(--color-gold)", color: "var(--color-navy-deep)" }}
+                style={{ background: "var(--color-gold)", color: "#0a0a0a" }}
               >
                 Explore your path
                 <ArrowRight className="h-4 w-4" />
