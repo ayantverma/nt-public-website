@@ -118,7 +118,7 @@ function TopBar() {
                 {item}
                 <span
                   className="absolute left-0 -bottom-0.5 h-px w-0 group-hover:w-full transition-all duration-300"
-                  style={{ background: "var(--color-gold)" }}
+                  style={{ background: "var(--color-cta)" }}
                 />
               </a>
             ))}
@@ -130,7 +130,7 @@ function TopBar() {
             </div>
             <button
               onClick={() => setSearchOpen(true)}
-              className="md:hidden p-2.5 rounded-full border"
+              className="md:hidden min-h-11 min-w-11 p-2.5 rounded-full border"
               style={{ borderColor: "rgba(10,31,68,0.15)" }}
               aria-label="Search"
             >
@@ -138,13 +138,13 @@ function TopBar() {
             </button>
             <a
               href="#"
-              className="hidden md:inline-flex items-center gap-2.5 px-7 py-3 rounded-full text-[12px] tracking-[0.16em] uppercase font-medium transition-all hover:opacity-90 whitespace-nowrap"
+              className="hidden md:inline-flex min-h-11 items-center gap-2.5 px-7 py-3 rounded-full text-[12px] tracking-[0.16em] uppercase font-semibold transition-all hover:opacity-90 whitespace-nowrap"
               style={{ background: "var(--color-navy)", color: "var(--color-ivory)" }}
             >
               Client Login
               <ArrowUpRight className="h-3.5 w-3.5" />
             </a>
-            <button className="lg:hidden p-2.5" aria-label="Menu">
+            <button className="lg:hidden min-h-11 min-w-11 p-2.5" aria-label="Menu">
               <Menu className="h-5 w-5" />
             </button>
           </div>
@@ -250,7 +250,7 @@ function SmartSearchField({ open, setOpen }: { open: boolean; setOpen: (v: boole
           }}
           onFocus={() => setOpen(true)}
           placeholder="Search insights, services, advisors…"
-          className="flex-1 bg-transparent outline-none text-[13px] placeholder:opacity-60"
+          className="flex-1 bg-transparent outline-none text-[13px] placeholder:opacity-100"
           style={{ color: "var(--color-navy)" }}
         />
         {open ? (
@@ -260,7 +260,7 @@ function SmartSearchField({ open, setOpen }: { open: boolean; setOpen: (v: boole
               setOpen(false);
               setQ("");
             }}
-            className="p-1 rounded-full hover:bg-black/5"
+            className="min-h-8 min-w-8 p-2 rounded-full hover:bg-black/5"
             aria-label="Close search"
           >
             <X className="h-3.5 w-3.5" />
@@ -293,7 +293,7 @@ function SmartSearchField({ open, setOpen }: { open: boolean; setOpen: (v: boole
                     <button
                       key={t}
                       onClick={() => setQ(t)}
-                      className="text-[12px] px-3 py-1.5 rounded-full border transition-colors hover:bg-[var(--color-ivory)]"
+                      className="min-h-11 text-[12px] px-4 py-2.5 rounded-full border transition-colors hover:bg-[var(--color-ivory)]"
                       style={{ borderColor: "rgba(0,98,63,0.18)", color: "var(--color-navy)" }}
                     >
                       {t}
@@ -336,8 +336,8 @@ function SmartSearchField({ open, setOpen }: { open: boolean; setOpen: (v: boole
                           </div>
                         </div>
                         <ArrowUpRight
-                          className="h-4 w-4 shrink-0 opacity-40 group-hover:opacity-100 transition-opacity"
-                          style={{ color: "var(--color-gold)" }}
+                          className="h-4 w-4 shrink-0 opacity-70 group-hover:opacity-100 transition-opacity"
+                          style={{ color: "var(--color-navy)" }}
                         />
                       </a>
                     ))}
@@ -360,7 +360,7 @@ function SmartSearchField({ open, setOpen }: { open: boolean; setOpen: (v: boole
               <span><kbd className="font-mono">↵</kbd> Open</span>
               <span><kbd className="font-mono">Esc</kbd> Close</span>
             </div>
-            <span style={{ color: "var(--color-gold)" }}>Northern Trust Intelligence</span>
+            <span style={{ color: "var(--color-navy)" }}>Northern Trust Intelligence</span>
           </div>
         </div>
       )}
