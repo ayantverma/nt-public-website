@@ -1,60 +1,95 @@
+
 ## Goal
 
-Build a redesigned **Northern Trust landing page** as a live, high-fidelity React prototype — visual-heavy, UX-forward, functional, and rooted in NT's brand identity (deep navy, ivory, gold accent, serif + refined sans). This becomes the visual anchor of the proposal deck: "here's what the future northerntrust.com could feel like."
+Add a new **Wealth Management** route at `/wealth-management` that carries the same brand system, typography, spacing, and accessibility posture as the redesigned homepage — but is built as a *dedicated service page* benchmarked against the best-in-class private-bank / wealth pages (JPM Private Bank, Goldman Family Office, Bessemer, Bernstein, UBS Wealth) and directly addressing the gaps we found on the current NT `/what-we-do/wealth-management` page.
 
-The page will directly address the top gaps from the audit:
-- One-size-fits-all homepage → audience-routed hero
-- Weak/hidden search → prominent, intelligent search
-- No legacy narrative → NT's 135+ year heritage woven in as a signature moment
-- Generic corporate feel → editorial, luxury, trust-forward craft
+## What's wrong with the current NT page (quick audit)
 
-## Design direction
+- Generic "hero image + paragraph + tile grid" — no audience segmentation, no depth of proof.
+- Weak information scent: no jump-to TOC, no clear service taxonomy, deep content buried 2–3 clicks down.
+- No interactive tools (net-worth banding, "find your advisor", scenario planner).
+- Insights are decoupled from the service context.
+- Sparse proof: no case narratives, no tenure/AUM callouts in-context, no team faces.
+- Accessibility: low-contrast greys on white, icon-only links, missing landmarks, weak focus states.
 
-Brand identity (kept, refined — not reinvented):
-- **Palette**: Deep navy `#0A1F44`, ivory `#F5F1E8`, muted gold `#B48A3C`, warm charcoal, subtle stone accents
-- **Type**: Editorial serif display (e.g. Fraunces / Cormorant) paired with a refined humanist sans (e.g. Inter Tight / Söhne-style)
-- **Feel**: Private-bank editorial — closer to Goldman Insights, JPM Private Bank, Hermès Finance than to a SaaS marketing site. Generous whitespace, restrained gold accents, cinematic imagery.
+## Competitive structure standard (what the top pages do)
 
-## Landing page structure
+1. Editorial hero with a single clear promise + audience chooser
+2. Sticky **table of contents / section rail** (jump-to)
+3. "Who we serve" segmentation (UHNW families, executives, business owners, next-gen, foundations)
+4. Service pillars, each with proof and a link deeper
+5. **Your relationship team** module — the advisor, the specialists behind them
+6. Planning philosophy / process (numbered steps, not paragraphs)
+7. Interactive tool (net-worth range → tailored view or "connect me")
+8. Case narratives / client stories (anonymized)
+9. Insights curated to wealth
+10. Trust strip (AUM, tenure, awards) contextual to wealth, not corporate
+11. FAQ (schema.org markup for SEO)
+12. Deep CTA — talk to an advisor, with a real form preview
 
-1. **Top bar + intelligent search**
-   - Slim nav (Wealth · Asset Servicing · Asset Management · Insights · About)
-   - Prominent search that expands to an overlay with: recent, suggested topics, categorized results (Insights / Services / People / Tools), keyboard nav
-2. **Audience-routed hero**
-   - Editorial split layout: serif headline + supporting line + three audience entry cards ("Individuals & Families", "Institutions", "Advisors & Family Offices") that hover-preview tailored content
-3. **The Northern Trust Legacy** (signature moment)
-   - Horizontal timeline / scroll-driven section: 1889 founding → milestones → today. Archival-feel imagery, gold rule lines, pull quotes. Establishes trust without being stuffy.
-4. **Trust-by-numbers strip**
-   - AUM, AUC/A, client tenure, global offices, ESG — animated counters, ivory band
-5. **Insights hub preview**
-   - Magazine-grid: 1 featured long-read + 3 supporting pieces, author bios, topic chips
-6. **Interactive wealth tool teaser**
-   - "Plan your legacy" / "Find an advisor" — inline mini-form that visibly demonstrates the tool before routing deeper
-7. **Global reach map**
-   - Understated dotted-line world map, offices highlighted in gold
-8. **Awards & recognition** + **Footer**
-   - Restrained logo strip, comprehensive editorial footer with sitemap, legal, regions
+## Page structure to build
+
+```
+/wealth-management
+├─ TopBar (shared)
+├─ Hero — "Wealth, stewarded." editorial banner + audience chip row
+├─ Sticky Section Rail (TOC) — anchors to each section, active-state on scroll
+├─ § Who we serve — 5 audience cards (Families, Executives, Business Owners, Next Gen, Foundations)
+├─ § What we do — 6 service pillars (Investment Mgmt, Trust & Estate, Family Office, Banking &
+│   Credit, Philanthropy, Business Owner Transitions) — each with 3 sub-capabilities + link
+├─ § How we work — 4-step planning process (Listen · Design · Steward · Evolve)
+├─ § Your team — advisor + specialist bench illustration, tenure stat
+├─ § Wealth Compass (interactive) — investable-range slider + goal chips → tailored summary card
+├─ § Client narratives — 3 anonymized case cards (situation / approach / outcome)
+├─ § Insights for wealth — 1 featured + 3 supporting, filtered chips
+├─ § Proof — AUM under wealth, avg client tenure, multi-gen families served, awards
+├─ § FAQ — 6 Q&A, accordion, JSON-LD FAQPage
+├─ § Talk to an advisor — inline lead form preview (name, region, investable range, message)
+└─ Footer (shared)
+```
+
+## Brand & visual system
+
+- Reuse the exact tokens from `src/styles.css` (NT Green `#14523A`, Deep Forest `#0A2E20`, CTA `#0A3B28`, Ivory, Mist, Stone, Charcoal, Arial stack). No new colors or fonts.
+- Match homepage rhythm: full-bleed hero with green gradient overlay, ivory section bands alternating with deep-forest bands, generous vertical spacing (`py-24`), same eyebrow / rule-line / caps tracking treatment.
+- Imagery: 4–6 editorial images generated via imagegen (family multigenerational portrait, executive at desk, business owner on factory floor, philanthropy scene, coastal home / legacy, advisor conversation). Green-toned duotone treatment for cohesion.
+- Icons: Lucide, stroke 1.5, same style as homepage stats.
+
+## UX & accessibility (WCAG 2.2 AA, addressing our audit)
+
+- Semantic landmarks: one `<main>`, `<nav aria-label="On this page">` for TOC, `<section aria-labelledby>` per block.
+- Skip-to-content link.
+- Sticky TOC has visible focus, keyboard arrow-key nav, `aria-current="location"` on active section (IntersectionObserver).
+- All CTAs are real `<button>` / `<a>` with `min-h-11` (44px), visible focus ring, no gold, contrast ≥ 4.5:1 (verified with same method used on homepage).
+- Accordion FAQ uses the shadcn Radix accordion (already in project) for correct ARIA.
+- Slider has `aria-label`, `aria-valuetext`, keyboard support.
+- Form inputs have visible labels (never placeholder-as-label), error text linked via `aria-describedby`.
+- `prefers-reduced-motion` respected on all scroll/fade animations.
+- Images: meaningful `alt`, decorative use `alt=""`.
+- Heading order strictly h1 → h2 → h3, no skips.
+
+## Uniformity with homepage
+
+- Same `TopBar` (imported / shared), same `Footer`, same smart search dropdown.
+- Same section eyebrow style ("§ Ledger" / caps / rule line) and same button component.
+- Same container widths and grid rhythm so the two pages feel like one publication.
 
 ## Technical approach
 
-- Route: replace `src/routes/index.tsx` placeholder with the new landing page
-- Componentize under `src/components/landing/` (Nav, SearchOverlay, Hero, AudienceCards, LegacyTimeline, TrustStats, InsightsGrid, WealthToolTeaser, GlobalMap, Footer)
-- Design tokens added to `src/styles.css` (navy/ivory/gold, serif+sans font stack via `<link>` in `__root.tsx`)
-- Motion via `framer-motion` (already-common) for scroll reveals, counter animation, search overlay
-- Imagery: a small set of generated editorial images (archival portrait, cityscape, family, institutional) via imagegen — no stock-photo look
-- SEO: proper title/meta/OG on the route head
-- Accessibility: WCAG 2.2 AA — semantic landmarks, focus states, keyboard-navigable search, prefers-reduced-motion respected
+- New route file `src/routes/wealth-management.tsx` (flat naming; TanStack Start file-based routing).
+- Route-specific `head()` with unique `title` / `description` / `og:title` / `og:description` and FAQPage JSON-LD.
+- Extract `TopBar`, `Footer`, and `SmartSearchField` from `src/routes/index.tsx` into `src/components/landing/` so both pages share them (small refactor, no visual change to homepage).
+- New components under `src/components/wealth/`: `WealthHero`, `SectionRail`, `AudienceGrid`, `ServicePillars`, `ProcessSteps`, `TeamModule`, `WealthCompass`, `CaseNarratives`, `WealthInsights`, `ProofStrip`, `WealthFAQ`, `AdvisorContact`.
+- IntersectionObserver hook for TOC active state.
+- Add link to Wealth Management in the homepage top-nav so navigation works end-to-end.
+- Images generated with imagegen into `src/assets/wealth/` (jpg, green-toned).
 
-## Out of scope (for this pass)
+## Out of scope for this pass
 
-- Auth, real backend, real search index (search is a designed, populated demo)
-- Inner pages beyond the landing route
-- Mobile-only polish beyond responsive baseline (desktop-first for the pitch; responsive works but is not the hero view)
+- Real form submission backend (form is a designed preview, no Cloud yet).
+- Sub-pages behind each service pillar (links stub to `#`).
+- Localization / region switcher beyond what the homepage already shows.
 
 ## Deliverable
 
-A running landing page at `/` in the preview — presentation-ready, screenshottable for the deck, and defensible as "this is the direction."
-
-## One quick check before I build
-
-Want me to also add **one visual design-directions round** (3 rendered hero variants for you to pick from) before I implement the full page, or should I commit to the direction above and build straight through? The direct build is faster; the directions round gives you a visual say on the hero before the rest is wired up.
+A production-quality `/wealth-management` route, linked from the homepage nav, brand-uniform, WCAG 2.2 AA verified, screenshot-ready for the NT proposal deck.
