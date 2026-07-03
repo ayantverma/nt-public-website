@@ -410,9 +410,8 @@ function Hero() {
                 fontWeight: 100,
               }}
             >
-              A century and a third
-              <br />
-              of quiet conviction.
+              <span style={{ display: "block", whiteSpace: "nowrap" }}>A century and a third</span>
+              <span style={{ display: "block", whiteSpace: "nowrap" }}>of quiet conviction.</span>
             </h1>
             <p
               className="mt-6 max-w-lg text-[16px] leading-relaxed"
