@@ -283,7 +283,7 @@ function WealthHero() {
             >
               Wealth,
               <br />
-              <em style={{ fontStyle: "italic", fontWeight: 200 }}>stewarded.</em>
+              <em style={{ fontStyle: "normal", fontWeight: 200 }}>stewarded.</em>
             </h1>
             <p className="mt-6 max-w-lg text-[16px] leading-relaxed" style={{ color: "var(--color-ivory)" }}>
               One relationship. Many disciplines. For 135 years, we've been trusted to protect,
@@ -444,7 +444,7 @@ function AudienceGrid() {
               color: "var(--color-navy-deep)",
             }}
           >
-            Five relationships. <em style={{ fontStyle: "italic" }}>One standard of care.</em>
+            Five relationships. <em style={{ fontStyle: "normal" }}>One standard of care.</em>
           </h2>
           <p className="text-[15px] max-w-md leading-relaxed" style={{ color: "var(--color-stone)" }}>
             Wealth means different things to different people. Our advisors listen first — then
@@ -557,7 +557,7 @@ function ServicePillars() {
               lineHeight: 1.08,
             }}
           >
-            Six disciplines, <em style={{ fontStyle: "italic" }}>one plan.</em>
+            Six disciplines, <em style={{ fontStyle: "normal" }}>one plan.</em>
           </h2>
           <p className="text-[15px] max-w-md leading-relaxed" style={{ color: "var(--color-mist)" }}>
             Nothing bolted on. Nothing outsourced to a partner you'll never meet. Every capability
@@ -658,7 +658,7 @@ function ProcessSteps() {
             color: "var(--color-navy-deep)",
           }}
         >
-          A process, not a product. <em style={{ fontStyle: "italic" }}>Four movements.</em>
+          A process, not a product. <em style={{ fontStyle: "normal" }}>Four movements.</em>
         </h2>
         <ol className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
           {steps.map((s, i) => {
@@ -738,7 +738,7 @@ function TeamModule() {
                 color: "var(--color-navy-deep)",
               }}
             >
-              One advisor. <em style={{ fontStyle: "italic" }}>A bench of specialists.</em>
+              One advisor. <em style={{ fontStyle: "normal" }}>A bench of specialists.</em>
             </h2>
             <p className="text-[15px] leading-relaxed mb-8" style={{ color: "var(--color-stone)" }}>
               Your relationship is anchored by a senior advisor who knows your name, your family,
@@ -891,7 +891,7 @@ function WealthCompass() {
               }}
             >
               Tell us who you serve.<br />
-              <em style={{ fontStyle: "italic" }}>We'll shape the relationship.</em>
+              <em style={{ fontStyle: "normal" }}>We'll shape the relationship.</em>
             </h2>
             <p className="text-[15px] leading-relaxed" style={{ color: "var(--color-stone)" }}>
               Move the dial and choose what matters. Instantly see which service tier is designed
@@ -1072,7 +1072,7 @@ function CaseNarratives() {
               lineHeight: 1.08,
             }}
           >
-            Stewardship, <em style={{ fontStyle: "italic" }}>in practice.</em>
+            Stewardship, <em style={{ fontStyle: "normal" }}>in practice.</em>
           </h2>
           <p className="text-[13px] max-w-md" style={{ color: "var(--color-mist)" }}>
             Anonymized situations, real work — a glimpse of how the relationship shows up when it
@@ -1178,7 +1178,7 @@ function WealthInsights() {
               color: "var(--color-navy-deep)",
             }}
           >
-            The thinking behind <em style={{ fontStyle: "italic" }}>the counsel.</em>
+            The thinking behind <em style={{ fontStyle: "normal" }}>the counsel.</em>
           </h2>
           <a
             href="#"
@@ -1369,7 +1369,7 @@ function WealthFAQ() {
             color: "var(--color-navy-deep)",
           }}
         >
-          Questions clients ask <em style={{ fontStyle: "italic" }}>before the first meeting.</em>
+          Questions clients ask <em style={{ fontStyle: "normal" }}>before the first meeting.</em>
         </h2>
         <ul className="border-t" style={{ borderColor: "rgba(20,82,58,0.15)" }}>
           {faqData.map((f, i) => {
@@ -1451,7 +1451,7 @@ function AdvisorContact() {
                 lineHeight: 1.08,
               }}
             >
-              Begin a private <em style={{ fontStyle: "italic" }}>conversation.</em>
+              Begin a private <em style={{ fontStyle: "normal" }}>conversation.</em>
             </h2>
             <p className="text-[15px] max-w-md leading-relaxed mb-8" style={{ color: "var(--color-mist)" }}>
               A senior advisor will read this personally. No sales team, no scripts — just a first
