@@ -276,9 +276,9 @@ function WealthHero() {
               className="tracking-tight"
               style={{
                 fontFamily: "var(--font-display)",
-                fontSize: "clamp(2.4rem, 4.4vw, 4.4rem)",
+                fontSize: "clamp(3.0rem, 5.0vw, 5.0rem)",
                 lineHeight: 1.02,
-                fontWeight: 100,
+                fontWeight: 500,
               }}
             >
               Wealth,
@@ -438,8 +438,8 @@ function AudienceGrid() {
             className="tracking-tight max-w-2xl"
             style={{
               fontFamily: "var(--font-display)",
-              fontSize: "clamp(1.9rem, 3.4vw, 2.8rem)",
-              fontWeight: 200,
+              fontSize: "clamp(2.4rem, 4.0vw, 3.4rem)",
+              fontWeight: 500,
               lineHeight: 1.08,
               color: "var(--color-navy-deep)",
             }}
@@ -552,8 +552,8 @@ function ServicePillars() {
             className="tracking-tight max-w-2xl"
             style={{
               fontFamily: "var(--font-display)",
-              fontSize: "clamp(1.9rem, 3.4vw, 2.8rem)",
-              fontWeight: 200,
+              fontSize: "clamp(2.4rem, 4.0vw, 3.4rem)",
+              fontWeight: 500,
               lineHeight: 1.08,
             }}
           >
@@ -652,8 +652,8 @@ function ProcessSteps() {
           className="tracking-tight mb-14 max-w-3xl"
           style={{
             fontFamily: "var(--font-display)",
-            fontSize: "clamp(1.9rem, 3.4vw, 2.8rem)",
-            fontWeight: 200,
+            fontSize: "clamp(2.4rem, 4.0vw, 3.4rem)",
+            fontWeight: 500,
             lineHeight: 1.08,
             color: "var(--color-navy-deep)",
           }}
@@ -732,8 +732,8 @@ function TeamModule() {
               className="tracking-tight mb-6"
               style={{
                 fontFamily: "var(--font-display)",
-                fontSize: "clamp(1.9rem, 3.4vw, 2.8rem)",
-                fontWeight: 200,
+                fontSize: "clamp(2.4rem, 4.0vw, 3.4rem)",
+                fontWeight: 500,
                 lineHeight: 1.08,
                 color: "var(--color-navy-deep)",
               }}
@@ -884,8 +884,8 @@ function WealthCompass() {
               className="tracking-tight mb-6"
               style={{
                 fontFamily: "var(--font-display)",
-                fontSize: "clamp(1.9rem, 3.4vw, 2.8rem)",
-                fontWeight: 200,
+                fontSize: "clamp(2.4rem, 4.0vw, 3.4rem)",
+                fontWeight: 500,
                 lineHeight: 1.08,
                 color: "var(--color-navy-deep)",
               }}
@@ -1067,8 +1067,8 @@ function CaseNarratives() {
             className="tracking-tight max-w-2xl"
             style={{
               fontFamily: "var(--font-display)",
-              fontSize: "clamp(1.9rem, 3.4vw, 2.8rem)",
-              fontWeight: 200,
+              fontSize: "clamp(2.4rem, 4.0vw, 3.4rem)",
+              fontWeight: 500,
               lineHeight: 1.08,
             }}
           >
@@ -1172,8 +1172,8 @@ function WealthInsights() {
             className="tracking-tight max-w-2xl"
             style={{
               fontFamily: "var(--font-display)",
-              fontSize: "clamp(1.9rem, 3.4vw, 2.8rem)",
-              fontWeight: 200,
+              fontSize: "clamp(2.4rem, 4.0vw, 3.4rem)",
+              fontWeight: 500,
               lineHeight: 1.08,
               color: "var(--color-navy-deep)",
             }}
@@ -1299,8 +1299,8 @@ function ProofStrip() {
               className="tracking-tight max-w-2xl"
               style={{
                 fontFamily: "var(--font-display)",
-                fontSize: "clamp(1.6rem, 2.8vw, 2.2rem)",
-                fontWeight: 200,
+                fontSize: "clamp(2.1rem, 3.4vw, 2.8rem)",
+                fontWeight: 500,
                 lineHeight: 1.08,
                 color: "var(--color-navy-deep)",
               }}
@@ -1363,8 +1363,8 @@ function WealthFAQ() {
           className="tracking-tight mb-12"
           style={{
             fontFamily: "var(--font-display)",
-            fontSize: "clamp(1.9rem, 3.4vw, 2.8rem)",
-            fontWeight: 200,
+            fontSize: "clamp(2.4rem, 4.0vw, 3.4rem)",
+            fontWeight: 500,
             lineHeight: 1.08,
             color: "var(--color-navy-deep)",
           }}
@@ -1446,8 +1446,8 @@ function AdvisorContact() {
               className="tracking-tight mb-6"
               style={{
                 fontFamily: "var(--font-display)",
-                fontSize: "clamp(1.9rem, 3.4vw, 2.8rem)",
-                fontWeight: 200,
+                fontSize: "clamp(2.4rem, 4.0vw, 3.4rem)",
+                fontWeight: 500,
                 lineHeight: 1.08,
               }}
             >
