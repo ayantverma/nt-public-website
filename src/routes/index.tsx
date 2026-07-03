@@ -660,7 +660,7 @@ function Legacy() {
               }}
             >
               We were built <br />
-              <em style={{ color: "var(--color-ivory)", fontStyle: "italic" }}>to endure.</em>
+              <em style={{ color: "var(--color-ivory)", fontStyle: "normal" }}>to endure.</em>
             </h2>
           </div>
           <div className="lg:col-span-6 lg:col-start-7">
@@ -852,7 +852,7 @@ function Insights() {
                 lineHeight: 1,
               }}
             >
-              Research worth <em style={{ color: "var(--color-cta)", fontStyle: "italic" }}>reading twice.</em>
+              Research worth <em style={{ color: "var(--color-cta)", fontStyle: "normal" }}>reading twice.</em>
             </h2>
           </div>
           <a
@@ -987,7 +987,7 @@ function WealthTool() {
               }}
             >
               Tell us who you serve. <br />
-              <em style={{ color: "var(--color-cta)", fontStyle: "italic" }}>We'll match you</em> with the right specialist.
+              <em style={{ color: "var(--color-cta)", fontStyle: "normal" }}>We'll match you</em> with the right specialist.
             </h2>
             <p className="mt-6 max-w-md text-[15px] leading-relaxed" style={{ color: "var(--color-stone)" }}>
               Every Northern Trust relationship begins with a private consultation. There is no cost, no obligation — only judgment, and the time to give it properly.
@@ -1145,7 +1145,7 @@ function GlobalReach() {
               }}
             >
               Local counsel. <br />
-              <em style={{ color: "var(--color-ivory)", fontStyle: "italic" }}>Global stewardship.</em>
+              <em style={{ color: "var(--color-ivory)", fontStyle: "normal" }}>Global stewardship.</em>
             </h2>
             <p className="mt-6 text-[15px] leading-relaxed" style={{ color: "var(--color-mist)" }}>
               22 offices across four continents. One standard of care — measured, patient, and delivered by people who know your name.

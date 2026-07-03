@@ -1,95 +1,43 @@
+# Typography Update: Helvetica + De-italicize
 
-## Goal
+## Font recommendation
 
-Add a new **Wealth Management** route at `/wealth-management` that carries the same brand system, typography, spacing, and accessibility posture as the redesigned homepage — but is built as a *dedicated service page* benchmarked against the best-in-class private-bank / wealth pages (JPM Private Bank, Goldman Family Office, Bessemer, Bernstein, UBS Wealth) and directly addressing the gaps we found on the current NT `/what-we-do/wealth-management` page.
+**Helvetica** is the stronger fit for Northern Trust — here's why:
 
-## What's wrong with the current NT page (quick audit)
+| Criterion | Helvetica | Montserrat |
+|---|---|---|
+| Heritage / institutional feel | ✅ Neutral grotesk, timeless, used across legacy finance (UBS, JPM print) | ⚠️ Geometric, modern-startup vibe (SaaS, DTC) |
+| Pairs with NT's current wordmark | ✅ Same grotesk lineage as NT's logo | ⚠️ Rounder, geometric — competes with logo |
+| Long-form readability (insights, disclosures) | ✅ Excellent at body sizes | ⚠️ Wider, less efficient in dense copy |
+| Availability / performance | ✅ System font, zero webfont weight | ❌ Requires Google Fonts load |
+| Distinct from "AI-generic" | ✅ Editorial, restrained | ⚠️ Overused in generic marketing sites |
 
-- Generic "hero image + paragraph + tile grid" — no audience segmentation, no depth of proof.
-- Weak information scent: no jump-to TOC, no clear service taxonomy, deep content buried 2–3 clicks down.
-- No interactive tools (net-worth banding, "find your advisor", scenario planner).
-- Insights are decoupled from the service context.
-- Sparse proof: no case narratives, no tenure/AUM callouts in-context, no team faces.
-- Accessibility: low-contrast greys on white, icon-only links, missing landmarks, weak focus states.
+**Recommendation: Helvetica** (system stack: `"Helvetica Neue", Helvetica, Arial, sans-serif`). It preserves the corporate-editorial gravitas we've built and matches the aesthetic of NT's actual site, while Montserrat would push the design toward a lighter, startup-y register that conflicts with the "century and a third of quiet conviction" story.
 
-## Competitive structure standard (what the top pages do)
+## Changes
 
-1. Editorial hero with a single clear promise + audience chooser
-2. Sticky **table of contents / section rail** (jump-to)
-3. "Who we serve" segmentation (UHNW families, executives, business owners, next-gen, foundations)
-4. Service pillars, each with proof and a link deeper
-5. **Your relationship team** module — the advisor, the specialists behind them
-6. Planning philosophy / process (numbered steps, not paragraphs)
-7. Interactive tool (net-worth range → tailored view or "connect me")
-8. Case narratives / client stories (anonymized)
-9. Insights curated to wealth
-10. Trust strip (AUM, tenure, awards) contextual to wealth, not corporate
-11. FAQ (schema.org markup for SEO)
-12. Deep CTA — talk to an advisor, with a real form preview
+### 1. `src/styles.css`
+- Update `--font-display` and `--font-sans` from the current Arial-first stack to:
+  `"Helvetica Neue", Helvetica, Arial, "Liberation Sans", sans-serif`
+- No webfont import needed (system stack). Keeps performance and avoids remote CSS in Tailwind v4.
 
-## Page structure to build
+### 2. Remove all italics — `src/routes/index.tsx` and `src/routes/wealth-management.tsx`
+- Search for and strip every `italic`, `not-italic` needing enforcement, and inline `fontStyle: "italic"`.
+- Common spots to sweep: hero pullquote / eyebrow lines, legacy timeline captions, editorial insight bylines, testimonial quotes, footer fine print, wealth-management case-study attributions.
+- Replace italic emphasis with either:
+  - uppercase + letter-spacing (for eyebrows/labels), or
+  - lighter weight / muted color (for secondary lines), or
+  - plain roman where italic was purely decorative.
+- Add a global safety rule in `styles.css`:
+  ```css
+  html, body, * { font-style: normal !important; }
+  ```
+  Scoped to the app; ensures no stray `<em>`, `<cite>`, `<i>`, or third-party component renders italic.
 
-```
-/wealth-management
-├─ TopBar (shared)
-├─ Hero — "Wealth, stewarded." editorial banner + audience chip row
-├─ Sticky Section Rail (TOC) — anchors to each section, active-state on scroll
-├─ § Who we serve — 5 audience cards (Families, Executives, Business Owners, Next Gen, Foundations)
-├─ § What we do — 6 service pillars (Investment Mgmt, Trust & Estate, Family Office, Banking &
-│   Credit, Philanthropy, Business Owner Transitions) — each with 3 sub-capabilities + link
-├─ § How we work — 4-step planning process (Listen · Design · Steward · Evolve)
-├─ § Your team — advisor + specialist bench illustration, tenure stat
-├─ § Wealth Compass (interactive) — investable-range slider + goal chips → tailored summary card
-├─ § Client narratives — 3 anonymized case cards (situation / approach / outcome)
-├─ § Insights for wealth — 1 featured + 3 supporting, filtered chips
-├─ § Proof — AUM under wealth, avg client tenure, multi-gen families served, awards
-├─ § FAQ — 6 Q&A, accordion, JSON-LD FAQPage
-├─ § Talk to an advisor — inline lead form preview (name, region, investable range, message)
-└─ Footer (shared)
-```
+### 3. Verify
+- Grep both route files after edits to confirm zero `italic` tokens remain (except the reset rule).
+- Visual pass on `/` and `/wealth-management` hero, timeline, insights grid, FAQ, footer.
 
-## Brand & visual system
-
-- Reuse the exact tokens from `src/styles.css` (NT Green `#14523A`, Deep Forest `#0A2E20`, CTA `#0A3B28`, Ivory, Mist, Stone, Charcoal, Arial stack). No new colors or fonts.
-- Match homepage rhythm: full-bleed hero with green gradient overlay, ivory section bands alternating with deep-forest bands, generous vertical spacing (`py-24`), same eyebrow / rule-line / caps tracking treatment.
-- Imagery: 4–6 editorial images generated via imagegen (family multigenerational portrait, executive at desk, business owner on factory floor, philanthropy scene, coastal home / legacy, advisor conversation). Green-toned duotone treatment for cohesion.
-- Icons: Lucide, stroke 1.5, same style as homepage stats.
-
-## UX & accessibility (WCAG 2.2 AA, addressing our audit)
-
-- Semantic landmarks: one `<main>`, `<nav aria-label="On this page">` for TOC, `<section aria-labelledby>` per block.
-- Skip-to-content link.
-- Sticky TOC has visible focus, keyboard arrow-key nav, `aria-current="location"` on active section (IntersectionObserver).
-- All CTAs are real `<button>` / `<a>` with `min-h-11` (44px), visible focus ring, no gold, contrast ≥ 4.5:1 (verified with same method used on homepage).
-- Accordion FAQ uses the shadcn Radix accordion (already in project) for correct ARIA.
-- Slider has `aria-label`, `aria-valuetext`, keyboard support.
-- Form inputs have visible labels (never placeholder-as-label), error text linked via `aria-describedby`.
-- `prefers-reduced-motion` respected on all scroll/fade animations.
-- Images: meaningful `alt`, decorative use `alt=""`.
-- Heading order strictly h1 → h2 → h3, no skips.
-
-## Uniformity with homepage
-
-- Same `TopBar` (imported / shared), same `Footer`, same smart search dropdown.
-- Same section eyebrow style ("§ Ledger" / caps / rule line) and same button component.
-- Same container widths and grid rhythm so the two pages feel like one publication.
-
-## Technical approach
-
-- New route file `src/routes/wealth-management.tsx` (flat naming; TanStack Start file-based routing).
-- Route-specific `head()` with unique `title` / `description` / `og:title` / `og:description` and FAQPage JSON-LD.
-- Extract `TopBar`, `Footer`, and `SmartSearchField` from `src/routes/index.tsx` into `src/components/landing/` so both pages share them (small refactor, no visual change to homepage).
-- New components under `src/components/wealth/`: `WealthHero`, `SectionRail`, `AudienceGrid`, `ServicePillars`, `ProcessSteps`, `TeamModule`, `WealthCompass`, `CaseNarratives`, `WealthInsights`, `ProofStrip`, `WealthFAQ`, `AdvisorContact`.
-- IntersectionObserver hook for TOC active state.
-- Add link to Wealth Management in the homepage top-nav so navigation works end-to-end.
-- Images generated with imagegen into `src/assets/wealth/` (jpg, green-toned).
-
-## Out of scope for this pass
-
-- Real form submission backend (form is a designed preview, no Cloud yet).
-- Sub-pages behind each service pillar (links stub to `#`).
-- Localization / region switcher beyond what the homepage already shows.
-
-## Deliverable
-
-A production-quality `/wealth-management` route, linked from the homepage nav, brand-uniform, WCAG 2.2 AA verified, screenshot-ready for the NT proposal deck.
+## Out of scope
+- No layout, color, spacing, or content changes.
+- No new routes or components.
