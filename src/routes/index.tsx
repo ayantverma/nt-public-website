@@ -413,7 +413,6 @@ function Hero() {
               A century and a third
               <br />
               of quiet conviction.
-              <br />
             </h1>
             <p
               className="mt-6 max-w-lg text-[16px] leading-relaxed"
