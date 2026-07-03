@@ -405,9 +405,9 @@ function Hero() {
               className="tracking-tight"
               style={{
                 fontFamily: "var(--font-display)",
-                fontSize: "clamp(2.4rem, 4.4vw, 4.4rem)",
+                fontSize: "clamp(3.0rem, 5.0vw, 5.0rem)",
                 lineHeight: 1.02,
-                fontWeight: 100,
+                fontWeight: 500,
               }}
             >
               A century and a third
@@ -483,7 +483,7 @@ function Hero() {
                 style={{
                   fontFamily: "var(--font-display)",
                   color: "var(--color-navy)",
-                  fontSize: "clamp(1.8rem, 3vw, 2.6rem)",
+                  fontSize: "clamp(2.2rem, 3.5vw, 3.1rem)",
                   fontWeight: 400,
                   lineHeight: 1.05,
                 }}
@@ -577,7 +577,7 @@ function AudienceCard({
           className="mb-4"
           style={{
             fontFamily: "var(--font-display)",
-            fontSize: "1.75rem",
+            fontSize: "2.15rem",
             lineHeight: 1.05,
             fontWeight: 400,
           }}
@@ -654,7 +654,7 @@ function Legacy() {
             <h2
               style={{
                 fontFamily: "var(--font-display)",
-                fontSize: "clamp(2.4rem, 4.5vw, 4rem)",
+                fontSize: "clamp(3.0rem, 5.1vw, 4.6rem)",
                 lineHeight: 1,
                 fontWeight: 400,
               }}
@@ -752,7 +752,7 @@ function TrustStats() {
           <h2
             style={{
               fontFamily: "var(--font-display)",
-              fontSize: "clamp(1.7rem, 2.8vw, 2.4rem)",
+              fontSize: "clamp(2.1rem, 3.4vw, 3.0rem)",
               color: "var(--color-navy)",
               fontWeight: 400,
               lineHeight: 1.1,
@@ -782,7 +782,7 @@ function TrustStats() {
                 <div
                   style={{
                     fontFamily: "var(--font-display)",
-                    fontSize: "clamp(2.2rem, 3.5vw, 3rem)",
+                    fontSize: "clamp(2.7rem, 4.1vw, 3.6rem)",
                     color: "var(--color-navy)",
                     fontWeight: 400,
                     lineHeight: 1,
@@ -846,7 +846,7 @@ function Insights() {
             <h2
               style={{
                 fontFamily: "var(--font-display)",
-                fontSize: "clamp(2rem, 3.5vw, 3rem)",
+                fontSize: "clamp(2.5rem, 4.1vw, 3.6rem)",
                 color: "var(--color-navy)",
                 fontWeight: 400,
                 lineHeight: 1,
@@ -890,7 +890,7 @@ function Insights() {
                 className="mb-3 group-hover:underline decoration-1 underline-offset-8"
                 style={{
                   fontFamily: "var(--font-display)",
-                  fontSize: "clamp(1.75rem, 3vw, 2.5rem)",
+                  fontSize: "clamp(2.15rem, 3.6vw, 3.1rem)",
                   color: "var(--color-navy)",
                   fontWeight: 400,
                   lineHeight: 1.05,
@@ -929,7 +929,7 @@ function Insights() {
                     className="mb-3 group-hover:underline decoration-1 underline-offset-4"
                     style={{
                       fontFamily: "var(--font-display)",
-                      fontSize: "1.35rem",
+                      fontSize: "1.65rem",
                       color: "var(--color-navy)",
                       fontWeight: 400,
                       lineHeight: 1.15,
@@ -980,7 +980,7 @@ function WealthTool() {
             <h2
               style={{
                 fontFamily: "var(--font-display)",
-                fontSize: "clamp(2rem, 3.8vw, 3.2rem)",
+                fontSize: "clamp(2.5rem, 4.4vw, 3.8rem)",
                 color: "var(--color-navy)",
                 fontWeight: 400,
                 lineHeight: 1.02,
@@ -1139,7 +1139,7 @@ function GlobalReach() {
             <h2
               style={{
                 fontFamily: "var(--font-display)",
-                fontSize: "clamp(2rem, 3.5vw, 2.8rem)",
+                fontSize: "clamp(2.5rem, 4.1vw, 3.4rem)",
                 fontWeight: 400,
                 lineHeight: 1.02,
               }}
