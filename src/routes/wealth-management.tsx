@@ -283,7 +283,7 @@ function WealthHero() {
             >
               Wealth,
               <br />
-              <em style={{ fontStyle: "normal", fontWeight: 200 }}>stewarded.</em>
+              <em style={{ fontStyle: "normal", fontWeight: 500 }}>stewarded.</em>
             </h1>
             <p className="mt-6 max-w-lg text-[16px] leading-relaxed" style={{ color: "var(--color-ivory)" }}>
               One relationship. Many disciplines. For 135 years, we've been trusted to protect,
