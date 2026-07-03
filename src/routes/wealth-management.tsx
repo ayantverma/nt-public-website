@@ -278,12 +278,12 @@ function WealthHero() {
                 fontFamily: "var(--font-display)",
                 fontSize: "clamp(3.0rem, 5.0vw, 5.0rem)",
                 lineHeight: 1.02,
-                fontWeight: 500,
+                fontWeight: 100,
               }}
             >
               Wealth,
               <br />
-              <em style={{ fontStyle: "normal", fontWeight: 500 }}>stewarded.</em>
+              <em style={{ fontStyle: "normal", fontWeight: 200 }}>stewarded.</em>
             </h1>
             <p className="mt-6 max-w-lg text-[16px] leading-relaxed" style={{ color: "var(--color-ivory)" }}>
               One relationship. Many disciplines. For 135 years, we've been trusted to protect,
@@ -439,7 +439,7 @@ function AudienceGrid() {
             style={{
               fontFamily: "var(--font-display)",
               fontSize: "clamp(2.4rem, 4.0vw, 3.4rem)",
-              fontWeight: 500,
+              fontWeight: 200,
               lineHeight: 1.08,
               color: "var(--color-navy-deep)",
             }}
@@ -553,7 +553,7 @@ function ServicePillars() {
             style={{
               fontFamily: "var(--font-display)",
               fontSize: "clamp(2.4rem, 4.0vw, 3.4rem)",
-              fontWeight: 500,
+              fontWeight: 200,
               lineHeight: 1.08,
             }}
           >
@@ -653,7 +653,7 @@ function ProcessSteps() {
           style={{
             fontFamily: "var(--font-display)",
             fontSize: "clamp(2.4rem, 4.0vw, 3.4rem)",
-            fontWeight: 500,
+            fontWeight: 200,
             lineHeight: 1.08,
             color: "var(--color-navy-deep)",
           }}
@@ -733,7 +733,7 @@ function TeamModule() {
               style={{
                 fontFamily: "var(--font-display)",
                 fontSize: "clamp(2.4rem, 4.0vw, 3.4rem)",
-                fontWeight: 500,
+                fontWeight: 200,
                 lineHeight: 1.08,
                 color: "var(--color-navy-deep)",
               }}
@@ -885,7 +885,7 @@ function WealthCompass() {
               style={{
                 fontFamily: "var(--font-display)",
                 fontSize: "clamp(2.4rem, 4.0vw, 3.4rem)",
-                fontWeight: 500,
+                fontWeight: 200,
                 lineHeight: 1.08,
                 color: "var(--color-navy-deep)",
               }}
@@ -1068,7 +1068,7 @@ function CaseNarratives() {
             style={{
               fontFamily: "var(--font-display)",
               fontSize: "clamp(2.4rem, 4.0vw, 3.4rem)",
-              fontWeight: 500,
+              fontWeight: 200,
               lineHeight: 1.08,
             }}
           >
@@ -1173,7 +1173,7 @@ function WealthInsights() {
             style={{
               fontFamily: "var(--font-display)",
               fontSize: "clamp(2.4rem, 4.0vw, 3.4rem)",
-              fontWeight: 500,
+              fontWeight: 200,
               lineHeight: 1.08,
               color: "var(--color-navy-deep)",
             }}
@@ -1364,7 +1364,7 @@ function WealthFAQ() {
           style={{
             fontFamily: "var(--font-display)",
             fontSize: "clamp(2.4rem, 4.0vw, 3.4rem)",
-            fontWeight: 500,
+            fontWeight: 200,
             lineHeight: 1.08,
             color: "var(--color-navy-deep)",
           }}
@@ -1447,7 +1447,7 @@ function AdvisorContact() {
               style={{
                 fontFamily: "var(--font-display)",
                 fontSize: "clamp(2.4rem, 4.0vw, 3.4rem)",
-                fontWeight: 500,
+                fontWeight: 200,
                 lineHeight: 1.08,
               }}
             >
