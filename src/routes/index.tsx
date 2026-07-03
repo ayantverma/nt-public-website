@@ -410,7 +410,7 @@ function Hero() {
                 fontWeight: 100,
               }}
             >
-              <span style={{ display: "block", whiteSpace: "nowrap" }}>A century and a third</span>
+              <span style={{ display: "block", whiteSpace: "nowrap" }}>A century and a third&nbsp;</span>
               <span style={{ display: "block", whiteSpace: "nowrap" }}>of quiet conviction.</span>
             </h1>
             <p
