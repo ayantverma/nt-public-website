@@ -6,9 +6,9 @@
 
 /* Northern Trust — accessible corporate identity */
 @theme {
-  /* Arial-first system stack per client direction. */
-  --font-display: Arial, "Helvetica Neue", Helvetica, ui-sans-serif, system-ui, sans-serif;
-  --font-sans: Arial, "Helvetica Neue", Helvetica, ui-sans-serif, system-ui, sans-serif;
+  /* Helvetica-first system stack — matches NT's grotesk wordmark. */
+  --font-display: "Helvetica Neue", Helvetica, Arial, "Liberation Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Helvetica Neue", Helvetica, Arial, "Liberation Sans", ui-sans-serif, system-ui, sans-serif;
   /* Northern Trust green palette with WCAG 2.2 AA/AAA-safe pairings. */
   --color-navy: #14523A;        /* NT green (primary) */
   --color-navy-deep: #0A2E20;   /* Deep forest */
@@ -152,6 +152,10 @@
 @layer base {
   * {
     border-color: var(--color-border);
+  }
+
+  html, body, em, i, cite, blockquote, address, dfn, var {
+    font-style: normal;
   }
 
   body {
