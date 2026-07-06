@@ -1177,6 +1177,14 @@ function GlobalReach() {
             <p className="mt-6 text-[15px] leading-relaxed" style={{ color: "var(--color-mist)" }}>
               22 offices across four continents. One standard of care — measured, patient, and delivered by people who know your name.
             </p>
+            <Link
+              to="/global-reach"
+              className="mt-8 inline-flex min-h-11 items-center gap-3 px-6 py-3 rounded-full text-[13px] font-semibold transition-all hover:gap-4"
+              style={{ background: "var(--color-ivory)", color: "var(--color-cta)" }}
+            >
+              Explore locations
+              <ArrowUpRight className="h-4 w-4" />
+            </Link>
           </div>
           <div className="lg:col-span-8 grid grid-cols-2 md:grid-cols-3 gap-x-6 gap-y-4">
             {offices.map((o) => (
