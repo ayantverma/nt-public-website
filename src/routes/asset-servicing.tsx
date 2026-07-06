@@ -29,6 +29,10 @@ import {
 } from "lucide-react";
 
 import ntLogoMark from "@/assets/nt-logo.png";
+import asHero from "@/assets/as-hero.jpg";
+import asCardCustody from "@/assets/as-card-custody.jpg";
+import asCardFund from "@/assets/as-card-fund.jpg";
+import asCardData from "@/assets/as-card-data.jpg";
 
 export const Route = createFileRoute("/asset-servicing")({
   head: () => ({
@@ -141,7 +145,22 @@ function TopBar() {
 function Hero() {
   return (
     <section aria-labelledby="hero-title" className="relative overflow-hidden" style={{ background: "var(--color-navy-deep)", color: "var(--color-ivory)" }}>
-      <div aria-hidden="true" className="absolute inset-0 opacity-70 as-gradient" style={{ background: "radial-gradient(ellipse at 20% 30%, rgba(45,138,105,0.35), transparent 55%), radial-gradient(ellipse at 80% 70%, rgba(20,82,58,0.55), transparent 60%), linear-gradient(135deg, #0A2E20 0%, #0A3B28 50%, #0A2E20 100%)" }} />
+      <img
+        src={asHero}
+        alt=""
+        aria-hidden="true"
+        className="absolute inset-0 w-full h-full object-cover"
+        style={{ opacity: 0.55, filter: "saturate(0.7) contrast(1.05) brightness(0.85)" }}
+      />
+      <div aria-hidden="true" className="absolute inset-0 opacity-40 as-gradient" style={{ background: "radial-gradient(ellipse at 20% 30%, rgba(45,138,105,0.35), transparent 55%), radial-gradient(ellipse at 80% 70%, rgba(20,82,58,0.55), transparent 60%), linear-gradient(135deg, #0A2E20 0%, #0A3B28 50%, #0A2E20 100%)" }} />
+      <div
+        aria-hidden="true"
+        className="absolute inset-0"
+        style={{
+          background:
+            "linear-gradient(105deg, rgba(10,46,32,0.9) 0%, rgba(10,46,32,0.65) 45%, rgba(10,46,32,0.25) 100%)",
+        }}
+      />
       <div aria-hidden="true" className="absolute inset-0 pointer-events-none" style={{ backgroundImage: "linear-gradient(rgba(245,241,232,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(245,241,232,0.04) 1px, transparent 1px)", backgroundSize: "56px 56px", maskImage: "radial-gradient(ellipse at center, black 40%, transparent 75%)" }} />
       <div className="relative mx-auto max-w-[1440px] px-6 lg:px-10 py-24 lg:py-32">
         <div className="grid lg:grid-cols-12 gap-12 items-end">
@@ -203,20 +222,55 @@ function Hero() {
 
 function WhyNT() {
   const items = [
-    { icon: <Landmark className="h-5 w-5" aria-hidden="true" />, title: "Fiduciary since 1889", body: "A century-plus of unwavering standards, through every market cycle." },
-    { icon: <Globe className="h-5 w-5" aria-hidden="true" />, title: "Truly global footprint", body: "Operating hubs across the Americas, EMEA and APAC — one platform, local expertise." },
-    { icon: <Cpu className="h-5 w-5" aria-hidden="true" />, title: "Technology-led", body: "A unified data platform, open APIs and AI-assisted operations — engineered for scale." },
-    { icon: <ShieldCheck className="h-5 w-5" aria-hidden="true" />, title: "Trusted at scale", body: "Serving more than 20% of the world's largest pension funds and sovereign institutions." },
+    { icon: <Landmark className="h-5 w-5" aria-hidden="true" />, title: "Global Custody", body: "A century-plus of unwavering safekeeping across 100+ markets, through every cycle.", image: asCardCustody },
+    { icon: <Globe className="h-5 w-5" aria-hidden="true" />, title: "Fund Administration", body: "Operating hubs across the Americas, EMEA and APAC — one platform, local expertise.", image: asCardFund },
+    { icon: <Cpu className="h-5 w-5" aria-hidden="true" />, title: "Data & Analytics", body: "A unified data platform, open APIs and AI-assisted operations — engineered for scale.", image: asCardData },
+    { icon: <ShieldCheck className="h-5 w-5" aria-hidden="true" />, title: "Trusted at scale", body: "Serving more than 20% of the world's largest pension funds and sovereign institutions.", image: asHero },
   ];
   return (
     <section aria-labelledby="why-title" className="mx-auto max-w-[1440px] px-6 lg:px-10 py-24 lg:py-32">
       <SectionHeader eyebrow="Why Northern Trust" titleId="why-title" title="A partner engineered for institutional demands." lede="Complex mandates deserve a partner with the heritage to steward them and the technology to keep them moving." />
       <div className="mt-16 grid md:grid-cols-2 lg:grid-cols-4 gap-6">
         {items.map((it) => (
-          <article key={it.title} className="rounded-2xl p-8 transition-all hover:translate-y-[-2px]" style={{ background: "#fff", border: "1px solid rgba(20,82,58,0.12)" }}>
-            <div className="inline-flex h-11 w-11 items-center justify-center rounded-full mb-6" style={{ background: "var(--color-ivory-soft)", color: "var(--color-navy)" }}>{it.icon}</div>
-            <h3 className="text-[19px] leading-snug mb-3" style={{ fontFamily: "var(--font-display)", color: "var(--color-navy-deep)" }}>{it.title}</h3>
-            <p className="text-[14px] leading-relaxed" style={{ color: "var(--color-stone)" }}>{it.body}</p>
+          <article
+            key={it.title}
+            className="relative rounded-2xl p-8 overflow-hidden transition-all hover:-translate-y-1 group"
+            style={{ background: "var(--color-navy-deep)", border: "1px solid rgba(20,82,58,0.2)", minHeight: 260 }}
+          >
+            <img
+              src={it.image}
+              alt=""
+              aria-hidden="true"
+              loading="lazy"
+              className="absolute inset-0 w-full h-full object-cover transition-transform duration-[1200ms] group-hover:scale-105"
+              style={{ opacity: 0.5 }}
+            />
+            <div
+              aria-hidden="true"
+              className="absolute inset-0"
+              style={{
+                background:
+                  "linear-gradient(180deg, rgba(10,46,32,0.55) 0%, rgba(10,46,32,0.85) 100%)",
+              }}
+            />
+            <div className="relative" style={{ color: "var(--color-ivory)" }}>
+              <div
+                className="inline-flex h-11 w-11 items-center justify-center rounded-full mb-6"
+                style={{
+                  background: "rgba(247,243,234,0.12)",
+                  color: "var(--color-ivory)",
+                  border: "1px solid rgba(247,243,234,0.25)",
+                }}
+              >
+                {it.icon}
+              </div>
+              <h3 className="text-[19px] leading-snug mb-3" style={{ fontFamily: "var(--font-display)", fontWeight: 300 }}>
+                {it.title}
+              </h3>
+              <p className="text-[14px] leading-relaxed" style={{ color: "var(--color-mist)" }}>
+                {it.body}
+              </p>
+            </div>
           </article>
         ))}
       </div>

@@ -21,7 +21,7 @@ function prefersReducedMotion() {
   return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 }
 
-export function HeroAskAgent() {
+export function HeroAskAgent({ onActiveChange }: { onActiveChange?: (active: boolean) => void } = {}) {
   const inputId = useId();
   const listboxId = useId();
   const statusId = useId();
@@ -32,9 +32,30 @@ export function HeroAskAgent() {
   const [focused, setFocused] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
   const panelRef = useRef<HTMLDivElement>(null);
+  const rootRef = useRef<HTMLDivElement>(null);
+  const [engaged, setEngaged] = useState(false);
 
   const transport = useMemo(() => new DefaultChatTransport({ api: "/api/chat" }), []);
   const { messages, sendMessage, status, error, stop } = useChat({ transport });
+
+  // Notify parent whenever engaged state changes.
+  useEffect(() => {
+    onActiveChange?.(engaged);
+  }, [engaged, onActiveChange]);
+
+  // Click outside disengages.
+  useEffect(() => {
+    if (!engaged) return;
+    const onDown = (e: MouseEvent) => {
+      if (rootRef.current && !rootRef.current.contains(e.target as Node)) {
+        setEngaged(false);
+        setOpen(false);
+        inputRef.current?.blur();
+      }
+    };
+    window.addEventListener("mousedown", onDown);
+    return () => window.removeEventListener("mousedown", onDown);
+  }, [engaged]);
 
   // Rotate placeholder (paused on focus / reduced motion).
   useEffect(() => {
@@ -64,13 +85,16 @@ export function HeroAskAgent() {
 
   // Esc closes.
   useEffect(() => {
-    if (!open) return;
+    if (!open && !engaged) return;
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") close();
+      if (e.key === "Escape") {
+        close();
+        setEngaged(false);
+      }
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, [open, close]);
+  }, [open, engaged, close]);
 
   const isLoading = status === "submitted" || status === "streaming";
   const lastAssistant = [...messages].reverse().find((m) => m.role === "assistant");
@@ -80,7 +104,7 @@ export function HeroAskAgent() {
   const userText = renderText(lastUser);
 
   return (
-    <div className="mt-10 w-full max-w-2xl">
+    <div ref={rootRef} className="mt-10 w-full max-w-2xl">
       <form
         role="search"
         aria-label="Ask Northern Trust"
@@ -107,8 +131,9 @@ export function HeroAskAgent() {
             type="text"
             value={input}
             onChange={(e) => setInput(e.target.value)}
-            onFocus={() => setFocused(true)}
+            onFocus={() => { setFocused(true); setEngaged(true); }}
             onBlur={() => setFocused(false)}
+            onClick={() => setEngaged(true)}
             placeholder={ROTATING_PLACEHOLDERS[placeholderIdx]}
             aria-controls={listboxId}
             aria-expanded={open}
