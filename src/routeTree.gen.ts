@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as WealthManagementRouteImport } from './routes/wealth-management'
 import { Route as McpRouteImport } from './routes/mcp'
+import { Route as AssetServicingRouteImport } from './routes/asset-servicing'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ApiChatRouteImport } from './routes/api/chat'
 import { Route as Char91DotwellKnownChar93OauthProtectedResourceRouteImport } from './routes/[.well-known]/oauth-protected-resource'
@@ -25,6 +26,11 @@ const WealthManagementRoute = WealthManagementRouteImport.update({
 const McpRoute = McpRouteImport.update({
   id: '/mcp',
   path: '/mcp',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AssetServicingRoute = AssetServicingRouteImport.update({
+  id: '/asset-servicing',
+  path: '/asset-servicing',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -58,6 +64,7 @@ const Char91DotmcpChar93InvokeToolToolRoute =
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/asset-servicing': typeof AssetServicingRoute
   '/mcp': typeof McpRoute
   '/wealth-management': typeof WealthManagementRoute
   '/.mcp/list-tools': typeof Char91DotmcpChar93ListToolsRoute
@@ -67,6 +74,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/asset-servicing': typeof AssetServicingRoute
   '/mcp': typeof McpRoute
   '/wealth-management': typeof WealthManagementRoute
   '/.mcp/list-tools': typeof Char91DotmcpChar93ListToolsRoute
@@ -77,6 +85,7 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/asset-servicing': typeof AssetServicingRoute
   '/mcp': typeof McpRoute
   '/wealth-management': typeof WealthManagementRoute
   '/.mcp/list-tools': typeof Char91DotmcpChar93ListToolsRoute
@@ -88,6 +97,7 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/asset-servicing'
     | '/mcp'
     | '/wealth-management'
     | '/.mcp/list-tools'
@@ -97,6 +107,7 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/asset-servicing'
     | '/mcp'
     | '/wealth-management'
     | '/.mcp/list-tools'
@@ -106,6 +117,7 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/asset-servicing'
     | '/mcp'
     | '/wealth-management'
     | '/.mcp/list-tools'
@@ -116,6 +128,7 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AssetServicingRoute: typeof AssetServicingRoute
   McpRoute: typeof McpRoute
   WealthManagementRoute: typeof WealthManagementRoute
   Char91DotmcpChar93ListToolsRoute: typeof Char91DotmcpChar93ListToolsRoute
@@ -138,6 +151,13 @@ declare module '@tanstack/react-router' {
       path: '/mcp'
       fullPath: '/mcp'
       preLoaderRoute: typeof McpRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/asset-servicing': {
+      id: '/asset-servicing'
+      path: '/asset-servicing'
+      fullPath: '/asset-servicing'
+      preLoaderRoute: typeof AssetServicingRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -180,6 +200,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AssetServicingRoute: AssetServicingRoute,
   McpRoute: McpRoute,
   WealthManagementRoute: WealthManagementRoute,
   Char91DotmcpChar93ListToolsRoute: Char91DotmcpChar93ListToolsRoute,

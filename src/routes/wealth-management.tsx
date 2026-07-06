@@ -199,7 +199,14 @@ function TopBar() {
               style={{ background: "var(--color-cta)" }}
             />
           </Link>
-          {["Asset Servicing", "Asset Management", "Insights", "About", "Careers"].map((item) => (
+          <Link to="/asset-servicing" className="relative py-2 group whitespace-nowrap">
+            Asset Servicing
+            <span
+              className="absolute left-0 -bottom-0.5 h-px w-0 group-hover:w-full transition-all duration-300"
+              style={{ background: "var(--color-cta)" }}
+            />
+          </Link>
+          {["Asset Management", "Insights", "About", "Careers"].map((item) => (
             <a key={item} href="#" className="relative py-2 group whitespace-nowrap">
               {item}
               <span
