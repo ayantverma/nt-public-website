@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
 import { ArrowUpRight, MapPin, Search, Globe, Menu } from "lucide-react";
 import ntLogoMark from "@/assets/nt-logo.png";
+import worldMapDots from "@/assets/world-map-dots.png";
 
 export const Route = createFileRoute("/global-reach")({
   head: () => ({
@@ -36,24 +37,24 @@ type Office = {
 };
 
 const OFFICES: Office[] = [
-  { city: "Chicago", country: "United States", region: "Americas", role: "Global Headquarters", capabilities: ["Wealth", "Asset Servicing", "Asset Management"], hq: true, x: 245, y: 195 },
-  { city: "New York", country: "United States", region: "Americas", role: "Regional Office", capabilities: ["Wealth", "Asset Servicing"], x: 300, y: 200 },
-  { city: "Toronto", country: "Canada", region: "Americas", role: "Regional Office", capabilities: ["Asset Servicing"], x: 285, y: 178 },
-  { city: "São Paulo", country: "Brazil", region: "Americas", role: "Client Office", capabilities: ["Wealth"], x: 360, y: 340 },
-  { city: "London", country: "United Kingdom", region: "EMEA", role: "Regional Headquarters", capabilities: ["Wealth", "Asset Servicing", "Asset Management"], x: 495, y: 175 },
-  { city: "Dublin", country: "Ireland", region: "EMEA", role: "Fund Services Hub", capabilities: ["Asset Servicing"], x: 480, y: 178 },
-  { city: "Luxembourg", country: "Luxembourg", region: "EMEA", role: "Fund Services", capabilities: ["Asset Servicing"], x: 508, y: 185 },
-  { city: "Zürich", country: "Switzerland", region: "EMEA", role: "Client Office", capabilities: ["Wealth"], x: 515, y: 195 },
-  { city: "Guernsey", country: "Channel Islands", region: "EMEA", role: "Fiduciary Services", capabilities: ["Wealth"], x: 490, y: 187 },
-  { city: "Abu Dhabi", country: "United Arab Emirates", region: "EMEA", role: "Client Office", capabilities: ["Wealth", "Asset Servicing"], x: 615, y: 240 },
-  { city: "Singapore", country: "Singapore", region: "APAC", role: "Regional Headquarters", capabilities: ["Wealth", "Asset Servicing"], x: 770, y: 300 },
-  { city: "Hong Kong", country: "Hong Kong SAR", region: "APAC", role: "Regional Office", capabilities: ["Wealth", "Asset Servicing"], x: 815, y: 235 },
-  { city: "Tokyo", country: "Japan", region: "APAC", role: "Client Office", capabilities: ["Asset Servicing"], x: 870, y: 205 },
-  { city: "Sydney", country: "Australia", region: "APAC", role: "Client Office", capabilities: ["Asset Servicing"], x: 860, y: 355 },
-  { city: "Melbourne", country: "Australia", region: "APAC", role: "Client Office", capabilities: ["Asset Servicing"], x: 845, y: 372 },
-  { city: "Manila", country: "Philippines", region: "APAC", role: "Operations Hub", capabilities: ["Asset Servicing"], x: 815, y: 275 },
-  { city: "Bangalore", country: "India", region: "APAC", role: "Technology Hub", capabilities: ["Asset Servicing"], x: 705, y: 265 },
-  { city: "Limerick", country: "Ireland", region: "EMEA", role: "Operations Hub", capabilities: ["Asset Servicing"], x: 476, y: 178 },
+  { city: "Chicago", country: "United States", region: "Americas", role: "Global Headquarters", capabilities: ["Wealth", "Asset Servicing", "Asset Management"], hq: true, x: 409, y: 258 },
+  { city: "New York", country: "United States", region: "Americas", role: "Regional Office", capabilities: ["Wealth", "Asset Servicing"], x: 462, y: 263 },
+  { city: "Toronto", country: "Canada", region: "Americas", role: "Regional Office", capabilities: ["Asset Servicing"], x: 441, y: 251 },
+  { city: "São Paulo", country: "Brazil", region: "Americas", role: "Client Office", capabilities: ["Wealth"], x: 569, y: 527 },
+  { city: "London", country: "United Kingdom", region: "EMEA", role: "Regional Headquarters", capabilities: ["Wealth", "Asset Servicing", "Asset Management"], x: 749, y: 218 },
+  { city: "Dublin", country: "Ireland", region: "EMEA", role: "Fund Services Hub", capabilities: ["Asset Servicing"], x: 726, y: 211 },
+  { city: "Luxembourg", country: "Luxembourg", region: "EMEA", role: "Fund Services", capabilities: ["Asset Servicing"], x: 774, y: 226 },
+  { city: "Zürich", country: "Switzerland", region: "EMEA", role: "Client Office", capabilities: ["Wealth"], x: 783, y: 235 },
+  { city: "Guernsey", country: "Channel Islands", region: "EMEA", role: "Fiduciary Services", capabilities: ["Wealth"], x: 740, y: 227 },
+  { city: "Abu Dhabi", country: "United Arab Emirates", region: "EMEA", role: "Client Office", capabilities: ["Wealth", "Asset Servicing"], x: 961, y: 329 },
+  { city: "Singapore", country: "Singapore", region: "APAC", role: "Regional Headquarters", capabilities: ["Wealth", "Asset Servicing"], x: 1154, y: 425 },
+  { city: "Hong Kong", country: "Hong Kong SAR", region: "APAC", role: "Regional Office", capabilities: ["Wealth", "Asset Servicing"], x: 1194, y: 338 },
+  { city: "Tokyo", country: "Japan", region: "APAC", role: "Client Office", capabilities: ["Asset Servicing"], x: 1293, y: 283 },
+  { city: "Sydney", country: "Australia", region: "APAC", role: "Client Office", capabilities: ["Asset Servicing"], x: 1338, y: 569 },
+  { city: "Melbourne", country: "Australia", region: "APAC", role: "Client Office", capabilities: ["Asset Servicing"], x: 1314, y: 585 },
+  { city: "Manila", country: "Philippines", region: "APAC", role: "Operations Hub", capabilities: ["Asset Servicing"], x: 1221, y: 370 },
+  { city: "Bangalore", country: "India", region: "APAC", role: "Technology Hub", capabilities: ["Asset Servicing"], x: 1052, y: 377 },
+  { city: "Limerick", country: "Ireland", region: "EMEA", role: "Operations Hub", capabilities: ["Asset Servicing"], x: 716, y: 214 },
 ];
 
 const REGIONS = ["All regions", "Americas", "EMEA", "APAC"] as const;
