@@ -22,6 +22,7 @@ import {
 } from "lucide-react";
 
 import heroSkyline from "@/assets/hero-skyline.jpg";
+import { HeroAskAgent } from "@/components/hero-ask-agent";
 import legacyArchive from "@/assets/legacy-archive.jpg";
 import audienceFamily from "@/assets/audience-family.jpg";
 import audienceInstitutions from "@/assets/audience-institutions.jpg";
