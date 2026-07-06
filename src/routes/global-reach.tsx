@@ -308,77 +308,172 @@ function WorldMap({
   onHover: (id: string | null) => void;
 }) {
   return (
-    <svg
-      viewBox="0 0 1000 500"
-      className="absolute inset-0 w-full h-full"
-      aria-hidden="true"
-    >
-      <defs>
-        <pattern id="dots" width="8" height="8" patternUnits="userSpaceOnUse">
-          <circle cx="1" cy="1" r="0.8" fill="rgba(216,232,223,0.18)" />
-        </pattern>
-      </defs>
-      <rect width="1000" height="500" fill="url(#dots)" />
-      {/* Stylised continent blobs */}
-      <g fill="rgba(216,232,223,0.08)" stroke="rgba(216,232,223,0.14)">
-        {/* North America */}
-        <path d="M120,120 C180,100 260,110 320,140 L340,220 C320,260 260,270 210,255 L150,240 C120,220 100,180 120,120 Z" />
-        {/* South America */}
-        <path d="M310,270 C350,280 380,320 375,380 C365,430 330,450 310,435 L295,380 C290,340 295,300 310,270 Z" />
-        {/* Europe */}
-        <path d="M470,140 C520,130 560,145 570,180 C555,215 510,220 480,205 L465,180 C460,165 465,150 470,140 Z" />
-        {/* Africa */}
-        <path d="M500,220 C550,215 585,240 590,290 C580,360 540,395 515,390 L495,340 C480,300 485,255 500,220 Z" />
-        {/* Asia */}
-        <path d="M580,140 C680,120 800,140 890,180 C900,230 860,275 800,270 L680,255 C620,245 585,210 580,140 Z" />
-        {/* Oceania */}
-        <path d="M820,340 C870,335 895,360 890,385 C860,405 820,395 810,375 Z" />
-      </g>
+    <>
+      {/* Base dotted world map raster */}
+      <img
+        src={worldMapDots}
+        alt=""
+        aria-hidden="true"
+        className="absolute inset-0 w-full h-full object-contain select-none"
+        style={{ opacity: 0.55, filter: "brightness(1.1) saturate(0.85)" }}
+        draggable={false}
+      />
+      {/* Subtle vignette to focus attention */}
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background:
+            "radial-gradient(ellipse at center, transparent 55%, rgba(10,46,32,0.55) 100%)",
+        }}
+      />
+      {/* Interactive marker layer */}
+      <svg
+        viewBox="0 0 1500 750"
+        preserveAspectRatio="xMidYMid meet"
+        className="absolute inset-0 w-full h-full"
+        aria-hidden="true"
+      >
+        {/* Latitude/longitude reference grid */}
+        <g stroke="rgba(216,232,223,0.06)" strokeWidth={1}>
+          {[150, 300, 450, 600].map((y) => (
+            <line key={`h${y}`} x1={0} y1={y} x2={1500} y2={y} />
+          ))}
+          {[300, 600, 900, 1200].map((x) => (
+            <line key={`v${x}`} x1={x} y1={0} x2={x} y2={750} />
+          ))}
+        </g>
 
-      {/* Office markers */}
-      {offices.map((o) => {
-        const active = activeIds.has(o.city);
-        const hover = hoveredId === o.city;
-        const r = hover ? 10 : active ? 6 : 3;
-        const fill = active ? "var(--color-cta)" : "rgba(216,232,223,0.35)";
-        return (
-          <g key={o.city} style={{ pointerEvents: "auto", cursor: "pointer" }}>
-            {active && (
-              <circle
-                cx={o.x}
-                cy={o.y}
-                r={hover ? 18 : 12}
-                fill="var(--color-cta)"
-                opacity="0.18"
-              />
-            )}
-            <circle
-              cx={o.x}
-              cy={o.y}
-              r={r}
-              fill={fill}
-              stroke="var(--color-ivory)"
-              strokeWidth={active ? 1.2 : 0}
-              onMouseEnter={() => onHover(o.city)}
-              onMouseLeave={() => onHover(null)}
-            >
-              <title>{`${o.city}, ${o.country}`}</title>
-            </circle>
-            {(hover || o.hq) && (
-              <text
-                x={o.x + 10}
-                y={o.y - 8}
-                fill="var(--color-ivory)"
-                fontFamily="var(--font-display)"
-                fontSize={11}
+        {/* Sort so hovered marker renders last (on top) */}
+        {[...offices]
+          .sort((a, b) => {
+            const aH = hoveredId === a.city ? 1 : 0;
+            const bH = hoveredId === b.city ? 1 : 0;
+            return aH - bH;
+          })
+          .map((o) => {
+            const active = activeIds.has(o.city);
+            const hover = hoveredId === o.city;
+            const dim = !active;
+            const r = hover ? 12 : active ? 6 : 3.5;
+            const fill = active ? "var(--color-cta)" : "rgba(216,232,223,0.4)";
+            const labelText = `${o.city}${o.hq ? " · HQ" : ""}`;
+            const labelWidth = Math.max(60, labelText.length * 9 + 20);
+            return (
+              <g
+                key={o.city}
+                style={{ cursor: "pointer" }}
+                opacity={dim && hoveredId ? 0.4 : 1}
+                onMouseEnter={() => onHover(o.city)}
+                onMouseLeave={() => onHover(null)}
               >
-                {o.city}
-              </text>
-            )}
-          </g>
-        );
-      })}
-    </svg>
+                {/* Pulse halo for active */}
+                {active && (
+                  <>
+                    <circle
+                      cx={o.x}
+                      cy={o.y}
+                      r={hover ? 34 : 18}
+                      fill="var(--color-cta)"
+                      opacity={hover ? 0.14 : 0.1}
+                    />
+                    <circle
+                      cx={o.x}
+                      cy={o.y}
+                      r={hover ? 22 : 12}
+                      fill="var(--color-cta)"
+                      opacity={hover ? 0.28 : 0.18}
+                    />
+                  </>
+                )}
+                {/* Larger invisible hit target */}
+                <circle cx={o.x} cy={o.y} r={22} fill="transparent" />
+                {/* Marker dot */}
+                <circle
+                  cx={o.x}
+                  cy={o.y}
+                  r={r}
+                  fill={fill}
+                  stroke={active ? "var(--color-ivory)" : "transparent"}
+                  strokeWidth={hover ? 3 : active ? 1.5 : 0}
+                >
+                  <title>{`${o.city}, ${o.country} — ${o.role}`}</title>
+                </circle>
+
+                {/* Persistent HQ label */}
+                {o.hq && !hover && (
+                  <g>
+                    <rect
+                      x={o.x + 14}
+                      y={o.y - 22}
+                      width={70}
+                      height={22}
+                      rx={11}
+                      fill="var(--color-cta)"
+                    />
+                    <text
+                      x={o.x + 49}
+                      y={o.y - 6}
+                      textAnchor="middle"
+                      fill="var(--color-ivory)"
+                      fontFamily="var(--font-display)"
+                      fontSize={12}
+                      fontWeight={600}
+                      letterSpacing="0.06em"
+                    >
+                      {o.city}
+                    </text>
+                  </g>
+                )}
+
+                {/* Rich hover label */}
+                {hover && (
+                  <g>
+                    {/* Connector line */}
+                    <line
+                      x1={o.x}
+                      y1={o.y}
+                      x2={o.x + 24}
+                      y2={o.y - 40}
+                      stroke="var(--color-ivory)"
+                      strokeWidth={1.5}
+                    />
+                    <rect
+                      x={o.x + 22}
+                      y={o.y - 68}
+                      width={labelWidth}
+                      height={56}
+                      rx={8}
+                      fill="var(--color-ivory)"
+                      stroke="var(--color-cta)"
+                      strokeWidth={1.5}
+                    />
+                    <text
+                      x={o.x + 36}
+                      y={o.y - 46}
+                      fill="var(--color-navy-deep)"
+                      fontFamily="var(--font-display)"
+                      fontSize={18}
+                      fontWeight={600}
+                    >
+                      {o.city}
+                    </text>
+                    <text
+                      x={o.x + 36}
+                      y={o.y - 26}
+                      fill="var(--color-stone)"
+                      fontFamily="var(--font-sans)"
+                      fontSize={12}
+                    >
+                      {o.country}
+                    </text>
+                  </g>
+                )}
+              </g>
+            );
+          })}
+      </svg>
+    </>
   );
 }
 
