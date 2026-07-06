@@ -444,6 +444,8 @@ function Hero() {
                 Watch our story · 2 min
               </button>
             </div>
+
+            <HeroAskAgent />
           </div>
         </div>
 
