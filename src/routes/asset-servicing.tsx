@@ -146,25 +146,26 @@ function Hero() {
       <div className="relative mx-auto max-w-[1440px] px-6 lg:px-10 py-24 lg:py-32">
         <div className="grid lg:grid-cols-12 gap-12 items-end">
           <div className="lg:col-span-8">
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-[11px] tracking-[0.2em] uppercase mb-8" style={{ background: "rgba(245,241,232,0.08)", border: "1px solid rgba(245,241,232,0.18)", color: "var(--color-mist)" }}>
-              <ShieldCheck className="h-3.5 w-3.5" aria-hidden="true" /> Asset Servicing
+            <div className="text-[11px] tracking-[0.3em] uppercase mb-5 flex items-center gap-3" style={{ color: "var(--color-mist)" }}>
+              <span className="h-px w-8" style={{ background: "var(--color-mist)" }} aria-hidden="true" />
+              Asset Servicing
             </div>
-            <h1 id="hero-title" className="font-normal leading-[1.02] tracking-tight" style={{ fontFamily: "var(--font-display)", fontSize: "clamp(2.5rem, 5.5vw, 5rem)", letterSpacing: "-0.01em" }}>
-              Institutional scale.
+            <h1 id="hero-title" className="tracking-tight" style={{ fontFamily: "var(--font-display)", fontSize: "clamp(3.0rem, 5.0vw, 5.0rem)", lineHeight: 1.02, fontWeight: 100, letterSpacing: "-0.01em" }}>
+              Institutional scale,
               <br />
-              <span style={{ color: "var(--color-mist)" }}>Uncompromising precision.</span>
+              <em style={{ fontStyle: "normal", fontWeight: 200, color: "var(--color-mist)" }}>uncompromising precision.</em>
             </h1>
-            <p className="mt-8 max-w-2xl text-[17px] lg:text-[19px] leading-relaxed" style={{ color: "var(--color-mist)" }}>
+            <p className="mt-6 max-w-2xl text-[16px] leading-relaxed" style={{ color: "var(--color-ivory)" }}>
               Custody, fund administration, investment operations and data analytics — engineered for the world's most sophisticated asset owners and managers. One partner. Global reach. Enduring trust.
             </p>
-            <div className="mt-10 flex flex-wrap items-center gap-4">
-              <a href="#contact" className="inline-flex min-h-12 items-center gap-2.5 px-8 py-3.5 rounded-full text-[13px] tracking-[0.14em] uppercase font-semibold transition-all hover:translate-y-[-1px]" style={{ background: "var(--color-ivory)", color: "var(--color-navy-deep)" }}>
-                Contact an expert
+            <div className="mt-8 flex flex-wrap items-center gap-4">
+              <a href="#contact" className="inline-flex min-h-11 items-center gap-3 px-7 py-3.5 rounded-full text-[14px] font-semibold transition-all hover:gap-4" style={{ background: "var(--color-ivory)", color: "var(--color-cta)" }}>
+                Speak with a specialist
                 <ArrowRight className="h-4 w-4" aria-hidden="true" />
               </a>
-              <a href="#solutions" className="inline-flex min-h-12 items-center gap-2.5 px-8 py-3.5 rounded-full text-[13px] tracking-[0.14em] uppercase font-semibold transition-all" style={{ border: "1px solid rgba(245,241,232,0.35)", color: "var(--color-ivory)" }}>
+              <a href="#solutions" className="inline-flex min-h-11 items-center gap-2 text-[14px]" style={{ color: "var(--color-ivory)" }}>
                 Explore solutions
-                <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
+                <ChevronDown className="h-4 w-4" aria-hidden="true" />
               </a>
             </div>
           </div>
@@ -178,7 +179,7 @@ function Hero() {
                   { k: "135+", v: "Years of fiduciary heritage" },
                 ].map((s) => (
                   <div key={s.k}>
-                    <dt className="text-3xl lg:text-4xl font-normal" style={{ fontFamily: "var(--font-display)", color: "var(--color-ivory)" }}>{s.k}</dt>
+                    <dt className="text-3xl lg:text-4xl" style={{ fontFamily: "var(--font-display)", fontWeight: 200, color: "var(--color-ivory)" }}>{s.k}</dt>
                     <dd className="mt-1 text-[13px]" style={{ color: "var(--color-mist)" }}>{s.v}</dd>
                   </div>
                 ))}
