@@ -636,10 +636,13 @@ function Footer() {
 function SectionHeader({ eyebrow, title, titleId, lede, compact }: { eyebrow: string; title: string; titleId: string; lede?: string; compact?: boolean }) {
   return (
     <div className={compact ? "max-w-2xl" : "max-w-3xl"}>
-      <div className="text-[11px] tracking-[0.28em] uppercase mb-4" style={{ color: "var(--color-navy)" }}>{eyebrow}</div>
-      <h2 id={titleId} className="leading-[1.05]" style={{ fontFamily: "var(--font-display)", fontSize: compact ? "clamp(1.75rem, 3vw, 2.5rem)" : "clamp(2rem, 4vw, 3.25rem)", color: "var(--color-navy-deep)", letterSpacing: "-0.01em" }}>{title}</h2>
+      <div className="flex items-center gap-3 text-[11px] tracking-[0.3em] uppercase mb-4" style={{ color: "var(--color-navy)" }}>
+        <span className="h-px w-8" style={{ background: "var(--color-navy)" }} aria-hidden="true" />
+        {eyebrow}
+      </div>
+      <h2 id={titleId} className="tracking-tight" style={{ fontFamily: "var(--font-display)", fontSize: compact ? "clamp(1.9rem, 3.2vw, 2.6rem)" : "clamp(2.4rem, 4.0vw, 3.4rem)", fontWeight: 200, lineHeight: 1.08, color: "var(--color-navy-deep)", letterSpacing: "-0.01em" }}>{title}</h2>
       {lede && (
-        <p className="mt-5 text-[16px] lg:text-[17px] leading-relaxed max-w-2xl" style={{ color: "var(--color-stone)" }}>{lede}</p>
+        <p className="mt-5 text-[15px] leading-relaxed max-w-2xl" style={{ color: "var(--color-stone)" }}>{lede}</p>
       )}
     </div>
   );
