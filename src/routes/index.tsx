@@ -22,6 +22,7 @@ import {
 } from "lucide-react";
 
 import heroSkyline from "@/assets/hero-skyline.jpg";
+import { HeroAskAgent } from "@/components/hero-ask-agent";
 import legacyArchive from "@/assets/legacy-archive.jpg";
 import audienceFamily from "@/assets/audience-family.jpg";
 import audienceInstitutions from "@/assets/audience-institutions.jpg";
@@ -383,7 +384,7 @@ function Hero() {
     <>
     {/* Full-bleed banner hero */}
     <section className="relative overflow-hidden" style={{ background: "var(--color-navy-deep)" }}>
-      <div className="relative w-full" style={{ height: "clamp(420px, 55vh, 560px)" }}>
+      <div className="relative w-full" style={{ minHeight: "clamp(560px, 72vh, 780px)" }}>
         <img
           src={heroSkyline}
           alt="Chicago skyline at dusk — Northern Trust's home since 1889"
@@ -399,7 +400,7 @@ function Hero() {
           }}
         />
         {/* Content overlay */}
-        <div className="relative mx-auto max-w-[1440px] h-full px-6 lg:px-10 flex items-center">
+        <div className="relative mx-auto max-w-[1440px] px-6 lg:px-10 py-16 lg:py-20 flex items-center">
           <div className="max-w-2xl" style={{ color: "var(--color-ivory)" }}>
             <h1
               className="tracking-tight"
@@ -443,6 +444,8 @@ function Hero() {
                 Watch our story · 2 min
               </button>
             </div>
+
+            <HeroAskAgent />
           </div>
         </div>
 

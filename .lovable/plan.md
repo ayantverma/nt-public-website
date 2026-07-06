@@ -1,43 +1,54 @@
-# Typography Update: Helvetica + De-italicize
+# Hero AI Search Agent — Plan
 
-## Font recommendation
+Add a prominent "Ask Northern Trust" search/assistant bar directly under the hero CTAs on `/`, matching the reference screenshot's pattern (pill input + sparkle icon + submit arrow + suggested-query chips), then wire it to a lightweight assistant panel.
 
-**Helvetica** is the stronger fit for Northern Trust — here's why:
+## UX shape (matches reference)
 
-| Criterion | Helvetica | Montserrat |
-|---|---|---|
-| Heritage / institutional feel | ✅ Neutral grotesk, timeless, used across legacy finance (UBS, JPM print) | ⚠️ Geometric, modern-startup vibe (SaaS, DTC) |
-| Pairs with NT's current wordmark | ✅ Same grotesk lineage as NT's logo | ⚠️ Rounder, geometric — competes with logo |
-| Long-form readability (insights, disclosures) | ✅ Excellent at body sizes | ⚠️ Wider, less efficient in dense copy |
-| Availability / performance | ✅ System font, zero webfont weight | ❌ Requires Google Fonts load |
-| Distinct from "AI-generic" | ✅ Editorial, restrained | ⚠️ Overused in generic marketing sites |
+Placed under the "Talk to an advisor / What we do" buttons in `src/routes/index.tsx`.
 
-**Recommendation: Helvetica** (system stack: `"Helvetica Neue", Helvetica, Arial, sans-serif`). It preserves the corporate-editorial gravitas we've built and matches the aesthetic of NT's actual site, while Montserrat would push the design toward a lighter, startup-y register that conflicts with the "century and a third of quiet conviction" story.
+```
+┌──────────────────────────────────────────────────────────────────────┐
+│  ✦  Ask Northern Trust anything — "How should a family office…"  → │
+└──────────────────────────────────────────────────────────────────────┘
+   [Plan a multigenerational estate]  [Compare custody solutions]  [2026 market outlook]
+```
 
-## Changes
+- Rotating placeholder examples (pauses on focus, respects `prefers-reduced-motion`).
+- 3 suggestion chips as one-tap prompts.
+- Submit opens an expanding results panel below the bar (in-page, no route change) with:
+  - Instant matches: curated site links (Wealth Management, Insights, FAQs) filtered client-side.
+  - "Ask the assistant" answer streamed from Lovable AI Gateway (`google/gemini-3-flash-preview`).
+  - Sources list linking to real site sections.
+- Empty state before submit: shows popular questions + "Talk to an advisor" fallback.
+- Escape closes the panel and returns focus to the input.
 
-### 1. `src/styles.css`
-- Update `--font-display` and `--font-sans` from the current Arial-first stack to:
-  `"Helvetica Neue", Helvetica, Arial, "Liberation Sans", sans-serif`
-- No webfont import needed (system stack). Keeps performance and avoids remote CSS in Tailwind v4.
+## Accessibility (WCAG 2.2 AA)
 
-### 2. Remove all italics — `src/routes/index.tsx` and `src/routes/wealth-management.tsx`
-- Search for and strip every `italic`, `not-italic` needing enforcement, and inline `fontStyle: "italic"`.
-- Common spots to sweep: hero pullquote / eyebrow lines, legacy timeline captions, editorial insight bylines, testimonial quotes, footer fine print, wealth-management case-study attributions.
-- Replace italic emphasis with either:
-  - uppercase + letter-spacing (for eyebrows/labels), or
-  - lighter weight / muted color (for secondary lines), or
-  - plain roman where italic was purely decorative.
-- Add a global safety rule in `styles.css`:
-  ```css
-  html, body, * { font-style: normal !important; }
-  ```
-  Scoped to the app; ensures no stray `<em>`, `<cite>`, `<i>`, or third-party component renders italic.
+- Semantic `<form role="search">` with visually-hidden `<label for="nt-ask">`.
+- Combobox pattern (WAI-ARIA 1.2): `role="combobox"`, `aria-expanded`, `aria-controls`, `aria-autocomplete="list"`, results as `role="listbox"` with `role="option"` items, `aria-activedescendant` for keyboard highlight.
+- Full keyboard support: ↑/↓ through suggestions, Enter submits, Esc closes, Tab order preserved. **2.4.11 Focus Not Obscured**: sticky header offset accounted for on focus. **2.5.8 Target Size**: submit + chips ≥ 24×24 CSS px (using 44px).
+- `aria-live="polite"` region announces "Answer ready" / "Searching…" / error states.
+- Contrast: input placeholder ≥ 4.5:1 against the hero overlay (darken overlay behind the bar, or use an ivory pill on the green). Focus ring uses existing `--color-ivory` outline token in `src/styles.css`.
+- `prefers-reduced-motion`: disables placeholder rotation and panel slide.
+- Errors (rate limit, network): inline `role="alert"` under the bar; input remains editable.
 
-### 3. Verify
-- Grep both route files after edits to confirm zero `italic` tokens remain (except the reset rule).
-- Visual pass on `/` and `/wealth-management` hero, timeline, insights grid, FAQ, footer.
+## Technical section
 
-## Out of scope
-- No layout, color, spacing, or content changes.
-- No new routes or components.
+**Files**
+- `src/routes/index.tsx` — insert `<HeroAskAgent />` under CTA row in the hero.
+- `src/components/hero-ask-agent.tsx` — new. Combobox + suggestions + results panel. Uses `useChat` from `@ai-sdk/react` with `DefaultChatTransport({ api: "/api/chat" })`.
+- `src/routes/api/chat.ts` — new server route. `streamText` via Lovable AI Gateway helper, model `google/gemini-3-flash-preview`, system prompt scoped to Northern Trust concept site (services, sections, escalation to advisor). Streams `toUIMessageStreamResponse`.
+- `src/lib/ai-gateway.server.ts` — new provider helper per `ai-sdk-lovable-gateway` (openai-compatible, `Lovable-API-Key` header).
+- `src/lib/site-index.ts` — new. Small static array of `{title, href, keywords, summary}` for instant local matches (Home, Wealth Management, etc.) — no DB.
+- `src/styles.css` — add one utility for the hero pill (backdrop-blur + border) using existing tokens; no new colors.
+
+**Backend**
+- Uses Lovable AI Gateway (no Supabase needed). `LOVABLE_API_KEY` server-only, provisioned via `lovable_api_key--create` if missing.
+- Rate/credit errors (429/402) surfaced as inline alerts.
+
+**Out of scope**
+- No auth, no persistence of chat history (single-session, per contract choice; if you want saved threads, we'll add that separately).
+- No changes to `/wealth-management`, footer, typography, or existing hero copy/layout beyond inserting the agent block.
+- MCP server stays untouched.
+
+Confirm and I'll build it.
