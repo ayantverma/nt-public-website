@@ -569,21 +569,24 @@ function FinalCTA() {
       <div className="relative mx-auto max-w-[1440px] px-6 lg:px-10 py-24 lg:py-32">
         <div className="grid lg:grid-cols-12 gap-10 items-end">
           <div className="lg:col-span-8">
-            <div className="text-[11px] tracking-[0.25em] uppercase mb-4" style={{ color: "var(--color-mist)" }}>Speak with a specialist</div>
-            <h2 id="cta-title" className="text-[40px] lg:text-[60px] leading-[1.02]" style={{ fontFamily: "var(--font-display)", letterSpacing: "-0.01em" }}>
+            <div className="flex items-center gap-3 text-[11px] tracking-[0.3em] uppercase mb-4" style={{ color: "var(--color-mist)" }}>
+              <span className="h-px w-8" style={{ background: "var(--color-mist)" }} aria-hidden="true" />
+              Speak with a specialist
+            </div>
+            <h2 id="cta-title" className="tracking-tight" style={{ fontFamily: "var(--font-display)", fontSize: "clamp(2.6rem, 4.5vw, 3.8rem)", fontWeight: 200, lineHeight: 1.05, letterSpacing: "-0.01em" }}>
               Your institution deserves an
               <br />
-              <span style={{ color: "var(--color-mist)" }}>asset servicing partner without compromise.</span>
+              <em style={{ fontStyle: "normal", color: "var(--color-mist)" }}>asset servicing partner without compromise.</em>
             </h2>
           </div>
           <div className="lg:col-span-4 flex flex-wrap gap-4 lg:justify-end">
-            <a href="mailto:assetservicing@ntrs.com" className="inline-flex min-h-12 items-center gap-2.5 px-8 py-3.5 rounded-full text-[13px] tracking-[0.14em] uppercase font-semibold transition-all hover:translate-y-[-1px]" style={{ background: "var(--color-ivory)", color: "var(--color-navy-deep)" }}>
-              Contact an expert
+            <a href="mailto:assetservicing@ntrs.com" className="inline-flex min-h-11 items-center gap-3 px-7 py-3.5 rounded-full text-[14px] font-semibold transition-all hover:gap-4" style={{ background: "var(--color-ivory)", color: "var(--color-cta)" }}>
+              Speak with a specialist
               <ArrowRight className="h-4 w-4" aria-hidden="true" />
             </a>
-            <a href="#solutions" className="inline-flex min-h-12 items-center gap-2.5 px-8 py-3.5 rounded-full text-[13px] tracking-[0.14em] uppercase font-semibold" style={{ border: "1px solid rgba(245,241,232,0.35)", color: "var(--color-ivory)" }}>
+            <a href="#solutions" className="inline-flex min-h-11 items-center gap-2 text-[14px]" style={{ color: "var(--color-ivory)" }}>
               Explore solutions
-              <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
+              <ChevronDown className="h-4 w-4" aria-hidden="true" />
             </a>
           </div>
         </div>
