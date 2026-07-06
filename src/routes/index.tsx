@@ -387,6 +387,7 @@ function SmartSearchField({ open, setOpen }: { open: boolean; setOpen: (v: boole
 /* ─────────────────────────── HERO ─────────────────────────── */
 
 function Hero() {
+  const [agentActive, setAgentActive] = useState(false);
   return (
     <>
     {/* Full-bleed banner hero */}
@@ -396,19 +397,36 @@ function Hero() {
           src={heroSkyline}
           alt="Chicago skyline at dusk — Northern Trust's home since 1889"
           className="absolute inset-0 w-full h-full object-cover"
-          style={{ filter: "saturate(0.85) contrast(1.05) brightness(0.85)" }}
+          style={{
+            filter: agentActive
+              ? "saturate(0.7) contrast(1.05) brightness(0.35)"
+              : "saturate(0.85) contrast(1.05) brightness(0.85)",
+            transition: "filter 500ms ease",
+          }}
         />
         {/* Left-side dark gradient for legibility */}
         <div
-          className="absolute inset-0"
+          className="absolute inset-0 transition-opacity duration-500"
           style={{
             background:
               "linear-gradient(90deg, rgba(10,46,32,0.88) 0%, rgba(10,46,32,0.65) 38%, rgba(10,46,32,0.18) 68%, rgba(10,46,32,0) 100%)",
+            opacity: agentActive ? 0.95 : 1,
           }}
         />
         {/* Content overlay */}
-        <div className="relative mx-auto max-w-[1440px] px-6 lg:px-10 py-16 lg:py-20 flex items-center">
+        <div className="relative mx-auto max-w-[1440px] px-6 lg:px-10 py-16 lg:py-20 flex items-center transition-all duration-500" style={{ transform: agentActive ? "translateY(-32px)" : "translateY(0)" }}>
           <div className="max-w-2xl" style={{ color: "var(--color-ivory)" }}>
+            <div
+              aria-hidden={agentActive}
+              className="transition-all duration-500"
+              style={{
+                opacity: agentActive ? 0 : 1,
+                transform: agentActive ? "translateY(-16px)" : "translateY(0)",
+                pointerEvents: agentActive ? "none" : "auto",
+                maxHeight: agentActive ? 0 : "none",
+                overflow: agentActive ? "hidden" : "visible",
+              }}
+            >
             <h1
               className="tracking-tight"
               style={{
@@ -451,8 +469,9 @@ function Hero() {
                 Watch our story · 2 min
               </button>
             </div>
+            </div>
 
-            <HeroAskAgent />
+            <HeroAskAgent onActiveChange={setAgentActive} />
           </div>
         </div>
 
