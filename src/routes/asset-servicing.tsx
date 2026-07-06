@@ -398,11 +398,14 @@ function Technology() {
       <div className="mx-auto max-w-[1440px] px-6 lg:px-10">
         <div className="grid lg:grid-cols-12 gap-14 items-start">
           <div className="lg:col-span-5">
-            <div className="text-[11px] tracking-[0.25em] uppercase mb-4" style={{ color: "var(--color-mist)" }}>Technology & innovation</div>
-            <h2 id="tech-title" className="text-[38px] lg:text-[52px] leading-[1.05]" style={{ fontFamily: "var(--font-display)", letterSpacing: "-0.01em" }}>
+            <div className="flex items-center gap-3 text-[11px] tracking-[0.3em] uppercase mb-4" style={{ color: "var(--color-mist)" }}>
+              <span className="h-px w-8" style={{ background: "var(--color-mist)" }} aria-hidden="true" />
+              Technology & innovation
+            </div>
+            <h2 id="tech-title" className="tracking-tight" style={{ fontFamily: "var(--font-display)", fontSize: "clamp(2.4rem, 4.0vw, 3.4rem)", fontWeight: 200, lineHeight: 1.05, letterSpacing: "-0.01em" }}>
               Software-grade operations,
               <br />
-              <span style={{ color: "var(--color-mist)" }}>fiduciary-grade trust.</span>
+              <em style={{ fontStyle: "normal", color: "var(--color-mist)" }}>fiduciary-grade trust.</em>
             </h2>
             <p className="mt-6 max-w-lg text-[16px] leading-relaxed" style={{ color: "var(--color-mist)" }}>
               Northern Trust's investment operating platform is engineered like a product — unified data, open APIs and continuous delivery, wrapped in institutional governance.
