@@ -150,17 +150,17 @@ function Hero() {
         alt=""
         aria-hidden="true"
         className="absolute inset-0 w-full h-full object-cover"
-        style={{ opacity: 0.35, filter: "saturate(0.75) contrast(1.05)" }}
+        style={{ opacity: 0.55, filter: "saturate(0.7) contrast(1.05) brightness(0.85)" }}
       />
+      <div aria-hidden="true" className="absolute inset-0 opacity-40 as-gradient" style={{ background: "radial-gradient(ellipse at 20% 30%, rgba(45,138,105,0.35), transparent 55%), radial-gradient(ellipse at 80% 70%, rgba(20,82,58,0.55), transparent 60%), linear-gradient(135deg, #0A2E20 0%, #0A3B28 50%, #0A2E20 100%)" }} />
       <div
         aria-hidden="true"
         className="absolute inset-0"
         style={{
           background:
-            "linear-gradient(115deg, rgba(10,46,32,0.92) 0%, rgba(10,46,32,0.7) 55%, rgba(10,46,32,0.4) 100%)",
+            "linear-gradient(105deg, rgba(10,46,32,0.9) 0%, rgba(10,46,32,0.65) 45%, rgba(10,46,32,0.25) 100%)",
         }}
       />
-      <div aria-hidden="true" className="absolute inset-0 opacity-70 as-gradient" style={{ background: "radial-gradient(ellipse at 20% 30%, rgba(45,138,105,0.35), transparent 55%), radial-gradient(ellipse at 80% 70%, rgba(20,82,58,0.55), transparent 60%), linear-gradient(135deg, #0A2E20 0%, #0A3B28 50%, #0A2E20 100%)" }} />
       <div aria-hidden="true" className="absolute inset-0 pointer-events-none" style={{ backgroundImage: "linear-gradient(rgba(245,241,232,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(245,241,232,0.04) 1px, transparent 1px)", backgroundSize: "56px 56px", maskImage: "radial-gradient(ellipse at center, black 40%, transparent 75%)" }} />
       <div className="relative mx-auto max-w-[1440px] px-6 lg:px-10 py-24 lg:py-32">
         <div className="grid lg:grid-cols-12 gap-12 items-end">
