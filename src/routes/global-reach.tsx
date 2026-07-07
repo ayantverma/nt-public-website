@@ -360,7 +360,9 @@ function WorldMap({
             const r = hover ? 12 : active ? 6 : 3.5;
             const fill = active ? "var(--color-cta)" : "rgba(216,232,223,0.4)";
             const labelText = `${o.city}${o.hq ? " · HQ" : ""}`;
-            const labelWidth = Math.max(60, labelText.length * 9 + 20);
+            const labelWidth = Math.max(140, labelText.length * 12 + 40);
+            const countryWidth = Math.max(labelWidth, o.country.length * 8 + 40);
+            const boxWidth = Math.max(labelWidth, countryWidth);
             return (
               <g
                 key={o.city}
@@ -435,37 +437,37 @@ function WorldMap({
                     <line
                       x1={o.x}
                       y1={o.y}
-                      x2={o.x + 24}
-                      y2={o.y - 40}
+                      x2={o.x + 28}
+                      y2={o.y - 52}
                       stroke="var(--color-ivory)"
                       strokeWidth={1.5}
                     />
                     <rect
-                      x={o.x + 22}
-                      y={o.y - 68}
-                      width={labelWidth}
-                      height={56}
-                      rx={8}
+                      x={o.x + 26}
+                      y={o.y - 88}
+                      width={boxWidth}
+                      height={72}
+                      rx={10}
                       fill="var(--color-ivory)"
                       stroke="var(--color-cta)"
                       strokeWidth={1.5}
                     />
                     <text
-                      x={o.x + 36}
-                      y={o.y - 46}
+                      x={o.x + 44}
+                      y={o.y - 58}
                       fill="var(--color-navy-deep)"
                       fontFamily="var(--font-display)"
-                      fontSize={18}
+                      fontSize={24}
                       fontWeight={600}
                     >
                       {o.city}
                     </text>
                     <text
-                      x={o.x + 36}
-                      y={o.y - 26}
+                      x={o.x + 44}
+                      y={o.y - 32}
                       fill="var(--color-stone)"
                       fontFamily="var(--font-sans)"
-                      fontSize={12}
+                      fontSize={15}
                     >
                       {o.country}
                     </text>
