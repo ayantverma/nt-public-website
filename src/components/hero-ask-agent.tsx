@@ -103,8 +103,24 @@ export function HeroAskAgent({ onActiveChange }: { onActiveChange?: (active: boo
   const assistantText = renderText(lastAssistant);
   const userText = renderText(lastUser);
 
+  const DUMMY_RESULTS = [
+    { title: "Global Custody Solutions", href: "/asset-servicing", kind: "Asset Servicing" },
+    { title: "Multigenerational Wealth Planning", href: "/wealth-management", kind: "Wealth Management" },
+    { title: "2026 Market Outlook", href: "#insights", kind: "Insights" },
+    { title: "Family Office Advisory", href: "/wealth-management", kind: "Wealth Management" },
+    { title: "Fund Administration & ETF Services", href: "/asset-servicing", kind: "Asset Servicing" },
+  ];
+
   return (
     <div ref={rootRef} className="mt-10 w-full max-w-2xl">
+      {engaged && (
+        <h2
+          className="mb-4 text-[13px] tracking-[0.3em] uppercase transition-opacity duration-300"
+          style={{ color: "var(--color-mist)" }}
+        >
+          Find anything
+        </h2>
+      )}
       <form
         role="search"
         aria-label="Ask Northern Trust"
@@ -231,6 +247,28 @@ export function HeroAskAgent({ onActiveChange }: { onActiveChange?: (active: boo
             {assistantText || (isLoading ? "Thinking…" : "")}
           </div>
 
+          <div className="mt-5">
+            <div className="text-[11px] tracking-[0.25em] uppercase mb-3" style={{ color: "var(--color-mist)" }}>
+              Suggested results
+            </div>
+            <ul className="space-y-2">
+              {DUMMY_RESULTS.map((r) => (
+                <li key={r.title}>
+                  <a
+                    href={r.href}
+                    className="flex items-center justify-between gap-4 rounded-lg px-3 py-2.5 transition-colors hover:bg-white/10"
+                    style={{ border: "1px solid rgba(247,243,234,0.15)" }}
+                  >
+                    <span className="text-[14px]" style={{ color: "var(--color-ivory)" }}>{r.title}</span>
+                    <span className="text-[11px] tracking-[0.2em] uppercase" style={{ color: "var(--color-mist)" }}>
+                      {r.kind}
+                    </span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
           {error && (
             <p role="alert" className="mt-4 text-[13px]" style={{ color: "#ffd7c2" }}>
               We couldn't reach the assistant. Please try again, or{" "}
@@ -238,10 +276,27 @@ export function HeroAskAgent({ onActiveChange }: { onActiveChange?: (active: boo
             </p>
           )}
 
-          <div className="mt-5 flex flex-wrap gap-3 text-[12px]" style={{ color: "var(--color-mist)" }}>
-            <a href="/wealth-management" className="underline underline-offset-4">Wealth Management</a>
-            <span aria-hidden>·</span>
-            <a href="#audiences" className="underline underline-offset-4">Talk to an advisor</a>
+          <div className="mt-5 flex flex-wrap gap-2">
+            <a
+              href="/wealth-management"
+              className="inline-flex items-center rounded-full px-3.5 py-1.5 text-[12px] transition-colors hover:bg-white/10"
+              style={{
+                border: "1px solid rgba(247,243,234,0.4)",
+                color: "var(--color-ivory)",
+              }}
+            >
+              Wealth Management
+            </a>
+            <a
+              href="#audiences"
+              className="inline-flex items-center rounded-full px-3.5 py-1.5 text-[12px] transition-colors hover:bg-white/10"
+              style={{
+                border: "1px solid rgba(247,243,234,0.4)",
+                color: "var(--color-ivory)",
+              }}
+            >
+              Talk to an advisor
+            </a>
           </div>
         </div>
       )}
