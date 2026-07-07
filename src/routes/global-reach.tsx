@@ -184,62 +184,64 @@ function GlobalReachPage() {
               Showing <strong style={{ color: "var(--color-navy)" }}>{filtered.length}</strong> of {OFFICES.length} locations
             </div>
 
-            <div className="mt-8 grid lg:grid-cols-12 gap-8">
-              {/* Map */}
-              <div className="lg:col-span-7">
-                <div
-                  className="relative rounded-2xl overflow-hidden"
-                  style={{
-                    background: "var(--color-navy-deep)",
-                    border: "1px solid rgba(20,82,58,0.2)",
-                    aspectRatio: "2 / 1",
-                  }}
-                  role="img"
-                  aria-label="World map showing Northern Trust office locations"
-                >
-                  <WorldMap
-                    offices={OFFICES}
-                    activeIds={activeIds}
-                    hoveredId={hoveredId}
-                    onHover={setHoveredId}
-                  />
-                </div>
-                <div className="mt-4 flex flex-wrap gap-4 text-[11px]" style={{ color: "var(--color-stone)" }}>
-                  <span className="inline-flex items-center gap-2">
-                    <span className="h-2 w-2 rounded-full" style={{ background: "var(--color-cta)" }} />
-                    Matches your filter
-                  </span>
-                  <span className="inline-flex items-center gap-2">
-                    <span
-                      className="h-2 w-2 rounded-full"
-                      style={{ background: "rgba(216,232,223,0.35)" }}
-                    />
-                    Other offices
-                  </span>
-                  <span className="inline-flex items-center gap-2">
-                    <Globe className="h-3 w-3" /> Interactive — hover to preview
-                  </span>
-                </div>
+            {/* Full-width map */}
+            <div className="mt-8">
+              <div
+                className="relative rounded-2xl overflow-hidden w-full"
+                style={{
+                  background: "var(--color-navy-deep)",
+                  border: "1px solid rgba(20,82,58,0.2)",
+                  aspectRatio: "2 / 1",
+                }}
+                role="img"
+                aria-label="World map showing Northern Trust office locations"
+              >
+                <WorldMap
+                  offices={OFFICES}
+                  activeIds={activeIds}
+                  hoveredId={hoveredId}
+                  onHover={setHoveredId}
+                />
               </div>
+              <div className="mt-4 flex flex-wrap gap-4 text-[11px]" style={{ color: "var(--color-stone)" }}>
+                <span className="inline-flex items-center gap-2">
+                  <span className="h-2 w-2 rounded-full" style={{ background: "var(--color-cta)" }} />
+                  Matches your filter
+                </span>
+                <span className="inline-flex items-center gap-2">
+                  <span className="h-2 w-2 rounded-full" style={{ background: "rgba(216,232,223,0.35)" }} />
+                  Other offices
+                </span>
+                <span className="inline-flex items-center gap-2">
+                  <Globe className="h-3 w-3" /> Interactive — hover to preview
+                </span>
+              </div>
+            </div>
 
-              {/* Results list */}
-              <div className="lg:col-span-5">
-                <ul className="divide-y" style={{ borderColor: "rgba(20,82,58,0.15)" }}>
-                  {filtered.length === 0 && (
-                    <li className="py-8 text-center text-[13px]" style={{ color: "var(--color-stone)" }}>
-                      No offices match your search. Try broadening the filter.
-                    </li>
-                  )}
+            {/* Results grid — stacked below the map, 3 columns for readability */}
+            <div className="mt-12">
+              <h2
+                className="text-[13px] tracking-[0.3em] uppercase mb-6"
+                style={{ color: "var(--color-stone)" }}
+              >
+                Offices
+              </h2>
+              {filtered.length === 0 ? (
+                <div className="py-10 text-center text-[13px]" style={{ color: "var(--color-stone)" }}>
+                  No offices match your search. Try broadening the filter.
+                </div>
+              ) : (
+                <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-0">
                   {filtered.map((o) => (
                     <li
                       key={o.city}
-                      className="py-4 flex items-start justify-between gap-4"
+                      className="py-5 flex items-start justify-between gap-4 border-t"
                       style={{ borderColor: "rgba(20,82,58,0.15)" }}
                       onMouseEnter={() => setHoveredId(o.city)}
                       onMouseLeave={() => setHoveredId(null)}
                     >
                       <div className="min-w-0">
-                        <div className="flex items-center gap-2">
+                        <div className="flex items-center gap-2 flex-wrap">
                           <MapPin className="h-3.5 w-3.5 shrink-0" style={{ color: "var(--color-cta)" }} aria-hidden="true" />
                           <span
                             className="text-[16px]"
@@ -286,7 +288,7 @@ function GlobalReachPage() {
                     </li>
                   ))}
                 </ul>
-              </div>
+              )}
             </div>
           </div>
         </section>
@@ -358,7 +360,9 @@ function WorldMap({
             const r = hover ? 12 : active ? 6 : 3.5;
             const fill = active ? "var(--color-cta)" : "rgba(216,232,223,0.4)";
             const labelText = `${o.city}${o.hq ? " · HQ" : ""}`;
-            const labelWidth = Math.max(60, labelText.length * 9 + 20);
+            const labelWidth = Math.max(140, labelText.length * 12 + 40);
+            const countryWidth = Math.max(labelWidth, o.country.length * 8 + 40);
+            const boxWidth = Math.max(labelWidth, countryWidth);
             return (
               <g
                 key={o.city}
@@ -433,37 +437,37 @@ function WorldMap({
                     <line
                       x1={o.x}
                       y1={o.y}
-                      x2={o.x + 24}
-                      y2={o.y - 40}
+                      x2={o.x + 28}
+                      y2={o.y - 52}
                       stroke="var(--color-ivory)"
                       strokeWidth={1.5}
                     />
                     <rect
-                      x={o.x + 22}
-                      y={o.y - 68}
-                      width={labelWidth}
-                      height={56}
-                      rx={8}
+                      x={o.x + 26}
+                      y={o.y - 88}
+                      width={boxWidth}
+                      height={72}
+                      rx={10}
                       fill="var(--color-ivory)"
                       stroke="var(--color-cta)"
                       strokeWidth={1.5}
                     />
                     <text
-                      x={o.x + 36}
-                      y={o.y - 46}
+                      x={o.x + 44}
+                      y={o.y - 58}
                       fill="var(--color-navy-deep)"
                       fontFamily="var(--font-display)"
-                      fontSize={18}
+                      fontSize={24}
                       fontWeight={600}
                     >
                       {o.city}
                     </text>
                     <text
-                      x={o.x + 36}
-                      y={o.y - 26}
+                      x={o.x + 44}
+                      y={o.y - 32}
                       fill="var(--color-stone)"
                       fontFamily="var(--font-sans)"
-                      fontSize={12}
+                      fontSize={15}
                     >
                       {o.country}
                     </text>
