@@ -476,7 +476,11 @@ function Hero() {
         </div>
 
         {/* Corner caption */}
-        <div className="absolute bottom-6 right-6 lg:bottom-8 lg:right-10 hidden md:block max-w-xs">
+        <div
+          className="absolute bottom-6 right-6 lg:bottom-8 lg:right-10 hidden md:block max-w-xs transition-opacity duration-500"
+          aria-hidden={agentActive}
+          style={{ opacity: agentActive ? 0 : 1, pointerEvents: agentActive ? "none" : "auto" }}
+        >
           <div
             className="text-[10px] tracking-[0.3em] uppercase mb-1"
             style={{ color: "var(--color-mist)" }}

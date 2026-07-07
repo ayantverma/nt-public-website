@@ -118,10 +118,11 @@ export function HeroAskAgent({ onActiveChange }: { onActiveChange?: (active: boo
           Ask Northern Trust a question
         </label>
         <div
-          className="flex items-center gap-3 rounded-full pl-5 pr-2 py-2 backdrop-blur-md transition-colors"
+          className="flex items-center gap-3 rounded-full pl-5 pr-2 py-2 backdrop-blur-md transition-all duration-300"
           style={{
-            background: "rgba(247,243,234,0.10)",
-            border: "1px solid rgba(247,243,234,0.55)",
+            background: engaged ? "rgba(247,243,234,0.16)" : "rgba(247,243,234,0.10)",
+            border: `1px solid rgba(247,243,234,${engaged ? 0.8 : 0.55})`,
+            boxShadow: focused ? "0 0 0 3px rgba(247,243,234,0.35)" : "none",
           }}
         >
           <Sparkles className="h-4 w-4 shrink-0" aria-hidden="true" style={{ color: "var(--color-ivory)" }} />
@@ -139,8 +140,8 @@ export function HeroAskAgent({ onActiveChange }: { onActiveChange?: (active: boo
             aria-expanded={open}
             aria-describedby={statusId}
             autoComplete="off"
-            className="flex-1 bg-transparent outline-none text-[14px] py-2 placeholder:opacity-80"
-            style={{ color: "var(--color-ivory)" }}
+            className="flex-1 bg-transparent text-[14px] py-2 placeholder:opacity-80"
+            style={{ color: "var(--color-ivory)", outline: "none", boxShadow: "none" }}
           />
           <button
             type="submit"
@@ -156,8 +157,17 @@ export function HeroAskAgent({ onActiveChange }: { onActiveChange?: (active: boo
 
       {/* Suggestion chips */}
       <ul
-        className="mt-4 flex flex-wrap gap-2"
+        className="mt-4 flex flex-wrap gap-2 transition-all duration-300"
         aria-label="Suggested questions"
+        aria-hidden={engaged}
+        style={{
+          opacity: engaged ? 0 : 1,
+          transform: engaged ? "translateY(-8px)" : "translateY(0)",
+          pointerEvents: engaged ? "none" : "auto",
+          maxHeight: engaged ? 0 : "none",
+          overflow: engaged ? "hidden" : "visible",
+          marginTop: engaged ? 0 : undefined,
+        }}
       >
         {SUGGESTIONS.map((s) => (
           <li key={s.label}>
