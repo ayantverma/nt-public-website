@@ -169,7 +169,7 @@ function Hero() {
               <span className="h-px w-8" style={{ background: "var(--color-mist)" }} aria-hidden="true" />
               Asset Servicing
             </div>
-            <h1 id="hero-title" className="tracking-tight" style={{ fontFamily: "var(--font-display)", fontSize: "clamp(3.0rem, 5.0vw, 5.0rem)", lineHeight: 1.02, fontWeight: 100, letterSpacing: "-0.01em" }}>
+            <h1 id="hero-title" className="tracking-tight break-words" style={{ fontFamily: "var(--font-display)", fontSize: "clamp(2.25rem, 5.0vw, 5.0rem)", lineHeight: 1.02, fontWeight: 100, letterSpacing: "-0.01em" }}>
               Institutional scale,
               <br />
               <em style={{ fontStyle: "normal", fontWeight: 200, color: "var(--color-mist)" }}>uncompromising precision.</em>
