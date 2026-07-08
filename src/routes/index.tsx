@@ -140,12 +140,12 @@ function TopBar() {
           </nav>
 
           <div className="flex items-center gap-3 shrink-0">
-            <div ref={searchRef} className="relative hidden md:block">
+            <div ref={searchRef} className="relative hidden 2xl:block">
               <SmartSearchField open={searchOpen} setOpen={setSearchOpen} />
             </div>
             <button
               onClick={() => setSearchOpen(true)}
-              className="md:hidden min-h-11 min-w-11 p-2.5 rounded-full border"
+              className="2xl:hidden min-h-11 min-w-11 p-2.5 rounded-full border"
               style={{ borderColor: "rgba(20,82,58,0.2)" }}
               aria-label="Search"
             >
