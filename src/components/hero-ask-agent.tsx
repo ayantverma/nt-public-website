@@ -159,6 +159,17 @@ export function HeroAskAgent({ onActiveChange }: { onActiveChange?: (active: boo
             className="flex-1 bg-transparent text-[14px] py-2 placeholder:opacity-80"
             style={{ color: "var(--color-ivory)", outline: "none", boxShadow: "none" }}
           />
+          {engaged && (
+            <button
+              type="button"
+              aria-label="Close search"
+              onClick={() => { setEngaged(false); setOpen(false); inputRef.current?.blur(); }}
+              className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full transition-colors hover:bg-white/15"
+              style={{ color: "var(--color-ivory)" }}
+            >
+              <ChevronLeft className="h-4 w-4" aria-hidden="true" />
+            </button>
+          )}
           <button
             type="submit"
             aria-label="Ask"
