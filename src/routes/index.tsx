@@ -113,7 +113,7 @@ function TopBar() {
             <NTMark />
           </a>
 
-          <nav className="hidden lg:flex items-center gap-7 xl:gap-8 text-[13px] tracking-wide" style={{ color: "var(--color-navy)" }}>
+          <nav className="hidden xl:flex items-center gap-6 xl:gap-7 text-[13px] tracking-wide" style={{ color: "var(--color-navy)" }}>
             <Link to="/wealth-management" className="relative py-2 group whitespace-nowrap">
               Wealth Management
               <span
@@ -140,12 +140,12 @@ function TopBar() {
           </nav>
 
           <div className="flex items-center gap-3 shrink-0">
-            <div ref={searchRef} className="relative hidden md:block">
+            <div ref={searchRef} className="relative hidden 2xl:block">
               <SmartSearchField open={searchOpen} setOpen={setSearchOpen} />
             </div>
             <button
               onClick={() => setSearchOpen(true)}
-              className="md:hidden min-h-11 min-w-11 p-2.5 rounded-full border"
+              className="2xl:hidden min-h-11 min-w-11 p-2.5 rounded-full border"
               style={{ borderColor: "rgba(20,82,58,0.2)" }}
               aria-label="Search"
             >
@@ -159,7 +159,7 @@ function TopBar() {
               Client Login
               <ArrowUpRight className="h-3.5 w-3.5" />
             </a>
-            <button className="lg:hidden min-h-11 min-w-11 p-2.5" aria-label="Menu">
+            <button className="xl:hidden min-h-11 min-w-11 p-2.5" aria-label="Menu">
               <Menu className="h-5 w-5" />
             </button>
           </div>
@@ -431,13 +431,13 @@ function Hero() {
               className="tracking-tight"
               style={{
                 fontFamily: "var(--font-display)",
-                fontSize: "clamp(3.0rem, 5.0vw, 5.0rem)",
+                fontSize: "clamp(2.25rem, 5.0vw, 5.0rem)",
                 lineHeight: 1.02,
                 fontWeight: 100,
               }}
             >
-              <span style={{ display: "block", whiteSpace: "nowrap" }}>A century and a third&nbsp;</span>
-              <span style={{ display: "block", whiteSpace: "nowrap" }}>of quiet conviction.</span>
+              <span style={{ display: "block" }}>A century and a third</span>
+              <span style={{ display: "block" }}>of quiet conviction.</span>
             </h1>
             <p
               className="mt-6 max-w-lg text-[16px] leading-relaxed"

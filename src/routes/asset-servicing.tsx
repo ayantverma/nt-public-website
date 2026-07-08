@@ -109,7 +109,7 @@ function TopBar() {
         <Link to="/" className="flex items-center gap-4 shrink-0" aria-label="Northern Trust — Home">
           <img src={ntLogoMark} alt="Northern Trust" className="h-14 w-auto shrink-0 select-none" draggable={false} />
         </Link>
-        <nav aria-label="Primary" className="hidden lg:flex items-center gap-7 xl:gap-8 text-[13px] tracking-wide" style={{ color: "var(--color-navy)" }}>
+        <nav aria-label="Primary" className="hidden xl:flex items-center gap-6 xl:gap-7 text-[13px] tracking-wide" style={{ color: "var(--color-navy)" }}>
           <Link to="/wealth-management" className="relative py-2 group whitespace-nowrap">
             Wealth Management
             <span className="absolute left-0 -bottom-0.5 h-px w-0 group-hover:w-full transition-all duration-300" style={{ background: "var(--color-cta)" }} />
@@ -133,7 +133,7 @@ function TopBar() {
             Client Login
             <ArrowUpRight className="h-3.5 w-3.5" aria-hidden="true" />
           </a>
-          <button className="lg:hidden min-h-11 min-w-11 p-2.5" aria-label="Open menu">
+          <button className="xl:hidden min-h-11 min-w-11 p-2.5" aria-label="Open menu">
             <Menu className="h-5 w-5" />
           </button>
         </div>
@@ -169,7 +169,7 @@ function Hero() {
               <span className="h-px w-8" style={{ background: "var(--color-mist)" }} aria-hidden="true" />
               Asset Servicing
             </div>
-            <h1 id="hero-title" className="tracking-tight" style={{ fontFamily: "var(--font-display)", fontSize: "clamp(3.0rem, 5.0vw, 5.0rem)", lineHeight: 1.02, fontWeight: 100, letterSpacing: "-0.01em" }}>
+            <h1 id="hero-title" className="tracking-tight break-words" style={{ fontFamily: "var(--font-display)", fontSize: "clamp(2.25rem, 5.0vw, 5.0rem)", lineHeight: 1.02, fontWeight: 100, letterSpacing: "-0.01em" }}>
               Institutional scale,
               <br />
               <em style={{ fontStyle: "normal", fontWeight: 200, color: "var(--color-mist)" }}>uncompromising precision.</em>

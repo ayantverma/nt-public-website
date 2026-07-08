@@ -185,7 +185,7 @@ function TopBar() {
         </Link>
         <nav
           aria-label="Primary"
-          className="hidden lg:flex items-center gap-7 xl:gap-8 text-[13px] tracking-wide"
+          className="hidden xl:flex items-center gap-6 xl:gap-7 text-[13px] tracking-wide"
           style={{ color: "var(--color-navy)" }}
         >
           <Link
@@ -233,7 +233,7 @@ function TopBar() {
             Client Login
             <ArrowUpRight className="h-3.5 w-3.5" />
           </a>
-          <button className="lg:hidden min-h-11 min-w-11 p-2.5" aria-label="Menu">
+          <button className="xl:hidden min-h-11 min-w-11 p-2.5" aria-label="Menu">
             <Menu className="h-5 w-5" />
           </button>
         </div>
