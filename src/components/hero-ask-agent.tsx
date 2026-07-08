@@ -114,12 +114,19 @@ export function HeroAskAgent({ onActiveChange }: { onActiveChange?: (active: boo
   return (
     <div ref={rootRef} className="mt-10 w-full max-w-2xl">
       {engaged && (
-        <h2
-          className="mb-4 text-[13px] tracking-[0.3em] uppercase transition-opacity duration-300"
-          style={{ color: "var(--color-mist)" }}
-        >
-          Find anything
-        </h2>
+        <div className="mb-4 flex flex-col items-center transition-opacity duration-300">
+          <Sparkles
+            className="mb-2 h-5 w-5"
+            aria-hidden="true"
+            style={{ color: "var(--color-mist)" }}
+          />
+          <h2
+            className="text-[13px] tracking-[0.3em] uppercase"
+            style={{ color: "var(--color-mist)" }}
+          >
+            Find anything
+          </h2>
+        </div>
       )}
       <form
         role="search"
