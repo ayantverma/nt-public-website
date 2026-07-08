@@ -114,12 +114,23 @@ export function HeroAskAgent({ onActiveChange }: { onActiveChange?: (active: boo
   return (
     <div ref={rootRef} className="mt-10 w-full max-w-2xl">
       {engaged && (
-        <h2
-          className="mb-4 text-[13px] tracking-[0.3em] uppercase transition-opacity duration-300"
-          style={{ color: "var(--color-mist)" }}
-        >
-          Find anything
-        </h2>
+        <div className="mb-4 flex items-center gap-3">
+          <button
+            type="button"
+            aria-label="Close search"
+            onClick={() => { setEngaged(false); setOpen(false); inputRef.current?.blur(); }}
+            className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full transition-colors hover:bg-white/15"
+            style={{ color: "var(--color-ivory)" }}
+          >
+            <ChevronLeft className="h-4 w-4" aria-hidden="true" />
+          </button>
+          <h2
+            className="text-[13px] tracking-[0.3em] uppercase transition-opacity duration-300"
+            style={{ color: "var(--color-mist)" }}
+          >
+            Find anything
+          </h2>
+        </div>
       )}
       <form
         role="search"
@@ -159,17 +170,6 @@ export function HeroAskAgent({ onActiveChange }: { onActiveChange?: (active: boo
             className="flex-1 bg-transparent text-[14px] py-2 placeholder:opacity-80"
             style={{ color: "var(--color-ivory)", outline: "none", boxShadow: "none" }}
           />
-          {engaged && (
-            <button
-              type="button"
-              aria-label="Close search"
-              onClick={() => { setEngaged(false); setOpen(false); inputRef.current?.blur(); }}
-              className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full transition-colors hover:bg-white/15"
-              style={{ color: "var(--color-ivory)" }}
-            >
-              <ChevronLeft className="h-4 w-4" aria-hidden="true" />
-            </button>
-          )}
           <button
             type="submit"
             aria-label="Ask"
