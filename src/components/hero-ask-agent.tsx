@@ -1,6 +1,6 @@
 import { useChat } from "@ai-sdk/react";
 import { DefaultChatTransport, type UIMessage } from "ai";
-import { ArrowRight, Sparkles, X } from "lucide-react";
+import { ArrowRight, ChevronLeft, Sparkles, X } from "lucide-react";
 import { useCallback, useEffect, useId, useMemo, useRef, useState } from "react";
 
 const ROTATING_PLACEHOLDERS = [
