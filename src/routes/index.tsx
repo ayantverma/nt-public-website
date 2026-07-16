@@ -431,13 +431,13 @@ function Hero() {
               className="tracking-tight"
               style={{
                 fontFamily: "var(--font-display)",
-                fontSize: "clamp(2.25rem, 5.0vw, 5.0rem)",
+                fontSize: "clamp(1.9rem, 4.4vw, 4.25rem)",
                 lineHeight: 1.02,
                 fontWeight: 100,
               }}
             >
-              <span style={{ display: "block" }}>A century and a third</span>
-              <span style={{ display: "block" }}>of quiet conviction.</span>
+              <span style={{ display: "block", whiteSpace: "nowrap" }}>A century and a third</span>
+              <span style={{ display: "block", whiteSpace: "nowrap" }}>of quiet conviction.</span>
             </h1>
             <p
               className="mt-6 max-w-lg text-[16px] leading-relaxed"
