@@ -1,54 +1,20 @@
-# Hero AI Search Agent — Plan
+## Changes
 
-Add a prominent "Ask Northern Trust" search/assistant bar directly under the hero CTAs on `/`, matching the reference screenshot's pattern (pill input + sparkle icon + submit arrow + suggested-query chips), then wire it to a lightweight assistant panel.
+### 1) Consistent header nav across pages
+On `/wealth-management` and `/asset-servicing`, the active nav link is rendered with `fontWeight: 600` and a permanent full-width underline, while on `/` all links are regular weight. The bolder text is wider than the regular text, which shifts the position of every nav item to the right of it — so items appear to "move" when navigating.
 
-## UX shape (matches reference)
+Fix: keep the font weight identical across states (regular), and indicate the active page using only the underline (which is absolutely positioned and does not affect layout). This makes item positions identical on every page.
 
-Placed under the "Talk to an advisor / What we do" buttons in `src/routes/index.tsx`.
+- `src/routes/wealth-management.tsx` (Wealth Management link, ~L191–201): remove `style={{ fontWeight: 600 }}`; keep the persistent underline via `w-full`.
+- `src/routes/asset-servicing.tsx` (Asset Servicing link, ~L114–120): same treatment — remove any bold weight on the active link, keep persistent underline.
+- Verify `/` (`src/routes/index.tsx`) uses the same regular weight (it does).
 
-```
-┌──────────────────────────────────────────────────────────────────────┐
-│  ✦  Ask Northern Trust anything — "How should a family office…"  → │
-└──────────────────────────────────────────────────────────────────────┘
-   [Plan a multigenerational estate]  [Compare custody solutions]  [2026 market outlook]
-```
+### 2) Hero headline must stay on exactly two lines
+`"A century and a third"` is currently in a `<span style={{ display: "block" }}>` with no wrap protection. On narrower viewports (and when the agent hero column is constrained), "third" wraps down, producing three visual lines.
 
-- Rotating placeholder examples (pauses on focus, respects `prefers-reduced-motion`).
-- 3 suggestion chips as one-tap prompts.
-- Submit opens an expanding results panel below the bar (in-page, no route change) with:
-  - Instant matches: curated site links (Wealth Management, Insights, FAQs) filtered client-side.
-  - "Ask the assistant" answer streamed from Lovable AI Gateway (`google/gemini-3-flash-preview`).
-  - Sources list linking to real site sections.
-- Empty state before submit: shows popular questions + "Talk to an advisor" fallback.
-- Escape closes the panel and returns focus to the input.
+Fix in `src/routes/index.tsx` (~L430–441):
+- Add `whiteSpace: "nowrap"` to both `<span>` blocks so each line stays intact.
+- Tighten the H1 `clamp()` so the largest size can't overflow the column at any breakpoint: `fontSize: "clamp(1.9rem, 4.4vw, 4.25rem)"`.
+- Result: exactly two lines at every viewport (mobile through desktop), no future breaks.
 
-## Accessibility (WCAG 2.2 AA)
-
-- Semantic `<form role="search">` with visually-hidden `<label for="nt-ask">`.
-- Combobox pattern (WAI-ARIA 1.2): `role="combobox"`, `aria-expanded`, `aria-controls`, `aria-autocomplete="list"`, results as `role="listbox"` with `role="option"` items, `aria-activedescendant` for keyboard highlight.
-- Full keyboard support: ↑/↓ through suggestions, Enter submits, Esc closes, Tab order preserved. **2.4.11 Focus Not Obscured**: sticky header offset accounted for on focus. **2.5.8 Target Size**: submit + chips ≥ 24×24 CSS px (using 44px).
-- `aria-live="polite"` region announces "Answer ready" / "Searching…" / error states.
-- Contrast: input placeholder ≥ 4.5:1 against the hero overlay (darken overlay behind the bar, or use an ivory pill on the green). Focus ring uses existing `--color-ivory` outline token in `src/styles.css`.
-- `prefers-reduced-motion`: disables placeholder rotation and panel slide.
-- Errors (rate limit, network): inline `role="alert"` under the bar; input remains editable.
-
-## Technical section
-
-**Files**
-- `src/routes/index.tsx` — insert `<HeroAskAgent />` under CTA row in the hero.
-- `src/components/hero-ask-agent.tsx` — new. Combobox + suggestions + results panel. Uses `useChat` from `@ai-sdk/react` with `DefaultChatTransport({ api: "/api/chat" })`.
-- `src/routes/api/chat.ts` — new server route. `streamText` via Lovable AI Gateway helper, model `google/gemini-3-flash-preview`, system prompt scoped to Northern Trust concept site (services, sections, escalation to advisor). Streams `toUIMessageStreamResponse`.
-- `src/lib/ai-gateway.server.ts` — new provider helper per `ai-sdk-lovable-gateway` (openai-compatible, `Lovable-API-Key` header).
-- `src/lib/site-index.ts` — new. Small static array of `{title, href, keywords, summary}` for instant local matches (Home, Wealth Management, etc.) — no DB.
-- `src/styles.css` — add one utility for the hero pill (backdrop-blur + border) using existing tokens; no new colors.
-
-**Backend**
-- Uses Lovable AI Gateway (no Supabase needed). `LOVABLE_API_KEY` server-only, provisioned via `lovable_api_key--create` if missing.
-- Rate/credit errors (429/402) surfaced as inline alerts.
-
-**Out of scope**
-- No auth, no persistence of chat history (single-session, per contract choice; if you want saved threads, we'll add that separately).
-- No changes to `/wealth-management`, footer, typography, or existing hero copy/layout beyond inserting the agent block.
-- MCP server stays untouched.
-
-Confirm and I'll build it.
+No other content, styling, or behavior changes.

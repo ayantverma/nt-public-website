@@ -114,7 +114,7 @@ function TopBar() {
             Wealth Management
             <span className="absolute left-0 -bottom-0.5 h-px w-0 group-hover:w-full transition-all duration-300" style={{ background: "var(--color-cta)" }} />
           </Link>
-          <Link to="/asset-servicing" className="relative py-2 whitespace-nowrap" aria-current="page" style={{ fontWeight: 600 }}>
+          <Link to="/asset-servicing" className="relative py-2 whitespace-nowrap" aria-current="page">
             Asset Servicing
             <span className="absolute left-0 -bottom-0.5 h-px w-full" style={{ background: "var(--color-cta)" }} aria-hidden="true" />
           </Link>

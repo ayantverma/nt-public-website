@@ -191,7 +191,7 @@ function TopBar() {
           <Link
             to="/wealth-management"
             className="relative py-2 whitespace-nowrap"
-            style={{ fontWeight: 600 }}
+            aria-current="page"
           >
             Wealth Management
             <span
