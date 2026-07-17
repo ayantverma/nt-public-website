@@ -350,11 +350,3 @@ export function HeroAskAgent({ onActiveChange }: { onActiveChange?: (active: boo
     </div>
   );
 }
-
-function renderText(message: UIMessage | undefined): string {
-  if (!message) return "";
-  return message.parts
-    .map((p) => (p.type === "text" ? p.text : ""))
-    .join("")
-    .trim();
-}
