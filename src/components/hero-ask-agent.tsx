@@ -1,7 +1,23 @@
-import { useChat } from "@ai-sdk/react";
-import { DefaultChatTransport, type UIMessage } from "ai";
 import { ArrowRight, ChevronLeft, Sparkles, X } from "lucide-react";
-import { useCallback, useEffect, useId, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useId, useRef, useState } from "react";
+
+// Canned client-side responses so the "Ask Northern Trust" UI works on a static
+// deploy (Nginx). Swap this out for a real API call later if desired.
+type ChatMessage = { role: "user" | "assistant"; text: string };
+
+function cannedAnswer(question: string): string {
+  const q = question.toLowerCase();
+  if (q.includes("custody")) {
+    return "Northern Trust operates one of the world's largest global custody networks, with $16.8T in assets under custody & administration across 100+ markets. Our custody, fund administration, and investment operations teams support asset owners and managers with resilience, transparency, and dedicated relationship coverage. Explore Asset Servicing for details, or ask an advisor to walk through your mandate.";
+  }
+  if (q.includes("estate") || q.includes("trust") || q.includes("generation") || q.includes("family")) {
+    return "For families building wealth to last, we bring one dedicated advisor supported by trust counsel, investment strategists, wealth planners, banking specialists, and philanthropic advisors. Northern Trust has served as trustee for more than a century — dynasty trusts, GRATs, charitable structures, and family governance included. Start with a private conversation on the Wealth Management page.";
+  }
+  if (q.includes("outlook") || q.includes("market") || q.includes("2026") || q.includes("rate")) {
+    return "Our 2026 outlook favors quality and duration selectively, with an overweight to developed-market equities where earnings breadth is broadening. We expect a measured easing cycle, moderating inflation, and continued dispersion across sectors — a backdrop that rewards active security selection and disciplined rebalancing.";
+  }
+  return "Northern Trust delivers wealth management, asset servicing, and asset management to families, institutions, and advisors — with 135 years of continuity. Tell me a bit more about what you're trying to accomplish, or speak with an advisor for a tailored view.";
+}
 
 const ROTATING_PLACEHOLDERS = [
   'Ask Northern Trust anything — "How should a family office position for rate cuts?"',
