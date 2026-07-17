@@ -1591,3 +1591,4 @@ function Footer() {
     </footer>
   );
 }
+export default WealthPage;

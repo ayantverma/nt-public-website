@@ -1287,3 +1287,5 @@ function Footer() {
     </footer>
   );
 }
+
+export default Index;

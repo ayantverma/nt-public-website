@@ -524,3 +524,4 @@ function Footer() {
     </footer>
   );
 }
+export default GlobalReachPage;
