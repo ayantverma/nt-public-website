@@ -51,8 +51,28 @@ export function HeroAskAgent({ onActiveChange }: { onActiveChange?: (active: boo
   const rootRef = useRef<HTMLDivElement>(null);
   const [engaged, setEngaged] = useState(false);
 
-  const transport = useMemo(() => new DefaultChatTransport({ api: "/api/chat" }), []);
-  const { messages, sendMessage, status, error, stop } = useChat({ transport });
+  const [messages, setMessages] = useState<ChatMessage[]>([]);
+  const [status, setStatus] = useState<"idle" | "streaming">("idle");
+  const [error, setError] = useState<Error | null>(null);
+  const streamTimer = useRef<number | null>(null);
+  const stop = useCallback(() => {
+    if (streamTimer.current !== null) {
+      window.clearTimeout(streamTimer.current);
+      streamTimer.current = null;
+    }
+    setStatus("idle");
+  }, []);
+  const sendMessage = useCallback(({ text }: { text: string }) => {
+    setError(null);
+    setMessages((prev) => [...prev, { role: "user", text }]);
+    setStatus("streaming");
+    const answer = cannedAnswer(text);
+    streamTimer.current = window.setTimeout(() => {
+      setMessages((prev) => [...prev, { role: "assistant", text: answer }]);
+      setStatus("idle");
+      streamTimer.current = null;
+    }, 650);
+  }, []);
 
   // Notify parent whenever engaged state changes.
   useEffect(() => {
@@ -112,12 +132,12 @@ export function HeroAskAgent({ onActiveChange }: { onActiveChange?: (active: boo
     return () => window.removeEventListener("keydown", onKey);
   }, [open, engaged, close]);
 
-  const isLoading = status === "submitted" || status === "streaming";
+  const isLoading = status === "streaming";
   const lastAssistant = [...messages].reverse().find((m) => m.role === "assistant");
   const lastUser = [...messages].reverse().find((m) => m.role === "user");
 
-  const assistantText = renderText(lastAssistant);
-  const userText = renderText(lastUser);
+  const assistantText = lastAssistant?.text ?? "";
+  const userText = lastUser?.text ?? "";
 
   const DUMMY_RESULTS = [
     { title: "Global Custody Solutions", href: "/asset-servicing", kind: "Asset Servicing" },
