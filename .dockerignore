@@ -1,0 +1,14 @@
+node_modules
+dist
+.git
+.lovable
+.vscode
+.idea
+*.log
+bun.lock
+npm-debug.log*
+.env
+.env.*
+!.env.example
+README-DEPLOY.md
+.DS_Store

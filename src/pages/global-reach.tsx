@@ -1,28 +1,8 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { Link } from "react-router-dom";
 import { useMemo, useState } from "react";
 import { ArrowUpRight, MapPin, Search, Globe, Menu } from "lucide-react";
 import ntLogoMark from "@/assets/nt-logo.png";
 import worldMapDots from "@/assets/world-map-dots.png";
-
-export const Route = createFileRoute("/global-reach")({
-  head: () => ({
-    meta: [
-      { title: "Global Reach — Locations · Northern Trust" },
-      {
-        name: "description",
-        content:
-          "Find a Northern Trust office. 22 locations across four continents, one standard of stewardship — search by city, region, or capability.",
-      },
-      { property: "og:title", content: "Global Reach — Northern Trust Locations" },
-      {
-        property: "og:description",
-        content: "Find a Northern Trust office. 22 locations across four continents.",
-      },
-      { property: "og:type", content: "website" },
-    ],
-  }),
-  component: GlobalReachPage,
-});
 
 type Office = {
   city: string;
@@ -544,3 +524,4 @@ function Footer() {
     </footer>
   );
 }
+export default GlobalReachPage;

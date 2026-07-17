@@ -1,4 +1,4 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { Link } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
 import {
   Search,
@@ -29,26 +29,6 @@ import audienceInstitutions from "@/assets/audience-institutions.jpg";
 import audienceAdvisors from "@/assets/audience-advisors.jpg";
 import insightFeatured from "@/assets/insight-featured.jpg";
 import ntLogoMark from "@/assets/nt-logo.png";
-
-export const Route = createFileRoute("/")({
-  head: () => ({
-    meta: [
-      { title: "Northern Trust — Since 1889. For Generations to Come." },
-      {
-        name: "description",
-        content:
-          "For 135 years, Northern Trust has served the world's most discerning families, institutions, and advisors — with wealth management, asset servicing, and asset management built on unshakeable trust.",
-      },
-      { property: "og:title", content: "Northern Trust — Since 1889" },
-      {
-        property: "og:description",
-        content:
-          "Wealth Management. Asset Servicing. Asset Management. Serving generations since 1889.",
-      },
-    ],
-  }),
-  component: Index,
-});
 
 function Index() {
   return (
@@ -1307,3 +1287,5 @@ function Footer() {
     </footer>
   );
 }
+
+export default Index;

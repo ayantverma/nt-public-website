@@ -1,4 +1,4 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { Link } from "react-router-dom";
 import { useEffect, useId, useRef, useState } from "react";
 import {
   ArrowRight,
@@ -33,28 +33,6 @@ import asHero from "@/assets/as-hero.jpg";
 import asCardCustody from "@/assets/as-card-custody.jpg";
 import asCardFund from "@/assets/as-card-fund.jpg";
 import asCardData from "@/assets/as-card-data.jpg";
-
-export const Route = createFileRoute("/asset-servicing")({
-  head: () => ({
-    meta: [
-      { title: "Asset Servicing — Northern Trust" },
-      {
-        name: "description",
-        content:
-          "Institutional-grade custody, fund administration, investment operations, and data analytics — engineered for scale, resilience, and clarity. Trusted by the world's leading asset owners and managers.",
-      },
-      { property: "og:title", content: "Asset Servicing — Northern Trust" },
-      {
-        property: "og:description",
-        content:
-          "Custody, fund services, investment operations, and data — built for institutional scale.",
-      },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary_large_image" },
-    ],
-  }),
-  component: AssetServicingPage,
-});
 
 function AssetServicingPage() {
   return (
@@ -707,3 +685,4 @@ function SectionHeader({ eyebrow, title, titleId, lede, compact }: { eyebrow: st
     </div>
   );
 }
+export default AssetServicingPage;

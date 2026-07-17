@@ -1,4 +1,4 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { Link } from "react-router-dom";
 import { useEffect, useMemo, useRef, useState } from "react";
 import {
   ArrowRight,
@@ -61,42 +61,6 @@ const faqData = [
     a: "Fees are transparent, tiered to the scope of the relationship, and confirmed in writing before we begin. There are no product commissions and no hidden incentives.",
   },
 ];
-
-export const Route = createFileRoute("/wealth-management")({
-  head: () => ({
-    meta: [
-      { title: "Wealth Management — Northern Trust" },
-      {
-        name: "description",
-        content:
-          "Multi-generational wealth counsel for families, business owners, executives, and family offices. Investment management, trust & estate, family office, banking, and philanthropy — under one relationship, since 1889.",
-      },
-      { property: "og:title", content: "Wealth Management — Northern Trust" },
-      {
-        property: "og:description",
-        content:
-          "One relationship. Many disciplines. Wealth that endures beyond generations.",
-      },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary_large_image" },
-    ],
-    scripts: [
-      {
-        type: "application/ld+json",
-        children: JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "FAQPage",
-          mainEntity: faqData.map((f) => ({
-            "@type": "Question",
-            name: f.q,
-            acceptedAnswer: { "@type": "Answer", text: f.a },
-          })),
-        }),
-      },
-    ],
-  }),
-  component: WealthPage,
-});
 
 const SECTIONS = [
   { id: "audiences", label: "Who we serve" },
@@ -1627,3 +1591,4 @@ function Footer() {
     </footer>
   );
 }
+export default WealthPage;
