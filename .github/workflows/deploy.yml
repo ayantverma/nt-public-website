@@ -1,19 +1,19 @@
 name: Deploy to GitHub Pages
-
+ 
 on:
   push:
     branches: [main]
   workflow_dispatch:
-
+ 
 permissions:
   contents: read
   pages: write
   id-token: write
-
+ 
 concurrency:
   group: pages
   cancel-in-progress: true
-
+ 
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -24,17 +24,23 @@ jobs:
           bun-version: latest
       - name: Install dependencies
         run: bun install --frozen-lockfile
-      - name: Build (Vite production)
+      - name: Build
         run: bun run build
+      - name: Debug list dist contents
+        run: |
+          echo "=== dist/ contents ==="
+          ls -la dist/
+          echo "=== dist/index.html first 20 lines ==="
+          head -20 dist/index.html
       - name: Ensure CNAME in dist
         run: echo "coforge-northerntrust-prototype.com" > dist/CNAME
-      - name: SPA fallback (404.html)
+      - name: SPA fallback 404 html
         run: cp dist/index.html dist/404.html
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: dist
-
+          path: './dist'
+ 
   deploy:
     needs: build
     runs-on: ubuntu-latest
